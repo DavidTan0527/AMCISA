@@ -1,0 +1,86 @@
+#_home {
+  .navbar {
+    display: flex;
+    padding: 1.5rem 2rem;
+    .navbar-title {
+      font-family: 'modulus';
+      font-weight: bold;
+      font-size: 3rem;
+      color: $text-gray;
+      letter-spacing: 2px;
+    }
+  }
+
+  .main-card, .about-card {
+    border-radius: .6rem;
+    box-shadow: 0 3px 18px rgba(#001C5A, .18);
+    display: flex;
+    .svg {
+      max-width: 40%;
+    }
+  }
+
+  .main-card {
+    background-color: white;
+    width: 70%;
+    max-height: 300px;
+    overflow: visible;
+    margin-left: 10%;
+    padding: 3rem 2rem;
+    z-index: 1;
+    
+    .slogan-section {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      .slogan-1, .slogan-2 {
+        align-self: flex-start;
+        font-size: 3.5rem;
+        letter-spacing: 2.5px;
+        font-family: 'Noteworthy';
+      }
+      .slogan-2 {
+        margin-top: -.5rem;
+        margin-left: 2ch;
+      }
+      .quote {
+        align-self: flex-end;
+        margin-right: 1rem;
+        font-size: 1.5rem;
+        letter-spacing: 1.2px;
+        color: $text-gray-light;
+      }
+
+      .about-card {
+        background-image: linear-gradient(#9B97EF, #98C0F7);
+        width: 115%;
+        margin-top: .5rem;
+        padding: 1rem 2rem 1.2rem;
+        z-index: 2;
+        
+        .info-section {
+          text-align: left;
+          color: white;
+          margin-right: .8rem;
+          header {
+            font-size: 3rem;
+            font-weight: 300;
+          }
+          p {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+
+  .background-rect {
+    background-color: #DDE2FD;
+    z-index: -99;
+    position: absolute;
+    top: 50%;
+    transform: translate(-25%, -50%) rotate(-15deg);
+    height: 650px;
+    width: 200%;
+  }
+}

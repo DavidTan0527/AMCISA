@@ -1,0 +1,24 @@
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap');
+@font-face {
+  font-family: 'modulus';
+  src: url('../fonts/Modulus/Modulus.ttf') format('truetype')
+}
+@font-face {
+  font-family: 'modulus';
+  font-weight: bold;
+  src: url('../fonts/Modulus/Modulus-Bold.otf') format('opentype');
+}
+
+// variables
+$text-gray: #58585f;
+$text-gray-light: #9B9BA7;
+$text-gray-dark-warm: #423E3E;
+
+// views
+@import './views/home.scss';
+
+body {
+  padding: 0;
+  margin: 0;
+}
