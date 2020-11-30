@@ -2,8 +2,8 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 
-// styles
-import '@/assets/scss/index.scss';
+import '@/assets/scss/index.scss'; // main scss file
+import '@/assets/icons/feather/feather.css'; // feather icons
 
 Vue.config.productionTip = false;
 

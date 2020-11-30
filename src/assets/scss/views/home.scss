@@ -1,6 +1,7 @@
 #_home {
   .navbar {
     display: flex;
+    margin-bottom: 1rem;
     padding: 1.5rem 2rem;
     .navbar-title {
       font-family: 'modulus';
@@ -78,9 +79,9 @@
     background-color: #DDE2FD;
     z-index: -99;
     position: absolute;
-    top: 50%;
-    transform: translate(-25%, -50%) rotate(-15deg);
-    height: 650px;
+    top: 150px;
+    transform: translateX(-25%) rotate(-15deg);
+    height: 550px;
     width: 200%;
   }
 }

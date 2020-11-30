@@ -24,10 +24,10 @@
           </div>
           <img class="svg" src="../assets/svg/around_the_world.svg">
         </div>
-        <div class="background-rect"></div>
-      </div>
       </div>
     </div>
+    <div class="background-rect"></div>
+  </div>
 </template>
 
 <script>
