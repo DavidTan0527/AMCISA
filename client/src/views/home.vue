@@ -26,6 +26,29 @@
         </div>
       </div>
     </div>
+    <div class="explore">
+      <header>Explore</header>
+      <div class="body">
+        We operate differently in both schools, with different culture and activities.
+        Find out which appeals you more and join us now!
+      </div>
+      <div class="btns">
+        <div class="btn-nus" @click="$router.push('/nus')">
+          <img src="../assets/nus.png" alt="">
+        </div>
+        <div class="btn-ntu" @click="$router.push('/ntu')">
+          <img src="../assets/ntu.png" alt="">
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="icons">
+        <i class="fe fe-facebook"></i>
+        <i class="fe fe-instagram"></i>
+        <i class="fe fe-youtube"></i>
+      </div>
+      2020 © AMCISA
+    </footer>
     <div class="background-rect"></div>
   </div>
 </template>

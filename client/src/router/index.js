@@ -9,6 +9,18 @@ const routes = [
     name: 'Home',
     component: () => import('@/views/home'),
   },
+  {
+    path: '/:uni',
+    name: 'Main',
+    component: () => import('@/views/main'),
+    beforeEnter: (to, from, next) => {
+      if (!['nus', 'ntu'].includes(to.params.uni)) {
+        next({ name: 'Home' });
+      }
+      next(); // always call next
+    },
+    children: [],
+  },
 ];
 
 const router = new VueRouter({

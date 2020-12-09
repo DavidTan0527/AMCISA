@@ -6,7 +6,7 @@
     .navbar-title {
       font-family: 'modulus';
       font-weight: bold;
-      font-size: 3rem;
+      font-size: 4rem;
       color: $text-gray;
       letter-spacing: 2px;
     }
@@ -22,7 +22,7 @@
   }
 
   .main-card {
-    background-color: white;
+    background-color: #fff;
     width: 70%;
     max-height: 300px;
     overflow: visible;
@@ -63,7 +63,7 @@
         
         .info-section {
           text-align: left;
-          color: white;
+          color: #fff;
           margin-right: .8rem;
           header {
             font-size: 3rem;
@@ -73,6 +73,74 @@
             font-size: 1.2rem;
           }
         }
+      }
+    }
+  }
+
+  .explore {
+    margin-top: 400px;
+    header {
+      font-size: 3rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+    .body {
+      color: $text-gray-light;
+      font-size: 1.8rem;
+      font-weight: 300;
+      max-width: 70%;
+      margin: 0 auto;
+    }
+
+    .btns {
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 2rem;
+      padding: 0 5%;
+      .btn-nus, .btn-ntu {
+        border-radius: 1.5rem;
+        box-shadow: 0 10px 16px rgba(#000, .18);
+        width: 35%;
+        height: auto;
+        padding: 5rem 2rem;
+        cursor: pointer;
+        transition: 300ms;
+        &:hover {
+          box-shadow: 0 24px 26px rgba(#000, .18);
+        }
+        img {
+          height: 150px;
+          margin: 0 auto;
+        }
+      }
+
+      .btn-nus {
+        background-color: #F4EAE4;
+      }
+      .btn-ntu {
+        background-color: #E4E4E9;
+      }
+    }
+  }
+
+  footer {
+    width: 100%;
+    // height: 5rem;
+    background-color: #B5B9FF;
+    color: #fff;
+    margin-top: 2rem;
+    padding: 7rem 0 1rem;
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 35%);
+    .icons {
+      margin: 1.5rem 0;
+      .fe {
+        border: solid 2px #fff;
+        border-radius: 50%;
+        font-weight: 500;
+        font-size: 1.8rem;
+        margin: 0 1rem;
+        padding: .5rem;
+        cursor: pointer;
       }
     }
   }
