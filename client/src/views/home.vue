@@ -3,6 +3,7 @@
     <nav class="navbar">
       <section class="navbar-title">Amcisa</section>
     </nav>
+
     <div class="main-card">
       <img class="svg" src="../assets/svg/having_fun.svg">
       <div class="slogan-section">
@@ -13,19 +14,22 @@
           is left behind"
         </div>
         <span class="quote">––Amcisa</span>
-
-        <div class="about-card">
-          <div class="info-section">
-            <header>About Us</header>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
-          <img class="svg" src="../assets/svg/around_the_world.svg">
-        </div>
       </div>
     </div>
+
+    <div class="about-card">
+      <div class="info-section">
+        <header>About Us</header>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+      <img class="svg" src="../assets/svg/around_the_world.svg">
+    </div>
+
     <div class="explore">
       <header>Explore</header>
       <div class="body">
@@ -34,13 +38,14 @@
       </div>
       <div class="btns">
         <div class="btn-nus" @click="$router.push('/nus')">
-          <img src="../assets/nus.png" alt="">
+          <div class="img"></div>
         </div>
         <div class="btn-ntu" @click="$router.push('/ntu')">
-          <img src="../assets/ntu.png" alt="">
+          <div class="img"></div>
         </div>
       </div>
     </div>
+
     <footer>
       <div class="icons">
         <i class="fe fe-facebook"></i>

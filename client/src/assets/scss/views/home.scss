@@ -1,4 +1,7 @@
 #_home {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
   .navbar {
     display: flex;
     margin-bottom: 1rem;
@@ -27,14 +30,14 @@
     max-height: 300px;
     overflow: visible;
     margin-left: 10%;
-    margin-bottom: 300px;
     padding: 3rem 2rem;
     z-index: 1;
     
     .slogan-section {
-      flex-grow: 1;
       display: flex;
       flex-direction: column;
+      width: 60%;
+      margin-bottom: 300px;
       .slogan-1, .slogan-2 {
         align-self: flex-start;
         font-size: 3.5rem;
@@ -53,32 +56,34 @@
         color: $text-gray-light;
       }
 
-      .about-card {
-        background-image: linear-gradient(#9B97EF, #98C0F7);
-        width: 115%;
-        max-height: 500px;
-        margin-top: .5rem;
-        padding: 1rem 2rem 1.2rem;
-        z-index: 2;
-        
-        .info-section {
-          text-align: left;
-          color: #fff;
-          margin-right: .8rem;
-          header {
-            font-size: 3rem;
-            font-weight: 300;
-          }
-          p {
-            font-size: 1.2rem;
-          }
-        }
+    }
+  }
+  
+  .about-card {
+    background-image: linear-gradient(#9B97EF, #98C0F7);
+    width: 50%;
+    max-height: 500px;
+    margin-left: 40%;
+    margin-top: -100px;
+    padding: 1rem 2rem 1.2rem;
+    z-index: 2;
+    
+    .info-section {
+      text-align: left;
+      color: #fff;
+      margin-right: .8rem;
+      header {
+        font-size: 3rem;
+        font-weight: 300;
+      }
+      p {
+        font-size: 1.2rem;
       }
     }
   }
 
   .explore {
-    margin-top: 400px;
+    margin-top: 300px;
     header {
       font-size: 3rem;
       font-weight: 300;
@@ -101,31 +106,41 @@
         border-radius: 1.5rem;
         box-shadow: 0 10px 16px rgba(#000, .18);
         width: 35%;
+        max-width: 500px;
         height: auto;
         padding: 5rem 2rem;
         cursor: pointer;
         transition: 300ms;
+
         &:hover {
           box-shadow: 0 24px 26px rgba(#000, .18);
         }
-        img {
+        .img {
           height: 150px;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: 50% 50%;
           margin: 0 auto;
         }
       }
 
       .btn-nus {
         background-color: #F4EAE4;
+        .img {
+          background-image: url('./../nus.png');
+        }
       }
       .btn-ntu {
         background-color: #E4E4E9;
+        .img {
+          background-image: url('./../ntu.png');
+        }
       }
     }
   }
 
   footer {
     width: 100%;
-    // height: 5rem;
     background-color: #B5B9FF;
     color: #fff;
     margin-top: 2rem;
@@ -153,5 +168,175 @@
     transform: translateX(-25%) rotate(-15deg);
     height: 550px;
     width: 200%;
+    overflow: auto;
+  }
+
+  // Responsive
+  @media screen and (max-width: 1024px) {
+    .explore {
+      margin-top: 200px;
+      .btns {
+        .btn-nus, .btn-ntu {
+          .img {
+            height: 100px;
+          }
+        }
+      } 
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .main-card {
+      max-height: 200px;
+      padding: 2rem;
+      .slogan-section {
+        .slogan-1, .slogan-2 {
+          font-size: 2.8rem;
+          letter-spacing: 2px;
+        }
+        .quote {
+          font-size: 1.2rem;
+          letter-spacing: 1px;
+        }
+
+      }
+    }
+
+    .about-card {
+      margin-top: -50px;
+      .info-section {
+        margin-right: .8rem;
+        header {
+          font-size: 2.5rem;
+          font-weight: 300;
+        }
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .explore {
+      margin-top: 150px;
+      header {
+        font-size: 2.6rem;
+        letter-spacing: 1.5px;
+      }
+      .body {
+        font-size: 1rem;
+      }
+      .btns {
+        flex-direction: column;
+        align-items: center;
+        .btn-nus, .btn-ntu {
+          width: 50%;
+          padding: 4rem 2rem;
+          .img {
+            height: 120px;
+          }
+        }
+        .btn-nus {
+          margin-bottom: 1.5rem;
+        }
+        .btn-ntu {
+          margin-top: 1.5rem;
+        }
+      } 
+    }
+
+    footer {
+      padding: 5rem 0 1rem;
+      .icons {
+        .fe {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .background-rect {
+      height: 450px;
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    .navbar {
+      .navbar-title {
+        font-size: 3rem;
+        letter-spacing: 1.8px;
+      }
+    }
+
+    .main-card {
+      width: 80%;
+      margin: 0 auto;
+      padding: 1.8rem 1rem;
+      max-height: 200px;
+      .slogan-section {
+        margin-bottom: 0;
+        .slogan-1, .slogan-2 {
+          font-size: 1.3rem;
+          letter-spacing: 1.5px;
+        }
+        .quote {
+          font-size: 1rem;
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+    .about-card {
+      width: 80%;
+      margin: 2rem auto 0;
+      padding: 1rem 1rem 1.2rem;
+      .info-section {
+        margin-right: .8rem;
+        header {
+          font-size: 2rem;
+          font-weight: 300;
+        }
+        p {
+          font-size: .9rem;
+        }
+      }
+    }
+
+    .explore {
+      margin-top: 100px;
+      .btns {
+        .btn-nus, .btn-ntu {
+          width: 50%;
+          padding: 2rem;
+          .img {
+            height: 80px;
+          }
+        }
+        .btn-nus {
+          .img {
+            background-image: url('./../nus_name.png');
+          }
+        }
+        .btn-ntu {
+          .img {
+            background-image: url('./../ntu_name.png');
+          }
+        }
+      } 
+    }
+
+    footer {
+      padding: 3rem 0 1rem;
+      clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 30%);
+      .icons {
+        margin: 1.5rem 0 1rem;
+        .fe {
+          border-width: 1.8px;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .background-rect {
+      height: 400px;
+    }
   }
 }
