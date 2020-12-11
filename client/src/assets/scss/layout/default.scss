@@ -36,16 +36,20 @@
           transition: 300ms;
           cursor: pointer;
           &:hover {
-            font-size: 1.3rem;
+            color: $text-gray-light;
           }
         }
       }
     }
   }
+  .content {
+    padding-bottom: 480px;
+  }
   footer {
     position: absolute;
     bottom: 0;
     width: 100%;
+    max-height: 450px;
     padding: 2rem 8rem;
     box-sizing: border-box;
     border-top: solid 1px $text-gray-light;
@@ -134,9 +138,6 @@
             border: none;
             margin: .5rem 0;
           }
-          li:hover {
-            font-size: initial;
-          }
         }
       }
     }
@@ -162,7 +163,7 @@
       }
     }
     footer {
-      padding: 2rem;
+      padding: 1rem;
       .links > div ul li {
         font-size: .6rem;
       }
@@ -174,12 +175,12 @@
 }
 
 // uni specific colors
-#_default.nus {
+.nus #_default {
   header .title .uni {
     color: $primary-orange;
   }
 }
-#_default.ntu {
+.ntu #_default {
   header .title .uni {
     color: $primary-red;
   } 

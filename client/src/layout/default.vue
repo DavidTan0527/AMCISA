@@ -1,8 +1,8 @@
 <template>
-  <div id="_default" :class="$route.params.uni">
+  <div id="_default">
     <header>
       <section class="title vert-divider">
-        <span class="uni">{{ uni }}</span>
+        <span class="uni">{{ $route.params.uni === 'nus' ? 'NUS' : 'NTU' }}</span>
         <span class="amcisa">Amcisa</span>
       </section>
       <section class="links">
@@ -15,7 +15,9 @@
         </ul>
       </section>
     </header>
-    <slot />
+    <div class="content">
+      <slot />
+    </div>
     <footer>
       <div class="links">
         <div v-for="section in sections" :key="section.name">
@@ -39,7 +41,7 @@
           </ul>
         </div>
       </div>
-      <small>2020 © {{ uni }} AMCISA</small>
+      <small>2020 © {{ $route.params.uni === 'nus' ? 'NUS' : 'NTU' }} AMCISA</small>
     </footer>
   </div>
 </template>
@@ -84,10 +86,6 @@ export default {
       facebook: { name: '@amcisanusntu', to: '' },
       youtube: { name: 'NUSAMCISA FOCCOM', to: '' },
     },
-    uni: '',
   }),
-  mounted() {
-    this.uni = this.$route.params.uni === 'nus' ? 'NUS' : 'NTU';
-  },
 };
 </script>
