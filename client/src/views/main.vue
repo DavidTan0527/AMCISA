@@ -1,12 +1,74 @@
 <template>
   <div id="_main">
-    This is the main page for {{ $route.params.uni }}
+    <div class="foc">
+      <div class="main-title">FOC</div>
+      <div class="body">
+        Freshman Orientation Camp 20/21 is open for registration!!!
+      </div>
+      <button class="btn-round">
+        Check It Out!!! <i class="fe fe-arrow-right"></i>
+      </button>
+    </div>
+    <div class="events">
+      <div class="main-title">EVENTS</div>
+      <div class="body">
+        <timeline />
+      </div>
+      <button class="btn-round" @click="goto('event')">
+        View All Events
+      </button>
+    </div>
+    <div class="admission">
+      <div class="main-title">ADMISSION</div>
+      <div class="body">
+        <div class="step">
+          <div class="title">Step 1</div>
+          <ul>
+            <li>Choose your course of study</li>
+            <li>Complete online application form</li>
+            <li>Apply for tuition grant</li>
+          </ul>
+        </div>
+        <div class="step">
+          <div class="title">Step 2</div>
+          <ul>
+            <li>Choose your course of study</li>
+            <li>Complete online application form</li>
+            <li>Apply for tuition grant</li>
+          </ul>
+        </div>
+        <div class="step">
+          <div class="title">Step 3</div>
+          <ul>
+            <li>Choose your course of study</li>
+            <li>Complete online application form</li>
+            <li>Apply for tuition grant</li>
+          </ul>
+        </div>
+      </div>
+      <button class="btn-round">
+        Details & FAQ
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
+import timeline from '@/components/timeline.vue';
+
 export default {
+  metaInfo: {
+    title: 'Landing',
+  },
   data: () => ({
   }),
+  components: {
+    timeline,
+  },
+  methods: {
+    goto(path) {
+      this.$router.push(`/${this.$route.params.uni}/${path}`);
+    },
+  },
 };
 </script>

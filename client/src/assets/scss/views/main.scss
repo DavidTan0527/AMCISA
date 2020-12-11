@@ -1,0 +1,134 @@
+#_main {
+  & > div {
+    &:not(:first-of-type) {
+      margin-top: 10rem;
+    }
+    button {
+      font-size: 1.2rem;
+    }
+  }
+  .foc {
+    .body {
+      width: 70%;
+      max-width: 600px;
+      font-size: 2.3rem;
+      font-weight: 300;
+      margin: 0 auto 2rem;
+    }
+  }
+  .events {
+    .body {
+      margin-top: 150px;
+    }
+    button {
+      margin-top: 200px;
+    }
+  }
+  .admission {
+    .body {
+      display: flex;
+      .step {
+        flex-grow: 1;
+        color: #fff;
+        min-height: 200px;
+        padding: 3rem 2rem;
+        text-align: left;
+        &:nth-child(even) {
+          background-color: $primary-blue;
+        }
+        .title {
+          font-family: 'Source Code Pro';
+          font-size: 2rem;
+          font-weight: 500;
+        }
+        ul {
+          padding-inline-start: 20px;
+          li {
+            margin-bottom: 1rem;
+          }
+        }
+      }
+    }
+    button {
+      margin-top: 5rem;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    & > div {
+      &:not(:first-of-type) {
+        margin-top: 7rem;
+      }
+      button {
+        font-size: 1rem;
+      }
+    }
+    .foc .body {
+      font-size: 1.8rem;
+    }
+    .events .body {
+      margin-top: 100px;
+    }
+    .admission .body .step {
+      .title {
+        font-size: 1.6rem;
+      }
+      ul li {
+        font-size: .8rem;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 425px) {
+    & > div {
+      &:not(:first-of-type) {
+        margin-top: 5rem;
+      }
+      button {
+        font-size: .8rem;
+      }
+    }
+    .foc .body {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .events {
+      .body {
+        margin-top: 60px;
+      }
+      button {
+        margin-top: 100px;
+      }
+    }
+    .admission {
+      .body {
+        flex-direction: column;
+        .step {
+          padding: 2rem;
+          min-height: initial;
+          .title {
+            font-size: 1.2rem;
+          }
+          ul li {
+            font-size: .8rem;
+          }
+        }
+      }
+      button {
+        margin-top: 3rem;
+      }
+    }
+  }
+}
+
+.nus #_main {
+  .admission .body .step:nth-child(odd) {
+    background-color: $primary-orange;
+  }
+}
+
+.ntu #_main {
+  .admission .body .step:nth-child(odd) {
+    background-color: $primary-red;
+  }
+}
