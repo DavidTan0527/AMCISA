@@ -1,0 +1,86 @@
+#_event {
+  .body {
+    display: flex;
+    padding: 0 8rem;
+    margin: 0 auto;
+    .filter {
+      display: flex;
+      flex-direction: column;
+      color: $text-gray-light;
+      width: 25%;
+      margin-right: 2rem;
+      .title {
+        font-weight: 400;
+        text-align: left;
+      }
+      input {
+        font-size: 1.2rem;
+        border: none;
+        border-radius: .5rem;
+        border-bottom: solid 1.5px $text-gray-light;
+        margin-bottom: 2rem;
+        padding: .1rem .6rem;
+        transition: 300ms;
+        &:focus, &:focus-within, &:active {
+          outline: none;
+          border: none;
+          border-bottom: solid 1.5px $primary-orange;
+        }
+      }
+      .date {
+        display: flex;
+        align-items: center;
+        i {
+          font-size: 1.8rem;
+          margin-right: .2rem;
+        }
+        input {
+          border-radius: 0;
+          padding: .1rem;
+          margin: 0 .5rem;
+          &:placeholder-shown { text-align: center; }
+          &::placeholder { font-size: 1rem; }
+        }
+      }
+    }
+    .events {
+      padding: 2rem;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .body {
+      padding: 0 4rem;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .body {
+      padding: 0 2rem;
+      .filter {
+        .title {
+          font-size: 1.5rem;
+        }
+        input {
+          font-size: .8rem;
+        }
+        .date {
+          i {
+            font-size: 1.2rem;
+          }
+          input::placeholder { font-size: .7rem; }
+        }
+      }
+    }
+  }
+  
+  @media screen and (max-width: 425px) {
+    .body {
+      flex-direction: column;
+      .filter {
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}

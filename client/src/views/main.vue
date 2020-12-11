@@ -57,8 +57,10 @@
 import timeline from '@/components/timeline.vue';
 
 export default {
-  metaInfo: {
-    title: 'Landing',
+  metaInfo() {
+    return {
+      title: this.$route.params.uni.toUpperCase().concat(' | AMCISA'),
+    };
   },
   data: () => ({
   }),

@@ -14,7 +14,7 @@ export default {
   name: 'App',
   metaInfo: {
     title: 'AMCISA',
-    titleTemplate: '%s | AMCISA',
+    titleTemplate: null,
   },
   components: {
     defaultLayout,

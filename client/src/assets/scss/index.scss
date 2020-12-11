@@ -32,8 +32,16 @@ $primary-red: #EA0039;
 // views
 @import './views/home.scss';
 @import './views/main.scss';
+@import './views/event.scss';
 
 body {
   padding: 0;
   margin: 0;
+}
+
+// Remove input type=number spinner
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
