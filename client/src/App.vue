@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="$route.params.uni">
     <default-layout v-if="$route.name !== 'Home'">
       <router-view/>
     </default-layout>
@@ -11,6 +11,11 @@
 import defaultLayout from './layout/default.vue';
 
 export default {
+  name: 'App',
+  metaInfo: {
+    title: 'AMCISA',
+    titleTemplate: '%s | AMCISA',
+  },
   components: {
     defaultLayout,
   },

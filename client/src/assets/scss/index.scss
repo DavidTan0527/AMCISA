@@ -1,5 +1,6 @@
 // fonts
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600;700&display=swap');
 @font-face {
   font-family: 'modulus';
   src: url('../fonts/Modulus/Modulus.ttf') format('truetype')
@@ -17,7 +18,7 @@ $text-gray-dark-cool: #58585F;
 $text-gray-dark-warm: #423E3E;
 
 $primary-blue: #003d7e;
-$primary-orange: #f57a33;
+$primary-orange: #FF7300;
 $primary-red: #EA0039;
 
 @import './presets.scss';
@@ -25,8 +26,12 @@ $primary-red: #EA0039;
 //layouts
 @import './layout/default.scss';
 
+// components
+@import './components/timeline.scss';
+
 // views
 @import './views/home.scss';
+@import './views/main.scss';
 
 body {
   padding: 0;

@@ -3,3 +3,44 @@
     border-left: solid 3px #575757;
   }
 }
+
+.main-title {
+  display: inline-block;
+  font-family: 'Source Code Pro';
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin: 0 auto 2rem;
+  border-bottom: solid 3px $primary-orange; // default nus color
+  // &+*:not(div)::before {
+  //   content: '\A';
+  //   white-space: pre;
+  // }
+  
+  @media screen and (max-width: 768px) {
+    font-size: 2.8rem;
+  }
+  
+  @media screen and (max-width: 425px) {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+}
+.ntu .main-title {
+  border-color: $primary-red;
+}
+
+.btn-round {
+  display: inline-block;
+  border-radius: 1.25em;
+  height: 2.5em;
+  font-size: 1em;
+  padding: 0 1.2em;
+  color: #fff;
+  background-color: #FF9C4C;
+  border: none;
+  cursor: pointer;
+}
+.ntu .btn-round {
+  background-color: #EA0039;
+}

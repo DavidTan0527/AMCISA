@@ -1,7 +1,7 @@
 <template>
   <div id="_default">
     <header>
-      <section class="title vert-divider">
+      <section class="title vert-divider" @click="$router.push(`/${$route.params.uni}`)">
         <span class="uni">{{ $route.params.uni === 'nus' ? 'NUS' : 'NTU' }}</span>
         <span class="amcisa">Amcisa</span>
       </section>
@@ -11,7 +11,7 @@
           <li
             v-for="link in links"
             :key="link.name"
-            @click="$router.push(link.to)">{{ link.name }}</li>
+            @click="$router.push(`/${$route.params.uni}/${link.to}`)">{{ link.name }}</li>
         </ul>
       </section>
     </header>
@@ -52,7 +52,7 @@ export default {
     // header links
     links: [
       { name: 'FOC', to: '' },
-      { name: 'Events', to: '' },
+      { name: 'Events', to: 'event' },
       { name: 'Admission', to: '' },
       { name: 'About', to: '' },
     ],
