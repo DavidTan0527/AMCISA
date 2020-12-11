@@ -1,0 +1,24 @@
+{
+    "admission": [
+        {
+            "title": "step1",
+            "content": "bla bla bla"
+        },
+        {
+            "title": "step2",
+            "content": "bla bla bla"
+        },
+        {
+            "title": "step3",
+            "content": "bla bla bla"
+        }
+    ],
+    "contact_us": 
+        {
+            "mail": "nusamcisa@gmail.com",
+            "instagram": "@nusamcisa",
+            "facebook": "@amcisanusntu",
+            "youtube": "nusamcisa foccom"
+        }
+    
+}
