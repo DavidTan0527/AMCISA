@@ -1,0 +1,5 @@
+.vert-divider {
+  *:not(:first-child) {
+    border-left: solid 3px #575757;
+  }
+}

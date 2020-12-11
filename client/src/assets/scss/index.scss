@@ -13,7 +13,17 @@
 // variables
 $text-gray: #58585f;
 $text-gray-light: #9B9BA7;
+$text-gray-dark-cool: #58585F;
 $text-gray-dark-warm: #423E3E;
+
+$primary-blue: #003d7e;
+$primary-orange: #f57a33;
+$primary-red: #EA0039;
+
+@import './presets.scss';
+
+//layouts
+@import './layout/default.scss';
 
 // views
 @import './views/home.scss';
