@@ -24,7 +24,8 @@
         &:focus, &:focus-within, &:active {
           outline: none;
           border: none;
-          border-bottom: solid 1.5px $primary-orange;
+          border-bottom: solid 1.5px;
+          &::placeholder { transition: 300ms; }
         }
       }
       .date {
@@ -81,6 +82,24 @@
         width: 100%;
         margin-bottom: 2rem;
       }
+    }
+  }
+}
+
+.nus #_event .body .filter input {
+  &:focus, &:focus-within, &:active {
+   border-color: $primary-orange;
+    &::placeholder {
+      color: $primary-orange;
+    }
+  }
+}
+
+.ntu #_event .body .filter input {
+  &:focus, &:focus-within, &:active {
+   border-color: $primary-red;
+    &::placeholder {
+      color: $primary-red;
     }
   }
 }
