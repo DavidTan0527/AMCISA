@@ -1,0 +1,26 @@
+{
+    "title": "20/21 MAIN COMM",
+    "pres_picture": "url",
+    "caption": "Regardless of the adversitites....",
+    "member": [
+        {
+            "id": 1,
+            "picture": "url",
+            "position": "bla bla",
+            "course_year": "Y2 chem eng"
+        },
+        {
+            "id": 2,
+            "picture": "url",
+            "position": "bla bla",
+            "course_year": "Y2 chem eng"
+        },
+        {
+            "id": 3,
+            "picture": "url",
+            "position": "bla bla",
+            "course_year": "Y2 chem eng"
+        }
+    ]
+    
+}
