@@ -23,8 +23,8 @@ router.get('/events/:id', function (req, res) {
         for (let i of data){
             if (i.id == req.params.id){
                 res.send(i)
+                break;
             };
-            break;
         }
     })
 })
