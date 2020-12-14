@@ -13,7 +13,17 @@ router.get('/events', function (req, res) {
     getJson('event.json').then( data =>{
         data = JSON.parse(data).data;
         data = data.map(({id, title, picture, event_date, venue}) => ({id, title, picture, event_date, venue}))
-        res.send(data)
+        let formatted_data = [];
+        let medium_arr = [];
+        for (let i = 0; i < data.length; i++){
+            if (i % 15 == 0 && i != 0){
+                formatted_data.push(medium_arr);
+                medium_arr = []
+            }
+            medium_arr.push(data[i])
+        };
+        formatted_data.push(medium_arr);
+        res.send(formatted_data)
     })
 })
 
