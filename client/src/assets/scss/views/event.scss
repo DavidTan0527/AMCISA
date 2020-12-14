@@ -76,10 +76,7 @@
             }
           }
           .hide-page { filter: opacity(0); }
-          .current-page {
-            color: #fff;
-            background-color: $primary-orange;
-          }
+          .current-page { color: #fff; }
         }
       }
       .event-grid {
@@ -165,20 +162,30 @@
   }
 }
 
-.nus #_event .body .filter input {
-  &:focus, &:focus-within, &:active {
-   border-color: $primary-orange;
-    &::placeholder {
-      color: $primary-orange;
+.nus #_event .body {
+  .filter input {
+    &:focus, &:focus-within, &:active {
+     border-color: $primary-orange;
+      &::placeholder {
+        color: $primary-orange;
+      }
     }
+  }
+  .events .pagination .current-page {
+    background-color: $primary-orange;
   }
 }
 
-.ntu #_event .body .filter input {
-  &:focus, &:focus-within, &:active {
-   border-color: $primary-red;
-    &::placeholder {
-      color: $primary-red;
+.ntu #_event .body {
+  .filter input {
+    &:focus, &:focus-within, &:active {
+     border-color: $primary-red;
+      &::placeholder {
+        color: $primary-red;
+      }
     }
+  }
+  .events .pagination .current-page {
+    background-color: $primary-red;
   }
 }
