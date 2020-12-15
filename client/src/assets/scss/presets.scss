@@ -1,3 +1,13 @@
+// variables
+$text-gray: #58585f;
+$text-gray-light: #9B9BA7;
+$text-gray-dark-cool: #58585F;
+$text-gray-dark-warm: #423E3E;
+
+$primary-blue: #003d7e;
+$primary-orange: #FF7300;
+$primary-red: #EA0039;
+
 .vert-divider {
   *:not(:first-child) {
     border-left: solid 3px #575757;
@@ -12,10 +22,6 @@
   letter-spacing: 3px;
   margin: 0 auto 2rem;
   border-bottom: solid 3px $primary-orange; // default nus color
-  // &+*:not(div)::before {
-  //   content: '\A';
-  //   white-space: pre;
-  // }
   
   @media screen and (max-width: 768px) {
     font-size: 2.8rem;

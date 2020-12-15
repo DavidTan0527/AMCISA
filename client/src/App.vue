@@ -1,5 +1,8 @@
 <template>
   <div id="app" :class="$route.params.uni">
+    <div class="progress-container" v-if="$route.name !== 'Home'">
+      <div class="progress-bar" ref="scroll_progress"></div>
+    </div>
     <default-layout v-if="$route.name !== 'Home'">
       <router-view/>
     </default-layout>
@@ -18,6 +21,16 @@ export default {
   },
   components: {
     defaultLayout,
+  },
+  mounted() {
+    window.onscroll = () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (this.$refs.scroll_progress !== undefined) {
+        this.$refs.scroll_progress.style.width = `${scrolled}%`;
+      }
+    };
   },
 };
 </script>
