@@ -15,16 +15,23 @@ export default {
     titleTemplate: null,
   },
   mounted() {
-    const scrollCallback = () => {
+    this.scroll_callback();
+    window.onscroll = this.scroll_callback;
+  },
+  methods: {
+    scroll_callback() {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
       if (this.$refs.scroll_progress !== undefined) {
         this.$refs.scroll_progress.style.width = `${scrolled}%`;
       }
-    };
-    scrollCallback();
-    window.onscroll = scrollCallback;
+    },
+  },
+  watch: {
+    $route() {
+      this.$nextTick(this.scroll_callback);
+    },
   },
 };
 </script>
