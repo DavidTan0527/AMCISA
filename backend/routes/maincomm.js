@@ -16,19 +16,6 @@ router.get('/maincomm', function (req, res) {
     })
 })
 
-router.get('/maincomm/:id', function (req, res) {
-    getJson('maincomm.json').then( data =>{
-        data = JSON.parse(data).member;
-        for (let i of data) {
-            if (i.id == req.params.id) {
-                res.send(i)
-                break;
-            };
-
-        }
-    })
-})
-
 
 
 module.exports = router
