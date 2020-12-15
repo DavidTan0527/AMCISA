@@ -1,0 +1,20 @@
+#_editor {
+  max-width: 800px;
+  .btn-done {
+    border: none;
+    border-radius: .5rem;
+    margin-top: 1rem;
+    padding: .5rem .8rem;
+    background-color: #eee;
+    cursor: pointer;
+    transition: 300ms;
+    float: right;
+    &:hover {
+      background-color: darken($color: #eee, $amount: 5%);
+    }
+  }
+  img {
+    max-height: 400px;
+    max-width: 100%;
+  }
+}

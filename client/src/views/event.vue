@@ -51,7 +51,8 @@
             title="Supper Night"
             subtitle="Ameens"
             date="12/10/2020"
-            :image="image"></card>
+            :image="image"
+            @click.native="$router.push(`/${$route.params.uni}/event/${i}`)" />
         </div>
       </div>
     </div>
@@ -60,20 +61,20 @@
 
 <script>
 import card from '@/components/card.vue';
-import image from '@/assets/activity.jpg';
+import image from '@/mock/activity_1.jpg';
 
 export default {
   metaInfo: {
     title: 'Event',
+  },
+  components: {
+    card,
   },
   data: () => ({
     current_page: 1,
     max_page: 10,
     image,
   }),
-  components: {
-    card,
-  },
   methods: {
     range(start, end) {
       return Array(end - start + 1).fill().map((_, idx) => start + idx);

@@ -34,7 +34,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  saveScrollPosition: true,
+  // saveScrollPosition: true,
   base: process.env.BASE_URL,
   routes,
 });
@@ -42,8 +42,9 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.path !== '/' && !['nus', 'ntu'].includes(to.params.uni)) {
     next('/');
+  } else {
+    next();
   }
-  next(); // always call next
 });
 
 export default router;
