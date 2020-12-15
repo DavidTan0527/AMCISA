@@ -11,13 +11,24 @@ const routes = [
   },
   {
     path: '/:uni',
-    name: 'Main',
-    component: () => import('@/views/main'),
-  },
-  {
-    path: '/:uni/event',
-    name: 'Event',
-    component: () => import('@/views/event'),
+    component: () => import('@/layout/default'),
+    children: [
+      {
+        path: '',
+        name: 'Main',
+        component: () => import('@/views/main'),
+      },
+      {
+        path: 'event',
+        name: 'Event',
+        component: () => import('@/views/event'),
+      },
+      {
+        path: 'event/:id',
+        name: 'EventDetails',
+        component: () => import('@/views/event_details'),
+      },
+    ],
   },
 ];
 

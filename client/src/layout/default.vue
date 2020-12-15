@@ -11,12 +11,14 @@
           <li
             v-for="link in links"
             :key="link.name"
-            @click="$router.push(`/${$route.params.uni}/${link.to}`)">{{ link.name }}</li>
+            @click="$router.push(`/${$route.params.uni}/${link.to}`)">
+            {{ link.name }}
+          </li>
         </ul>
       </section>
     </header>
     <div class="content">
-      <slot />
+      <router-view></router-view>
     </div>
     <footer>
       <div class="links">
@@ -25,7 +27,10 @@
             {{ section.name.toUpperCase() }}
           </div>
           <ul>
-            <li v-for="link in section.links" :key="link.name">
+            <li
+              v-for="link in section.links"
+              :key="link.name"
+              @click="$router.push(`/${$route.params.uni}/${link.to}`)">
               {{ link.name }}
             </li>
           </ul>
@@ -69,7 +74,7 @@ export default {
         name: 'activities',
         links: [
           { name: 'Freshman Orientation Camp', to: '' },
-          { name: 'Events', to: '' },
+          { name: 'Events', to: 'event' },
         ],
       },
       {
