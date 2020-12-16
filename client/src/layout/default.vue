@@ -56,7 +56,7 @@ export default {
   data: () => ({
     // header links
     links: [
-      { name: 'FOC', to: '' },
+      { name: 'FOC', to: 'foc' },
       { name: 'Events', to: 'event' },
       { name: 'Admission', to: '' },
       { name: 'About', to: '' },
@@ -73,7 +73,7 @@ export default {
       {
         name: 'activities',
         links: [
-          { name: 'Freshman Orientation Camp', to: '' },
+          { name: 'Freshman Orientation Camp', to: 'foc' },
           { name: 'Events', to: 'event' },
         ],
       },

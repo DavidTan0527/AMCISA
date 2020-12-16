@@ -19,6 +19,11 @@ const routes = [
         component: () => import('@/views/main'),
       },
       {
+        path: 'foc',
+        name: 'Foc',
+        component: () => import('@/views/foc'),
+      },
+      {
         path: 'event',
         name: 'Event',
         component: () => import('@/views/event'),

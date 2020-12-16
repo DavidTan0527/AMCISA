@@ -33,6 +33,9 @@
 import editor from '@/components/editor/editor.vue';
 
 export default {
+  metaInfo: {
+    title: 'Event',
+  },
   components: {
     editor,
   },
