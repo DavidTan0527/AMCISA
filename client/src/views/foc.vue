@@ -20,7 +20,26 @@
             :content="content"
             @update="update_text"></editor>
       </div>
-      <div class="ticket"></div>
+      <div class="ticket">
+        <div class="details">
+          <div class="date">
+            <div class="title">Date</div>
+            <div class="text">1/8 - 6/8/2021</div>
+          </div>
+          <div class="venue">
+            <div class="title">Venue</div>
+            <div class="text">NUS Campus</div>
+          </div>
+          <div class="fees">
+            <div class="title">Fees</div>
+            <div class="text">RM20</div>
+          </div>
+          <small class="deadline">报名截止日期：31/3/2021</small>
+        </div>
+        <div class="arrow">
+          <i class="fe fe-arrow-right-circle"></i>
+        </div>
+      </div>
       <div class="title">Camp Activites</div>
       <editor
         class="activities"
