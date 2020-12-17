@@ -18,7 +18,7 @@
         View All Events
       </button>
     </div>
-    <div class="admission">
+    <div class="admission" id="admission">
       <div class="main-title">ADMISSION</div>
       <div class="body">
         <div class="step">
