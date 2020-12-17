@@ -30,8 +30,7 @@
 </template>
 
 <script>
-import editor from '@/components/editor/editor.vue';
-
+const editor = () => import('@/components/editor/editor.vue');
 export default {
   metaInfo: {
     title: 'Event',

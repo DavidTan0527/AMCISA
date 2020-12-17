@@ -60,9 +60,9 @@
 </template>
 
 <script>
-import card from '@/components/card.vue';
 import image from '@/mock/activity_1.jpg';
 
+const card = () => import('@/components/card.vue');
 export default {
   metaInfo: {
     title: 'Event',

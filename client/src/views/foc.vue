@@ -11,6 +11,7 @@
       <div class="intro">
         <iframe
           src=""
+          loading="lazy"
           frameborder="0"
           allow="autoplay; encrypted-media"
           allowfullscreen></iframe>
@@ -51,10 +52,10 @@
 </template>
 
 <script>
-import editor from '@/components/editor/editor.vue';
 import content from '@/mock/foc_intro.json';
 import activities from '@/mock/foc_activities.json';
 
+const editor = () => import('@/components/editor/editor.vue');
 export default {
   components: {
     editor,
