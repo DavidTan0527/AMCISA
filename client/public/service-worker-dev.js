@@ -6,6 +6,9 @@ import {
 } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
+import * as googleAnalytics from 'workbox-google-analytics';
+console.log('service-worker working');
+googleAnalytics.initialize();
 
 // Cache the Google Fonts stylesheets with a stale-while-revalidate strategy.
 registerRoute(
@@ -86,3 +89,7 @@ registerRoute(
     ],
   }),
 );
+
+// const handler = workbox.precaching.createHandlerBoundToURL("/");
+// const navigationRoute = new workbox.routing.NavigationRoute(handler);
+// registerRoute(navigationRoute);

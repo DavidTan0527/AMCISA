@@ -19,7 +19,5 @@ export default {
     subtitle: String,
     date: String,
   },
-  data: () => ({
-  }),
 };
 </script>

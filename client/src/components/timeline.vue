@@ -27,6 +27,5 @@ export default {
       default: 3,
     },
   },
-  data: () => ({}),
 };
 </script>
