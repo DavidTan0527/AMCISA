@@ -1,0 +1,103 @@
+{
+  "type": "doc",
+  "content": [{
+    "type": "ordered_list",
+    "attrs": {
+      "order": 1
+    },
+    "content": [{
+      "type": "list_item",
+      "content": [{
+        "type": "paragraph",
+        "content": [{
+          "type": "text",
+          "text": "接待以及宿舍入住手续"
+        }]
+      }, {
+        "type": "bullet_list",
+        "content": [{
+          "type": "list_item",
+          "content": [{
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "text": "学长姐将会在特定时间和地点接待新生，请新生尽量选择报名表格上列好的时间与地点。"
+            }]
+          }]
+        }, {
+          "type": "list_item",
+          "content": [{
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "text": "学长姐也会带领新生到各自的宿舍办理入住手续。"
+            }]
+          }]
+        }]
+      }]
+    }, {
+      "type": "list_item",
+      "content": [{
+        "type": "paragraph",
+        "content": [{
+          "type": "text",
+          "text": "办理入学手续"
+        }]
+      }, {
+        "type": "bullet_list",
+        "content": [{
+          "type": "list_item",
+          "content": [{
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "text": "新生身体检查 (Medical Check-up): 新生需要事先在网上预约时间，FOC 筹委团将会建议新生预订特定时间。​"
+            }]
+          }]
+        }]
+      }]
+    }, {
+      "type": "list_item",
+      "content": [{
+        "type": "paragraph",
+        "content": [{
+          "type": "text",
+          "text": "其他杂事"
+        }]
+      }, {
+        "type": "bullet_list",
+        "content": [{
+          "type": "list_item",
+          "content": [{
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "text": "买电话卡、交通卡 (EZ-Link Card)"
+            }]
+          }]
+        }]
+      }]
+    }, {
+      "type": "list_item",
+      "content": [{
+        "type": "paragraph",
+        "content": [{
+          "type": "text",
+          "text": "康乐活动​"
+        }]
+      }, {
+        "type": "bullet_list",
+        "content": [{
+          "type": "list_item",
+          "content": [{
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "text": "新生将参与一系列康乐活动，藉此认识国大校园及留新的大马独中学长学姐，促进独中生之间的感情，也能熟悉国大校园环境与学习资源。"
+            }]
+          }]
+        }]
+      }]
+    }]
+  }]
+}

@@ -5,7 +5,7 @@
       <div class="body">
         Freshman Orientation Camp 20/21 is open for registration!!!
       </div>
-      <button class="btn-round">
+      <button class="btn-round" @click="goto('foc')">
         Check It Out!!! <i class="fe fe-arrow-right"></i>
       </button>
     </div>
@@ -18,7 +18,7 @@
         View All Events
       </button>
     </div>
-    <div class="admission">
+    <div class="admission" id="admission">
       <div class="main-title">ADMISSION</div>
       <div class="body">
         <div class="step">
@@ -54,8 +54,7 @@
 </template>
 
 <script>
-import timeline from '@/components/timeline.vue';
-
+const timeline = () => import('@/components/timeline.vue');
 export default {
   metaInfo() {
     return {

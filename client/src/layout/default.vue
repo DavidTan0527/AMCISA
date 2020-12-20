@@ -11,12 +11,14 @@
           <li
             v-for="link in links"
             :key="link.name"
-            @click="$router.push(`/${$route.params.uni}/${link.to}`)">{{ link.name }}</li>
+            @click="$router.push(`/${$route.params.uni}/${link.to}`)">
+            {{ link.name }}
+          </li>
         </ul>
       </section>
     </header>
     <div class="content">
-      <slot />
+      <router-view></router-view>
     </div>
     <footer>
       <div class="links">
@@ -25,7 +27,10 @@
             {{ section.name.toUpperCase() }}
           </div>
           <ul>
-            <li v-for="link in section.links" :key="link.name">
+            <li
+              v-for="link in section.links"
+              :key="link.name"
+              @click="$router.push(`/${$route.params.uni}/${link.to}`)">
               {{ link.name }}
             </li>
           </ul>
@@ -51,34 +56,34 @@ export default {
   data: () => ({
     // header links
     links: [
-      { name: 'FOC', to: '' },
+      { name: 'FOC', to: 'foc' },
       { name: 'Events', to: 'event' },
-      { name: 'Admission', to: '' },
-      { name: 'About', to: '' },
+      { name: 'Admission', to: '#admission' },
+      { name: 'About', to: 'about' },
     ],
     // footer links
     sections: [
       {
-        name: 'about',
+        name: 'info',
         links: [
-          { name: 'Board of Committee', to: '' },
+          { name: 'Board of Committee', to: 'about' },
           { name: 'Our Mission', to: '' },
+          { name: 'FAQ', to: '' },
         ],
       },
       {
         name: 'activities',
         links: [
-          { name: 'Freshman Orientation Camp', to: '' },
-          { name: 'Events', to: '' },
+          { name: 'Freshman Orientation Camp', to: 'foc' },
+          { name: 'Events', to: 'event' },
         ],
       },
-      {
-        name: 'help',
-        links: [
-          { name: 'FAQ', to: '' },
-          { name: 'Admission', to: '' },
-        ],
-      },
+      // {
+      //   name: 'help',
+      //   links: [
+      //     { name: 'Admission', to: '' },
+      //   ],
+      // },
     ],
     contacts: {
       mail: { name: 'nusamcisa@gmail.com', to: '' },

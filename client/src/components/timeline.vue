@@ -11,7 +11,7 @@
         <img
           class="image"
           :class="[index % 2 === 1 ? 'right' : 'left']"
-          src="./../mock/activity_1.jpg">
+          src="@/mock/activity_1.jpg">
       </div>
       <div class="line" :key="'line-'+index" v-if="index !== count"></div>
     </template>
@@ -27,6 +27,5 @@ export default {
       default: 3,
     },
   },
-  data: () => ({}),
 };
 </script>

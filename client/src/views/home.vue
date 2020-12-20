@@ -5,7 +5,7 @@
     </nav>
 
     <div class="main-card">
-      <img class="svg" src="../assets/svg/having_fun.svg">
+      <img class="svg" src="../assets/svg/having_fun.svg" loading="lazy">
       <div class="slogan-section">
         <div class="slogan-1">
           "Where no one
@@ -27,7 +27,7 @@
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
-      <img class="svg" src="../assets/svg/around_the_world.svg">
+      <img class="svg" src="../assets/svg/around_the_world.svg" loading="lazy">
     </div>
 
     <div class="explore">

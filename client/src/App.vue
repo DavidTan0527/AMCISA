@@ -3,34 +3,35 @@
     <div class="progress-container" v-if="$route.name !== 'Home'">
       <div class="progress-bar" ref="scroll_progress"></div>
     </div>
-    <default-layout v-if="$route.name !== 'Home'">
-      <router-view/>
-    </default-layout>
-    <router-view v-else></router-view>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import defaultLayout from './layout/default.vue';
-
 export default {
   name: 'App',
   metaInfo: {
     title: 'AMCISA',
     titleTemplate: null,
   },
-  components: {
-    defaultLayout,
-  },
   mounted() {
-    window.onscroll = () => {
+    this.scroll_callback();
+    window.onscroll = this.scroll_callback;
+  },
+  methods: {
+    scroll_callback() {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
       if (this.$refs.scroll_progress !== undefined) {
         this.$refs.scroll_progress.style.width = `${scrolled}%`;
       }
-    };
+    },
+  },
+  watch: {
+    $route() {
+      this.$nextTick(this.scroll_callback);
+    },
   },
 };
 </script>
