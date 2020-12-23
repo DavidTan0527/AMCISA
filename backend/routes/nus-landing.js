@@ -13,7 +13,7 @@ router.get('/nus-landing', function (req, res) {
     Promise.all([getJson('nus-landing.json'),getJson('event.json')]).then(
         data => {
             data = data.map(JSON.parse);
-            event_sorted = data[1].data.sort((a,b)=> {
+            event_sorted = data[1].sort((a,b)=> {
                 var a = new Date(a.event_date);
                 var b = new Date(b.event_date);
                 return (a > b  ? -1 : 1)
