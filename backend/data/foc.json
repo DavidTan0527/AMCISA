@@ -2,21 +2,18 @@
     "picture": "url",
     "picture_title": "《贰迁〇亿》\n AMCISA FOC 20/21",
     "foc":{
-        "title": "What is FOC?",
-        "video": "zhishinn_youtube url",
         "content": "bla bla bla",
-        "ticket": {
+        "registration": {
             "date": "1/8 - 6/8/2020",
             "venue": "NUS Campus",
             "fees": "RM20",
             "deadline": "31/3/2020"
         },
-        "camp_activities":{
-            "1": "bla bla bla",
-            "2": "bla bla bla",
-            "3": "bla bla bla",
-            "4": "bla bla bla"
-        }
+        "activities": [
+            "activity",
+            "activity",
+            "activity",
+            "activity"
+        ]
     }
-    
 }

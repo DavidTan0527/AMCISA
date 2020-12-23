@@ -11,7 +11,7 @@ function getJson(filePath){
 
 router.get('/events/:id', function (req, res) {
     getJson('event.json').then(data => {
-        data = JSON.parse(data).data;
+        data = JSON.parse(data);
         data = data.map(({ id, title, picture, event_date, venue }) => ({ id, title, picture, event_date, venue }));
         let formatted_data = [];
         let medium_arr = [];
@@ -29,7 +29,7 @@ router.get('/events/:id', function (req, res) {
 
 router.get('/event/:id', function (req, res) {
     getJson('event.json').then(data => {
-        data = JSON.parse(data).data;
+        data = JSON.parse(data);
         const result = data.find(e => e.id == req.params.id);
         res.send(result || {});
         // for (let i of data) {
