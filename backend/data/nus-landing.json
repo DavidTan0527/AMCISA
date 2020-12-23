@@ -1,4 +1,5 @@
 {
+    "notify_foc": true,
     "admission": [
         {
             "title": "step1",
@@ -12,13 +13,5 @@
             "title": "step3",
             "content": "bla bla bla"
         }
-    ],
-    "contact_us": 
-        {
-            "mail": "nusamcisa@gmail.com",
-            "instagram": "@nusamcisa",
-            "facebook": "@amcisanusntu",
-            "youtube": "nusamcisa foccom"
-        }
-    
+    ]
 }

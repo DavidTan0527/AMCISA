@@ -1,5 +1,5 @@
-var express = require('express')
-var router = express.Router()
+var express = require('express');
+var router = express.Router();
 
 const fs = require('fs');
 const util = require('util');
@@ -9,8 +9,8 @@ function getJson(filePath) {
     return readFile('./data/' + filePath);
 }
 
-router.get('/foc', function (req, res) {
-    getJson('foc.json').then(data => {
+router.get('/contacts', function (req, res) {
+    getJson('contacts.json').then(data => {
         res.send(JSON.parse(data));
     });
 });
