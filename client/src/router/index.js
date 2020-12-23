@@ -51,12 +51,17 @@ const router = new VueRouter({
   mode: 'history',
   // saveScrollPosition: true,
   base: process.env.BASE_URL,
-  scrollBehavior(to) {
-    if (to.hash) {
-      return window.scrollTo({ top: document.querySelector(to.hash).offsetTop - 20, behavior: 'smooth' });
-    }
-    return window.scrollTo({ top: 0, behavior: 'smooth' });
-  },
+  // scrollBehavior(to) {
+  //   if (to.hash) {
+  //     console.log(to.hash);
+  //     console.log(document.querySelector(to.hash).offsetTop);
+  //     return window.scrollTo({
+  //       top: document.querySelector(to.hash).offsetTop,
+  //       behavior: 'smooth'
+  //     });
+  //   }
+  //   return window.scrollTo({ top: 0, behavior: 'smooth' });
+  // },
   routes,
 });
 

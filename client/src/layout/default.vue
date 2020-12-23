@@ -39,7 +39,8 @@
         <div class="contact">
           <div class="contact-us">CONTACT US</div>
           <ul>
-            <li v-for="(info, media) in contacts" :key="media">
+            <li v-for="(info, media) in contacts" :key="media"
+            @click="navigate(info.to)">
               <i :class="`fe fe-${media}`"></i>
               <span>{{ info.name }}</span>
             </li>
@@ -78,19 +79,18 @@ export default {
           { name: 'Events', to: 'event' },
         ],
       },
-      // {
-      //   name: 'help',
-      //   links: [
-      //     { name: 'Admission', to: '' },
-      //   ],
-      // },
     ],
-    contacts: {
-      mail: { name: 'nusamcisa@gmail.com', to: '' },
-      instagram: { name: '@nusamcisa', to: '' },
-      facebook: { name: '@amcisanusntu', to: '' },
-      youtube: { name: 'NUSAMCISA FOCCOM', to: '' },
-    },
+    contacts: {},
   }),
+  mounted() {
+    this.api('/contacts').then(({ data }) => {
+      this.contacts = data;
+    }).catch(console.log);
+  },
+  methods: {
+    navigate(url) {
+      window.location.href = `${url.startsWith('http') ? '' : 'http://'}${url}`;
+    },
+  },
 };
 </script>
