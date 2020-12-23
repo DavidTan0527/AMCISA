@@ -216,3 +216,29 @@ GET `/nus-landing`
     ]
 }
 ```
+
+# Nus-Landing
+qna api.
+
+GET `/qna`
+
+* **Result**
+
+```{json}
+{
+    "data" : [
+        {   
+            "question" : "How's life in nus?",
+            "answer" : "bla bla bla"
+        },
+        {   
+            "question" : "How to register modules in nus?",
+            "answer" : "bla bla bla"
+        },
+        {   
+            "question" : "How to join cca in nus?",
+            "answer" : "bla bla bla"
+        }        
+    ]
+}
+```
