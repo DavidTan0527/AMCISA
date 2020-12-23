@@ -1,3 +1,137 @@
 #_about {
+  .president, .committee {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  .president {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 3px 12px rgba(#000, .18);
+    margin-top: 1rem;
+    .quote-section {
+      align-self: center;
+      width: 65%;
+      padding: 2rem 5rem;
+      .quote {
+        text-align: center;
+        font-style: italic;
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+      .name {
+        text-align: right;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: $text-gray-light;
+        margin-top: 2rem;
+      }
+    }
+    img {
+      max-width: 35%;
+      max-height: 50vh;
+    }
+  }
+  .committee {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 6rem;
+    .member {
+      width: 25%;
+      min-width: calc(120px + 2 * 1.2rem);
+      box-sizing: border-box;
+      padding: 1.2rem;
+      .avatar {
+        height: 120px;
+        width: 120px;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+        margin-bottom: .5rem;
+      }
+      .pos {
+        font-weight: 500;
+        color: $text-gray;
+      }
+      .name, .year {
+        color: $text-gray-light;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .president {
+      .quote-section {
+        padding: 1rem 3rem;
+        .quote {
+          font-size: 1.6rem;
+        }
+        .name {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
   
+  @media screen and (max-width: 768px) {
+    .president {
+      .quote-section {
+        .quote {
+          font-size: 1.2rem;
+        }
+        .name {
+          font-size: .9rem;
+          margin-top: 1.2rem;
+        }
+      }
+    }
+    .committee {
+      margin-top: 3rem;
+      .member {
+        min-width: calc(100px + 2 * 1.2rem);
+        font-size: .9rem;
+        .avatar {
+          height: 100px;
+          width: 100px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+  
+  @media screen and (max-width: 425px) {
+    .main-title {
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+    }
+    .president, .committee {
+      max-width: 90%;
+    }
+    .president {
+      margin-top: 0;
+      .quote-section {
+        padding: 1rem;
+        .quote {
+          font-size: .8rem;
+        }
+        .name {
+          font-size: .6rem;
+          margin-top: 1rem;
+        }
+      }
+    }
+    .committee {
+      margin-top: 2rem;
+      .member {
+        width: 50%;
+        min-width: calc(80px + 2 * 1.2rem);
+        font-size: .8rem;
+        .avatar {
+          height: 80px;
+          width: 80px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
 }
