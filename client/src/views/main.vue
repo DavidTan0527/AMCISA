@@ -46,7 +46,7 @@
           </ul>
         </div>
       </div>
-      <button class="btn-round">
+      <button class="btn-round" @click="goto('faq')">
         Details & FAQ
       </button>
     </div>

@@ -23,7 +23,8 @@ $primary-red: #EA0039;
   letter-spacing: 3px;
   margin: 0 auto 2rem;
   border-bottom: solid 3px $primary-orange; // default nus color
-  
+  cursor: default;
+
   @media screen and (max-width: 768px) {
     font-size: 2.8rem;
   }

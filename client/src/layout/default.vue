@@ -68,7 +68,7 @@ export default {
         links: [
           { name: 'Board of Committee', to: 'about' },
           { name: 'Our Mission', to: '' },
-          { name: 'FAQ', to: '' },
+          { name: 'FAQ', to: 'faq' },
         ],
       },
       {
