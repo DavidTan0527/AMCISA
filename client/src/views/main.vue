@@ -3,7 +3,7 @@
     <div class="foc">
       <div class="main-title">FOC</div>
       <div class="body">
-        Freshman Orientation Camp 20/21 is open for registration!!!
+        Freshman Orientation Camp 21/22 is open for registration!!!
       </div>
       <button class="btn-round" @click="goto('foc')">
         Check It Out!!! <i class="fe fe-arrow-right"></i>
