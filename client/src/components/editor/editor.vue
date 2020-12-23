@@ -166,6 +166,7 @@ import {
   Underline,
   History,
   Placeholder,
+  TrailingNode,
 } from 'tiptap-extensions';
 import Icon from './icon.vue';
 
@@ -213,6 +214,10 @@ export default {
             emptyNodeText: 'Enter something...',
             showOnlyWhenEditable: true,
             showOnlyCurrent: true,
+          }),
+          new TrailingNode({
+            node: 'paragraph',
+            notAfter: ['paragraph'],
           }),
         ],
         content: '',
