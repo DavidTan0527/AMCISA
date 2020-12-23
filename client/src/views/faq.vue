@@ -1,22 +1,12 @@
 <template>
   <div id="_faq">
     <div class="main-title">FAQ</div>
-    <div class="speech-section" v-for="i in 6" :key="i">
+    <div class="speech-section" v-for="(qna, index) in data" :key="index">
       <div class="speechbubble">
-        <p>
-          Some random question that is very very long and
-          sofisticated and doesn't really have any meaning
-          to it. This should be long enough to see how it handles
-          long paragraphs of text.
-        </p>
+        <p>{{ qna.question }}</p>
       </div>
       <div class="speechbubble">
-        <p>
-          Some random answer that also does not make any sense at all
-          but it is required to see how right aligned answers look for
-          these speechbubbles. About this length should be sufficient to
-          see how it turns out.
-        </p>
+        <p>{{ qna.answer }}</p>
       </div>
     </div>
   </div>
@@ -29,7 +19,13 @@ export default {
   },
   data() {
     return {
+      data: [],
     };
+  },
+  mounted() {
+    this.api('/qna').then(({ data }) => {
+      this.data = data;
+    }).catch(console.log);
   },
 };
 </script>
