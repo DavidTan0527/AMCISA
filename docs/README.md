@@ -45,29 +45,27 @@ GET `/events/:count`
 
 ```{json}
 [
-    [
-        {   
-            "id" : 1,
-            "title" : "Supper Night",
-            "picture" : "Url",
-            "event_date" : "21/10/2020",
-            "venue" : "Ameen",
-            "author" : "David Tan",
-            "created_date" : "24/10/2020",
-            "content" : "bla bla"
-        },
-        
-        {   "id" : 2,
-            "title" : "Supper Night2",
-            "picture" : "Url",
-            "event_date" : "21/10/2020",
-            "venue" : "Ameen",
-            "author" : "David Tan",
-            "created_date" : "24/10/2020",
-            "content" : "bla bla"
-        }
-    ], ...
-]
+    {   
+        "id" : 1,
+        "title" : "Supper Night",
+        "picture" : "Url",
+        "event_date" : "21/10/2020",
+        "venue" : "Ameen",
+        "author" : "David Tan",
+        "created_date" : "24/10/2020",
+        "content" : "bla bla"
+    },
+    
+    {   "id" : 2,
+        "title" : "Supper Night2",
+        "picture" : "Url",
+        "event_date" : "21/10/2020",
+        "venue" : "Ameen",
+        "author" : "David Tan",
+        "created_date" : "24/10/2020",
+        "content" : "bla bla"
+    }
+], ...
 ```
 
 ## Get Event
@@ -225,20 +223,19 @@ GET `/qna`
 * **Result**
 
 ```{json}
-{
-    "data" : [
-        {   
-            "question" : "How's life in nus?",
-            "answer" : "bla bla bla"
-        },
-        {   
-            "question" : "How to register modules in nus?",
-            "answer" : "bla bla bla"
-        },
-        {   
-            "question" : "How to join cca in nus?",
-            "answer" : "bla bla bla"
-        }        
-    ]
-}
+[
+    {   
+        "question" : "How's life in nus?",
+        "answer" : "bla bla bla"
+    },
+    {   
+        "question" : "How to register modules in nus?",
+        "answer" : "bla bla bla"
+    },
+    {   
+        "question" : "How to join cca in nus?",
+        "answer" : "bla bla bla"
+    }        
+]
+
 ```
