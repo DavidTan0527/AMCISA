@@ -40,7 +40,7 @@ module.exports = {
     // },
     plugins: [
       new WorkboxPlugin.GenerateSW({
-        exclude: [/\.(?:png|jpg|jpeg|svg)$/],
+        exclude: [/\.(?:png|jpg|jpeg|svg|ttf|otf)$/],
         runtimeCaching: [{
           urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
           handler: 'CacheFirst',
@@ -50,11 +50,8 @@ module.exports = {
               maxEntries: 10,
             },
           },
-        }],
-      }),
-      new WorkboxPlugin.GenerateSW({
-        exclude: [/\.(?:ttf|otf)$/],
-        runtimeCaching: [{
+        },
+        {
           urlPattern: /\.(?:ttf|otf)$/,
           handler: 'CacheFirst',
           options: {
@@ -64,7 +61,7 @@ module.exports = {
             },
           },
         }],
-      }),
+      })
     ],
   },
 };
