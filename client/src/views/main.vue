@@ -61,10 +61,15 @@ export default {
       title: this.$route.params.uni.toUpperCase().concat(' | AMCISA'),
     };
   },
-  data: () => ({
-  }),
   components: {
     timeline,
+  },
+  data: () => ({
+  }),
+  mounted() {
+    this.api('/nus-landing').then(({ data }) => {
+      console.log(data);
+    }).catch(console.log);
   },
   methods: {
     goto(path) {

@@ -61,6 +61,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  window.localStorage.setItem('uni', to.params.uni);
   if (to.path !== '/' && !['nus', 'ntu'].includes(to.params.uni)) {
     next('/');
   } else {

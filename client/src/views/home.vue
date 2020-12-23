@@ -20,12 +20,7 @@
     <div class="about-card">
       <div class="info-section">
         <header>About Us</header>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+        <p>{{ about }}</p>
       </div>
       <img class="svg" src="../assets/svg/around_the_world.svg" loading="lazy">
     </div>
@@ -33,8 +28,7 @@
     <div class="explore">
       <header>Explore</header>
       <div class="body">
-        We operate differently in both schools, with different culture and activities.
-        Find out which appeals you more and join us now!
+        {{ explore }}
       </div>
       <div class="btns">
         <div class="btn-nus" @click="$router.push('/nus')">
@@ -61,6 +55,17 @@
 <script>
 export default {
   data: () => ({
+    quote: '',
+    about: '',
+    explore: '',
   }),
+  mounted() {
+    this.api('/landing').then(({ data }) => {
+      const { quote, about, explore } = data;
+      this.quote = quote;
+      this.about = about;
+      this.explore = explore;
+    }).catch(console.log);
+  },
 };
 </script>
