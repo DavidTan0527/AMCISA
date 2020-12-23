@@ -238,6 +238,7 @@ export default {
       this.$emit('update', this.json);
     },
     showImagePrompt(command) {
+      // eslint-disable-next-line
       const src = prompt('Enter the url of your image here');
       if (src !== null) {
         command({ src });

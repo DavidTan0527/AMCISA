@@ -16,6 +16,7 @@ module.exports = {
       swSrc: 'public/service-worker.js',
       skipWaiting: true,
       clientsClaim: true,
+      maximumFileSizeToCacheInBytes: 5000000,
       // ...other Workbox options...
     },
   },
@@ -50,7 +51,20 @@ module.exports = {
             },
           },
         }],
-      })
+      }),
+      new WorkboxPlugin.GenerateSW({
+        exclude: [/\.(?:ttf|otf)$/],
+        runtimeCaching: [{
+          urlPattern: /\.(?:ttf|otf)$/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'fonts',
+            expiration: {
+              maxEntries: 100,
+            },
+          },
+        }],
+      }),
     ],
   },
 };
