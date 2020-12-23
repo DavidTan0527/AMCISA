@@ -1,6 +1,15 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
+
+if (!process.env.NODE_ENV) 
+  process.env.NODE_ENV = 'development'
+
+if (process.env.NODE_ENV === 'development') {
+  console.log("CORS enabled")
+  app.use(cors())
+}
 
 var landing = require('./routes/landing')
 var event = require('./routes/events')

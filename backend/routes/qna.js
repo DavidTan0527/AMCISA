@@ -11,8 +11,8 @@ function getJson(filePath){
 
 router.get('/qna', function (req, res) {
     getJson('foc.json').then( data =>{
-        data = JSON.parse(data).data;
-        res.send(data)
+        data = JSON.parse(data);
+        res.send(data);
     })
 })
 
