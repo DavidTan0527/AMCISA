@@ -11,7 +11,7 @@ function getJson(filePath) {
 
 router.get('/foc', function (req, res) {
     getJson('foc.json').then(data => {
-        res.send(JSON.parse(data));
+        res.json(JSON.parse(data));
     });
 });
 

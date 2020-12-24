@@ -1,7 +1,11 @@
 <template>
-  <div id="_home">
+  <div class="loader" v-if="is_loading"></div>
+  <div id="_home" v-else>
     <nav class="navbar">
-      <section class="navbar-title">Amcisa</section>
+      <!-- <section class="navbar-title">Amcisa</section> -->
+      <section class="navbar-title">
+        <img src="@/assets/logo.png" alt="">
+      </section>
     </nav>
 
     <div class="main-card">
@@ -41,11 +45,14 @@
     </div>
 
     <footer>
-      <div class="icons">
+      <!-- <div class="icons">
         <i class="fe fe-facebook"></i>
         <i class="fe fe-instagram"></i>
         <i class="fe fe-youtube"></i>
-      </div>
+      </div> -->
+      <!-- <div class="logo">
+        <img src="@/assets/logo.png" alt="">
+      </div> -->
       2020 © AMCISA
     </footer>
     <div class="background-rect"></div>
@@ -58,6 +65,7 @@ export default {
     quote: '',
     about: '',
     explore: '',
+    is_loading: true,
   }),
   mounted() {
     this.api('/landing').then(({ data }) => {
@@ -65,6 +73,7 @@ export default {
       this.quote = quote;
       this.about = about;
       this.explore = explore;
+      this.is_loading = false;
     }).catch(console.log);
   },
 };

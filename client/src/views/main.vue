@@ -1,6 +1,7 @@
 <template>
-  <div id="_main">
-    <div class="foc">
+  <div class="loader" v-if="is_loading"></div>
+  <div id="_main" v-else>
+    <div class="foc" v-if="notify_foc">
       <div class="main-title">FOC</div>
       <div class="body">
         Freshman Orientation Camp 21/22 is open for registration!!!
@@ -12,7 +13,7 @@
     <div class="events">
       <div class="main-title">EVENTS</div>
       <div class="body">
-        <timeline />
+        <timeline :data="events" />
       </div>
       <button class="btn-round" @click="goto('event')">
         View All Events
@@ -65,10 +66,23 @@ export default {
     timeline,
   },
   data: () => ({
+    notify_foc: false,
+    events: [],
+    admission: [],
+    is_loading: true,
   }),
   mounted() {
     this.api('/nus-landing').then(({ data }) => {
-      console.log(data);
+      const { notify_foc, events, admission } = data;
+      this.notify_foc = notify_foc;
+      this.events = events;
+      this.admission = admission;
+      this.is_loading = false;
+      if (this.$route.hash) {
+        setTimeout(() => {
+          window.scrollTo({ top: document.querySelector(this.$route.hash).offsetTop, behavior: 'smooth' });
+        }, 100);
+      }
     }).catch(console.log);
   },
   methods: {

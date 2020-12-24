@@ -14,7 +14,7 @@
         "title" : "Night Cycling2",
         "picture" : "/api/data/images/night_cycling.jpg",
         "event_date" : "21/10/2020",
-        "venue" : "Ameen",
+        "venue" : "U Town",
         "author" : "David Tan",
         "created_date" : "24/10/2020",
         "content" : "bla bla"
@@ -24,7 +24,7 @@
         "title" : "Night Cycling3",
         "picture" : "/api/data/images/night_cycling.jpg",
         "event_date" : "21/10/2020",
-        "venue" : "Ameen",
+        "venue" : "University Hall",
         "author" : "David Tan",
         "created_date" : "24/10/2020",
         "content" : "bla bla"

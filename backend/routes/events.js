@@ -23,7 +23,7 @@ router.get('/events/:id', function (req, res) {
             medium_arr.push(data[i]);
         };
         formatted_data.push(medium_arr);
-        res.send(formatted_data);
+        res.json(formatted_data);
     });
 });
 
@@ -31,10 +31,10 @@ router.get('/event/:id', function (req, res) {
     getJson('event.json').then(data => {
         data = JSON.parse(data);
         const result = data.find(e => e.id == req.params.id);
-        res.send(result || {});
+        res.json(result || {});
         // for (let i of data) {
         //     if (i.id == req.params.id) {
-        //         res.send(i);
+        //         res.json(i);
         //         break;
         //     };
         // }

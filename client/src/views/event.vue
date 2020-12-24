@@ -1,11 +1,14 @@
 <template>
-  <div id="_event">
+<div class="loader" v-if="is_loading"></div>
+  <div id="_event" v-else>
     <div class="main-title">EVENTS</div>
     <div class="body">
       <div class="filter">
         <h1 class="title">Filter <i class="fe fe-search"></i></h1>
-        <input type="text" placeholder="Search name...">
-        <input type="text" placeholder="Search location...">
+        <input type="text" placeholder="Search name..."
+          v-model="filter_name" @keyup="filter_events">
+        <input type="text" placeholder="Search location..."
+          v-model="filter_venue" @keyup="filter_events">
         <!-- <div class="date">
           <i class="fe fe-calendar"></i>
           <input class="day" type="text" placeholder="DD"
@@ -32,7 +35,7 @@
                   'current-page': i === 0,
                   'hide-page': is_hide_page(i)
                 }"
-                @click="current_page = is_hide_page(i) ? current_pafe : current_page + i">
+                @click="current_page = is_hide_page(i) ? current_page : current_page + i">
                 <span>{{ current_page + i }}</span>
               </div>
             </template>
@@ -46,13 +49,13 @@
         </nav>
         <div class="event-grid">
           <card
-            v-for="i in 12"
-            :key="i"
-            title="Supper Night"
-            subtitle="Ameens"
-            date="12/10/2020"
-            :image="image"
-            @click.native="$router.push(`/${$route.params.uni}/event/${i}`)" />
+            v-for="event in events[current_page-1]"
+            :key="event.id"
+            :title="event.title"
+            :subtitle="event.venue"
+            :date="event.event_date"
+            :image="event.picture"
+            @click.native="$router.push(`/${$route.params.uni}/event/${event.id}`)" />
         </div>
       </div>
     </div>
@@ -60,8 +63,6 @@
 </template>
 
 <script>
-import image from '@/mock/activity_1.jpg';
-
 const card = () => import('@/components/card.vue');
 export default {
   metaInfo: {
@@ -71,10 +72,24 @@ export default {
     card,
   },
   data: () => ({
-    current_page: 1,
-    max_page: 10,
-    image,
+    current_page: 0,
+    max_page: 0,
+    pagination_size: 0,
+    original_events: [],
+    events: [],
+    filter_name: '',
+    filter_venue: '',
+    is_loading: true,
   }),
+  created() {
+    window.addEventListener('resize', this.resize_handler);
+  },
+  mounted() {
+    this.resize_handler();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.resize_handler);
+  },
   methods: {
     range(start, end) {
       return Array(end - start + 1).fill().map((_, idx) => start + idx);
@@ -82,6 +97,35 @@ export default {
     is_hide_page(index) {
       return this.current_page + index <= 0
           || this.current_page + index > this.max_page;
+    },
+    resize_handler(e) {
+      const width = e?.target.innerWidth || window.innerWidth;
+      this.pagination_size = width > 425 ? 12 : 6;
+      this.api(`/events/${this.pagination_size}`).then(({ data }) => {
+        this.current_page = 1;
+        this.max_page = data.length;
+        this.original_events = data.flat();
+        this.events = data;
+        this.is_loading = false;
+      }).catch(console.log);
+    },
+    filter_events() {
+      const filtered_data = this.original_events.filter((e) => (this.filter_name === '' || e.title.includes(this.filter_name))
+        && (this.filter_venue === '' || e.venue.includes(this.filter_venue)));
+      this.events = this.group_by(filtered_data, this.pagination_size);
+    },
+    group_by(arr, size) {
+      const result = [];
+      let child = [];
+      arr.forEach((e) => {
+        if (child.length === size) {
+          result.push(child);
+          child = [];
+        }
+        child.push(e);
+      });
+      result.push(child);
+      return result;
     },
   },
 };

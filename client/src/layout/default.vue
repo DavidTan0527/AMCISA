@@ -20,6 +20,7 @@
     <div class="content">
       <router-view></router-view>
     </div>
+    <div class="background-logo"></div>
     <footer>
       <div class="links">
         <div v-for="section in sections" :key="section.name">
@@ -39,14 +40,15 @@
         <div class="contact">
           <div class="contact-us">CONTACT US</div>
           <ul>
-            <li v-for="(info, media) in contacts" :key="media">
+            <li v-for="(info, media) in contacts" :key="media"
+            @click="navigate(info.to)">
               <i :class="`fe fe-${media}`"></i>
               <span>{{ info.name }}</span>
             </li>
           </ul>
         </div>
       </div>
-      <small>2020 © {{ $route.params.uni === 'nus' ? 'NUS' : 'NTU' }} AMCISA</small>
+      <small>{{ current_year }} © {{ $route.params.uni === 'nus' ? 'NUS' : 'NTU' }}</small>
     </footer>
   </div>
 </template>
@@ -78,19 +80,23 @@ export default {
           { name: 'Events', to: 'event' },
         ],
       },
-      // {
-      //   name: 'help',
-      //   links: [
-      //     { name: 'Admission', to: '' },
-      //   ],
-      // },
     ],
-    contacts: {
-      mail: { name: 'nusamcisa@gmail.com', to: '' },
-      instagram: { name: '@nusamcisa', to: '' },
-      facebook: { name: '@amcisanusntu', to: '' },
-      youtube: { name: 'NUSAMCISA FOCCOM', to: '' },
-    },
+    contacts: {},
   }),
+  mounted() {
+    this.api('/contacts').then(({ data }) => {
+      this.contacts = data;
+    }).catch(console.log);
+  },
+  methods: {
+    navigate(url) {
+      window.location.href = `${url.startsWith('http') ? '' : 'http://'}${url}`;
+    },
+  },
+  computed: {
+    current_year() {
+      return new Date().getFullYear();
+    },
+  },
 };
 </script>

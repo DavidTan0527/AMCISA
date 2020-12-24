@@ -2,45 +2,29 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   // ...other vue-cli plugin options...
+  chainWebpack(config) {
+    config.plugins.delete('prefetch');
+  },
   pwa: {
     name: 'AMCISA',
-    themeColor: '#4DBA87',
+    themeColor: '#204278',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
-    appleMobileWebAppStatusBarStyle: 'black',
+    appleMobileWebAppStatusBarStyle: 'white',
 
-    // // configure the workbox plugin
     workboxPluginMode: 'InjectManifest',
     workboxOptions: {
       // swSrc is required in InjectManifest mode.
       swSrc: 'public/service-worker.js',
-      skipWaiting: true,
-      clientsClaim: true,
+      // skipWaiting: true,
+      // clientsClaim: true,
       maximumFileSizeToCacheInBytes: 5000000,
-      // ...other Workbox options...
     },
   },
   configureWebpack: {
-    // optimization: {
-    //   runtimeChunk: 'single',
-    //   splitChunks: {
-    //     chunks: 'all',
-    //     maxInitialRequests: Infinity,
-    //     minSize: 0,
-    //     cacheGroups: {
-    //       vendor: {
-    //         test: /[\\/]node_modules[\\/]/,
-    //         name(module) {
-    //           const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-    //           return `npm.${packageName.replace('@', '')}`;
-    //         },
-    //       },
-    //     },
-    //   },
-    // },
     plugins: [
       new WorkboxPlugin.GenerateSW({
-        exclude: [/\.(?:png|jpg|jpeg|svg)$/],
+        exclude: [/\.(?:png|jpg|jpeg|svg|ttf|otf)$/],
         runtimeCaching: [{
           urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
           handler: 'CacheFirst',
@@ -50,11 +34,8 @@ module.exports = {
               maxEntries: 10,
             },
           },
-        }],
-      }),
-      new WorkboxPlugin.GenerateSW({
-        exclude: [/\.(?:ttf|otf)$/],
-        runtimeCaching: [{
+        },
+        {
           urlPattern: /\.(?:ttf|otf)$/,
           handler: 'CacheFirst',
           options: {
@@ -64,7 +45,7 @@ module.exports = {
             },
           },
         }],
-      }),
+      })
     ],
   },
 };

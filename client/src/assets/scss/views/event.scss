@@ -75,7 +75,10 @@
               transform: translate(-50%, -50%);
             }
           }
-          .hide-page { filter: opacity(0); }
+          .hide-page {
+            filter: opacity(0);
+            cursor: default;
+          }
           .current-page { color: #fff; }
         }
       }
