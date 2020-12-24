@@ -52,7 +52,6 @@ export default {
   }),
   mounted() {
     this.api(`/event/${this.$route.params.id}`).then(({ data }) => {
-      console.log(data);
       const {
         author, content, created_date, event_date, picture, title, venue,
       } = data;
