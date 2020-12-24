@@ -1,9 +1,11 @@
 <template>
   <div id="_default">
     <header>
-      <section class="title vert-divider" @click="$router.push(`/${$route.params.uni}`)">
-        <span class="uni">{{ $route.params.uni === 'nus' ? 'NUS' : 'NTU' }}</span>
-        <span class="amcisa">Amcisa</span>
+      <section class="title vert-divider" >
+        <span class="uni" @click="$router.push(`/${$route.params.uni}`)">
+          {{ $route.params.uni === 'nus' ? 'NUS' : 'NTU' }}
+        </span>
+        <span class="amcisa" @click="$router.push('/')">Amcisa</span>
       </section>
       <section class="links">
         <i class="fe fe-menu"></i>
