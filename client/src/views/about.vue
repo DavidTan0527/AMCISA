@@ -9,11 +9,11 @@
         </div>
         <div class="name">会长 {{ president_name }}</div>
       </div>
-      <img :src="president_picture" alt="president picture">
+      <img :src="president_picture" @error="set_alt_img">
     </div>
     <div class="committee">
       <div class="member" v-for="member in members" :key="member.id">
-        <img :src="member.picture" alt="" class="avatar">
+        <img :src="member.picture" @error="set_alt_img" class="avatar">
         <div class="pos">{{ member.position }}</div>
         <div class="name">{{ member.name }}</div>
         <div class="year">{{ member.course_year }}</div>
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import avatar from '@/assets/avatar.jpg';
+
 export default {
   metaInfo: {
     title: 'About',
@@ -34,6 +36,7 @@ export default {
       president_name: '',
       members: [],
       is_loading: true,
+      avatar,
     };
   },
   mounted() {
@@ -48,6 +51,12 @@ export default {
       this.members = members;
       this.is_loading = false;
     }).catch(console.log);
+  },
+  methods: {
+    set_alt_img(event) {
+      // eslint-disable-next-line
+      event.target.src = this.avatar;
+    },
   },
 };
 </script>

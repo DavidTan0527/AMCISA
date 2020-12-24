@@ -3,8 +3,8 @@
   <div id="_event_details" v-else>
     <div class="info">
       <div class="image">
-        <img src="@/mock/activity_2.jpg" alt="activity">
-        <img src="@/mock/activity_2.jpg" class="shadow">
+        <img :src="picture" alt="activity">
+        <img :src="picture" class="shadow">
       </div>
       <div class="date-section">
         <i class="fe fe-calendar"></i>
