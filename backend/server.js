@@ -26,6 +26,7 @@ app.use('/',maincomm);
 app.use('/', contacts);
 app.use('/',foc);
 app.use('/',qna);
+app.use('/data/images',express.static('data/images'));
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
