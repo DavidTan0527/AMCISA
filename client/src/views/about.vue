@@ -9,11 +9,11 @@
         </div>
         <div class="name">会长 {{ president_name }}</div>
       </div>
-      <img src="@/mock/ter.png" alt="">
+      <img :src="president_picture" alt="president picture">
     </div>
     <div class="committee">
       <div class="member" v-for="member in members" :key="member.id">
-        <img src="@/mock/ter.png" alt="" class="avatar">
+        <img :src="member.picture" alt="" class="avatar">
         <div class="pos">{{ member.position }}</div>
         <div class="name">{{ member.name }}</div>
         <div class="year">{{ member.course_year }}</div>
@@ -39,11 +39,12 @@ export default {
   mounted() {
     this.api('/maincomm').then(({ data }) => {
       const {
-        year, caption, president_name, members,
+        year, caption, president_name, president_picture, members,
       } = data;
       this.year = year;
       this.caption = caption;
       this.president_name = president_name;
+      this.president_picture = president_picture;
       this.members = members;
       this.is_loading = false;
     }).catch(console.log);

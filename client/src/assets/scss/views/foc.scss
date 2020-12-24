@@ -3,7 +3,6 @@
     position: relative;
     height: 60vh;
     max-height: 90vw;
-    background-image: url('./../../mock/foc_banner.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -15,6 +14,12 @@
       width: 100%;
       height: 100%;
       background-color: rgba(#000, .38);
+    }
+    img {
+      position: absolute;
+      height: 60vh;
+      max-height: 90vw;
+      width: 100vw;
     }
     .title {
       position: absolute;

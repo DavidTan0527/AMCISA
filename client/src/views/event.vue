@@ -54,7 +54,7 @@
             :title="event.title"
             :subtitle="event.venue"
             :date="event.event_date"
-            :image="image"
+            :image="event.picture"
             @click.native="$router.push(`/${$route.params.uni}/event/${event.id}`)" />
         </div>
       </div>
@@ -63,8 +63,6 @@
 </template>
 
 <script>
-import image from '@/mock/activity_1.jpg';
-
 const card = () => import('@/components/card.vue');
 export default {
   metaInfo: {
@@ -82,7 +80,6 @@ export default {
     filter_name: '',
     filter_venue: '',
     is_loading: true,
-    image,
   }),
   created() {
     window.addEventListener('resize', this.resize_handler);

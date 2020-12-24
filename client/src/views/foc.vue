@@ -1,7 +1,10 @@
 <template>
   <div class="loader" v-if="is_loading"></div>
   <div id="_foc" v-else>
-    <div class="banner">
+    <div class="banner"
+      :style="{
+        'background-image': `url(${picture})`,
+      }">
       <div class="title">
         <!-- <div class="name">《贰迁〇亿》</div>
         <div class="event">AMCISA FOC 20/21</div> -->
@@ -68,6 +71,7 @@ export default {
   },
   data() {
     return {
+      picture: '',
       title: '',
       content: {
         type: 'doc',
@@ -91,8 +95,9 @@ export default {
   mounted() {
     this.api('/foc').then(({ data }) => {
       const {
-        content, activities, title, registration,
+        picture, content, activities, title, registration,
       } = data;
+      this.picture = picture;
       this.title = title.split('\n');
       this.content = content;
       this.activities = activities;

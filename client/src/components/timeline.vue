@@ -11,7 +11,8 @@
         <img
           class="image"
           :class="[index % 2 === 1 ? 'right' : 'left']"
-          src="@/mock/activity_1.jpg">
+          :src="data[index-1].picture"
+          :alt="data[index-1].title">
       </div>
       <div class="line" :key="'line-'+index" v-if="index !== count"></div>
     </template>
