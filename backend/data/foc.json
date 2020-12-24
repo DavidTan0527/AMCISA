@@ -1,8 +1,8 @@
 {
-    "picture": "url",
-    "picture_title": "《贰迁〇亿》\n AMCISA FOC 20/21",
+    "picture": "/api/data/images/foc_banner.jpg",
+    "picture_title": "《重燃》\n AMCISA FOC 21/22",
     "foc":{
-        "content": "bla bla bla",
+        "content": "FOC 是 Freshmen Orientation Camp 的简称，而 AMCISA FOC 是为来新加坡国立大学深造的大马独中生所办的新生营。\n这将是你在 NUS的深造旅程的起点，目的是为了让新生们在升学的路上得到鼓励，扶持和帮助，更建立起可贵的友谊。\n​新的里程碑，我们互相关照，一起发光发热！",
         "registration": {
             "date": "1/8 - 6/8/2020",
             "venue": "NUS Campus",

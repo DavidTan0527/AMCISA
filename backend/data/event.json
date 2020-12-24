@@ -1,8 +1,8 @@
 [
     {   
         "id" : 1,
-        "title" : "Supper Night",
-        "picture" : "Url",
+        "title" : "Night Cycling",
+        "picture" : "/api/data/images/night_cycling.jpg",
         "event_date" : "21/10/2020",
         "venue" : "Ameen",
         "author" : "David Tan",
@@ -11,8 +11,8 @@
     },
     
     {   "id" : 2,
-        "title" : "Supper Night2",
-        "picture" : "Url",
+        "title" : "Night Cycling2",
+        "picture" : "/api/data/images/night_cycling.jpg",
         "event_date" : "21/10/2020",
         "venue" : "Ameen",
         "author" : "David Tan",
@@ -21,8 +21,8 @@
     },
 
     {   "id" : 3,
-        "title" : "Supper Night3",
-        "picture" : "Url",
+        "title" : "Night Cycling3",
+        "picture" : "/api/data/images/night_cycling.jpg",
         "event_date" : "21/10/2020",
         "venue" : "Ameen",
         "author" : "David Tan",

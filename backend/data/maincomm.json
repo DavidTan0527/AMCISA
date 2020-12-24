@@ -1,7 +1,7 @@
 {
     "year": "20/21",
-    "president_picture": "url",
-    "caption": "Regardless of the adversities....",
+    "president_picture": "/api/data/images/CheeJerHong-Crop.jpg",
+    "caption": "外面的世界无论有多难闯多坎坷，AMCISA终究是我们的归宿，是我们的避风港。",
     "member": [
         {
             "id": 1,
