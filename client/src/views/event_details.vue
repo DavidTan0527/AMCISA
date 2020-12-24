@@ -1,5 +1,6 @@
 <template>
-  <div id="_event_details">
+  <div class="loader" v-if="is_loading"></div>
+  <div id="_event_details" v-else>
     <div class="info">
       <div class="image">
         <img src="@/mock/activity_2.jpg" alt="activity">
@@ -7,11 +8,11 @@
       </div>
       <div class="date-section">
         <i class="fe fe-calendar"></i>
-        <div class="date">{{ date }}</div>
+        <div class="date">{{ event_date }}</div>
       </div>
       <div class="location-section">
         <i class="fe fe-map-pin"></i>
-        <div class="location">{{ location }}</div>
+        <div class="location">{{ venue }}</div>
       </div>
     </div>
     <div class="main">
@@ -19,7 +20,7 @@
         {{ title }}
         <i class="fe fe-edit" v-if="!editable" @click="editable = true"></i>
       </div>
-      <small class="subtitle">{{ author }}, {{ created_at }}</small>
+      <small class="subtitle">{{ author }}, {{ created_date }}</small>
       <editor
         class="article"
         :editable="editable"
@@ -39,14 +40,32 @@ export default {
     editor,
   },
   data: () => ({
-    date: '21/10/2020',
-    location: 'Ameens',
-    title: 'Supper Night',
-    author: 'Author',
-    created_at: '24/10/2020',
-    content: 'Some text',
+    event_date: '',
+    venue: '',
+    title: '',
+    author: '',
+    created_date: '',
+    content: '',
+    picture: null,
     editable: false,
+    is_loading: true,
   }),
+  mounted() {
+    this.api(`/event/${this.$route.params.id}`).then(({ data }) => {
+      console.log(data);
+      const {
+        author, content, created_date, event_date, picture, title, venue,
+      } = data;
+      this.author = author;
+      this.content = content;
+      this.created_date = created_date;
+      this.event_date = event_date;
+      this.picture = picture;
+      this.title = title;
+      this.venue = venue;
+      this.is_loading = false;
+    }).catch(console.log);
+  },
   methods: {
     update_text(data) {
       this.editable = false;

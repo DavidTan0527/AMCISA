@@ -1,5 +1,6 @@
 <template>
-  <div id="_home">
+  <div class="loader" v-if="is_loading"></div>
+  <div id="_home" v-else>
     <nav class="navbar">
       <section class="navbar-title">Amcisa</section>
     </nav>
@@ -58,6 +59,7 @@ export default {
     quote: '',
     about: '',
     explore: '',
+    is_loading: true,
   }),
   mounted() {
     this.api('/landing').then(({ data }) => {
@@ -65,6 +67,7 @@ export default {
       this.quote = quote;
       this.about = about;
       this.explore = explore;
+      this.is_loading = false;
     }).catch(console.log);
   },
 };

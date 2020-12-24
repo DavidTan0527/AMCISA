@@ -1,5 +1,6 @@
 <template>
-  <div id="_main">
+  <div class="loader" v-if="is_loading"></div>
+  <div id="_main" v-else>
     <div class="foc" v-if="notify_foc">
       <div class="main-title">FOC</div>
       <div class="body">
@@ -68,6 +69,7 @@ export default {
     notify_foc: false,
     events: [],
     admission: [],
+    is_loading: true,
   }),
   mounted() {
     this.api('/nus-landing').then(({ data }) => {
@@ -75,9 +77,12 @@ export default {
       this.notify_foc = notify_foc;
       this.events = events;
       this.admission = admission;
-      setTimeout(() => {
-        window.scrollTo({ top: document.querySelector(this.$route.hash).offsetTop, behavior: 'smooth' });
-      }, 100);
+      this.is_loading = false;
+      if (this.$route.hash) {
+        setTimeout(() => {
+          window.scrollTo({ top: document.querySelector(this.$route.hash).offsetTop, behavior: 'smooth' });
+        }, 100);
+      }
     }).catch(console.log);
   },
   methods: {

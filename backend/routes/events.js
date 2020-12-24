@@ -31,7 +31,7 @@ router.get('/event/:id', function (req, res) {
     getJson('event.json').then(data => {
         data = JSON.parse(data);
         const result = data.find(e => e.id == req.params.id);
-        res.send(result || {});
+        res.json(result || {});
         // for (let i of data) {
         //     if (i.id == req.params.id) {
         //         res.send(i);

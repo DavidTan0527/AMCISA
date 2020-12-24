@@ -1,5 +1,6 @@
 <template>
-  <div id="_event">
+<div class="loader" v-if="is_loading"></div>
+  <div id="_event" v-else>
     <div class="main-title">EVENTS</div>
     <div class="body">
       <div class="filter">
@@ -80,6 +81,7 @@ export default {
     events: [],
     filter_name: '',
     filter_venue: '',
+    is_loading: true,
     image,
   }),
   created() {
@@ -107,6 +109,7 @@ export default {
         this.max_page = data.length;
         this.original_events = data.flat();
         this.events = data;
+        this.is_loading = false;
       }).catch(console.log);
     },
     filter_events() {
