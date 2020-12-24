@@ -5,13 +5,16 @@
   .navbar {
     display: flex;
     margin-bottom: 1rem;
-    padding: 1.5rem 2rem;
+    padding: 0 3rem;
     .navbar-title {
-      font-family: 'modulus';
-      font-weight: bold;
-      font-size: 4rem;
-      color: $text-gray;
-      letter-spacing: 2px;
+      img {
+        height: 10rem;
+      }
+      // font-family: 'modulus';
+      // font-weight: bold;
+      // font-size: 4rem;
+      // color: $text-gray;
+      // letter-spacing: 2px;
     }
   }
   .main-card, .about-card {
@@ -56,7 +59,10 @@
     }
   }
   .about-card {
-    background-image: linear-gradient(#9B97EF, #98C0F7);
+    // background-image: linear-gradient(#9B97EF, #98C0F7);
+    // background-image: linear-gradient(#e5552e, #f2ba45);
+    background-image: linear-gradient(#204278, #61c7d0);
+    // background-image: linear-gradient(#f2ba45, #61c7d0);
     width: 50%;
     max-height: 500px;
     margin-left: 40%;
@@ -132,26 +138,28 @@
   }
   footer {
     width: 100%;
-    background-color: #B5B9FF;
+    background-color: $primary-blue;
+    // background-color: #B5B9FF;
     color: #fff;
     margin-top: 2rem;
-    padding: 7rem 0 1rem;
-    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 35%);
-    .icons {
-      margin: 1.5rem 0;
-      .fe {
-        border: solid 2px #fff;
-        border-radius: 50%;
-        font-weight: 500;
-        font-size: 1.8rem;
-        margin: 0 1rem;
-        padding: .5rem;
-        cursor: pointer;
-      }
-    }
+    padding: 7rem 0 2rem;
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 55%);
+    // .icons {
+    //   margin: 1.5rem 0;
+    //   .fe {
+    //     border: solid 2px #fff;
+    //     border-radius: 50%;
+    //     font-weight: 500;
+    //     font-size: 1.8rem;
+    //     margin: 0 1rem;
+    //     padding: .5rem;
+    //     cursor: pointer;
+    //   }
+    // }
   }
   .background-rect {
-    background-color: #DDE2FD;
+    // background-color: #DDE2FD;
+    background-color: rgba(#61c7d0, .4);
     z-index: -99;
     position: absolute;
     top: 150px;
@@ -176,6 +184,16 @@
   }
 
   @media screen and (max-width: 768px) {
+    .navbar {
+      padding: 0 2rem;
+      .navbar-title {
+        img {
+          height: 8rem;
+        }
+        // font-size: 3rem;
+        // letter-spacing: 1.8px;
+      }
+    }
     .main-card {
       max-height: 200px;
       padding: 2rem;
@@ -231,7 +249,7 @@
       } 
     }
     footer {
-      padding: 5rem 0 1rem;
+      padding: 5rem 0 1.5rem;
       .icons {
         .fe {
           font-size: 1.5rem;
@@ -246,8 +264,11 @@
   @media screen and (max-width: 425px) {
     .navbar {
       .navbar-title {
-        font-size: 3rem;
-        letter-spacing: 1.8px;
+        img {
+          height: 6rem;
+        }
+        // font-size: 3rem;
+        // letter-spacing: 1.8px;
       }
     }
     .main-card {
@@ -304,7 +325,7 @@
       } 
     }
     footer {
-      padding: 3rem 0 1rem;
+      padding: 3rem 0 1.5rem;
       clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 30%);
       .icons {
         margin: 1.5rem 0 1rem;

@@ -20,6 +20,7 @@
     <div class="content">
       <router-view></router-view>
     </div>
+    <div class="background-logo"></div>
     <footer>
       <div class="links">
         <div v-for="section in sections" :key="section.name">
@@ -47,7 +48,7 @@
           </ul>
         </div>
       </div>
-      <small>2020 © {{ $route.params.uni === 'nus' ? 'NUS' : 'NTU' }} AMCISA</small>
+      <small>{{ current_year }} © {{ $route.params.uni === 'nus' ? 'NUS' : 'NTU' }}</small>
     </footer>
   </div>
 </template>
@@ -90,6 +91,11 @@ export default {
   methods: {
     navigate(url) {
       window.location.href = `${url.startsWith('http') ? '' : 'http://'}${url}`;
+    },
+  },
+  computed: {
+    current_year() {
+      return new Date().getFullYear();
     },
   },
 };
