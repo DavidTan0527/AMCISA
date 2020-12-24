@@ -23,7 +23,7 @@ router.get('/nus-landing', function (req, res) {
             required_event = required_event.map(({picture,event_date}) => ({picture, event_date}));
             nus_landing_data = data[0];
             nus_landing_data.events = required_event;
-            res.send(nus_landing_data);
+            res.json(nus_landing_data);
         }
     );
 });

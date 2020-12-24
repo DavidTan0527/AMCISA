@@ -11,7 +11,7 @@ function getJson(filePath) {
 
 router.get('/qna', function (req, res) {
     getJson('qna.json').then(data => {
-        res.send(JSON.parse(data));
+        res.json(JSON.parse(data));
     });
 });
 

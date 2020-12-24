@@ -11,7 +11,7 @@ function getJson(filePath) {
 
 router.get('/landing', function (req, res) {
     getJson('landing.json').then(data => {
-        res.send(JSON.parse(data));
+        res.json(JSON.parse(data));
     });
 });
 

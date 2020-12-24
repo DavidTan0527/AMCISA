@@ -23,7 +23,7 @@ router.get('/events/:id', function (req, res) {
             medium_arr.push(data[i]);
         };
         formatted_data.push(medium_arr);
-        res.send(formatted_data);
+        res.json(formatted_data);
     });
 });
 
@@ -34,7 +34,7 @@ router.get('/event/:id', function (req, res) {
         res.json(result || {});
         // for (let i of data) {
         //     if (i.id == req.params.id) {
-        //         res.send(i);
+        //         res.json(i);
         //         break;
         //     };
         // }

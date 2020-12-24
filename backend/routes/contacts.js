@@ -11,7 +11,7 @@ function getJson(filePath) {
 
 router.get('/contacts', function (req, res) {
     getJson('contacts.json').then(data => {
-        res.send(JSON.parse(data));
+        res.json(JSON.parse(data));
     });
 });
 
