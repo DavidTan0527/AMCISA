@@ -18,7 +18,7 @@
     <div class="main">
       <div class="title">
         {{ title }}
-        <i class="fe fe-edit" v-if="!editable" @click="editable = true"></i>
+        <!-- <i class="fe fe-edit" v-if="!editable" @click="editable = true"></i> -->
       </div>
       <small class="subtitle">{{ author }}, {{ created_date }}</small>
       <editor
