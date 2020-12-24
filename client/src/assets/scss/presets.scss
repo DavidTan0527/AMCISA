@@ -108,6 +108,9 @@ $primary-red: #EA0039;
   background-color: #FF9C4C;
   border: none;
   cursor: pointer;
+  &:focus, &:focus-within {
+    outline: none;
+  }
 }
 .ntu .btn-round {
   background-color: #EA0039;

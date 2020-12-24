@@ -17,7 +17,7 @@
           <iframe
             width="560"
             height="315"
-            src="https://www.youtube.com/embed/S-UGdyBBPTs"
+            :src="intro_video"
             frameborder="0"
             allow="
               accelerometer; autoplay;
@@ -73,6 +73,7 @@ export default {
     return {
       picture: '',
       title: '',
+      intro_video: '',
       content: {
         type: 'doc',
         content: [],
@@ -95,10 +96,11 @@ export default {
   mounted() {
     this.api('/foc').then(({ data }) => {
       const {
-        picture, content, activities, title, registration,
+        picture, intro_video, content, activities, title, registration,
       } = data;
       this.picture = picture;
       this.title = title.split('\n');
+      this.intro_video = intro_video;
       this.content = content;
       this.activities = activities;
       this.registration = registration;
