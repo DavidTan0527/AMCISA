@@ -1,8 +1,17 @@
 {
     "notify_foc": true,
     "admission": [
-        "bla bla bla",
-        "bla bla bla",
-        "bla bla bla"
+        {
+            "title": "step1",
+            "content": "bla bla bla"
+        },
+        {
+            "title": "step2",
+            "content": "bla bla bla"
+        },
+        {
+            "title": "step3",
+            "content": "bla bla bla"
+        }
     ]
 }
