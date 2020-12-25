@@ -83,7 +83,13 @@ export default {
           window.scrollTo({ top: document.querySelector(this.$route.hash).offsetTop, behavior: 'smooth' });
         }, 100);
       }
-    }).catch(console.log);
+    }).catch((err) => {
+      this.$notify({
+        type: 'error',
+        text: err.message,
+      });
+      this.loading = false;
+    });
   },
   methods: {
     goto(path) {

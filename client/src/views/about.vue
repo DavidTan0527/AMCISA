@@ -50,7 +50,13 @@ export default {
       this.president_picture = president_picture;
       this.members = members;
       this.is_loading = false;
-    }).catch(console.log);
+    }).catch((err) => {
+      this.$notify({
+        type: 'error',
+        text: err.message,
+      });
+      this.loading = false;
+    });
   },
   methods: {
     set_alt_img(event) {

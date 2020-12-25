@@ -107,7 +107,13 @@ export default {
         this.original_events = data.flat();
         this.events = data;
         this.is_loading = false;
-      }).catch(console.log);
+      }).catch((err) => {
+        this.$notify({
+          type: 'error',
+          text: err.message,
+        });
+        this.loading = false;
+      });
     },
     filter_events() {
       const filtered_data = this.original_events.filter((e) => (this.filter_name === '' || e.title.includes(this.filter_name))

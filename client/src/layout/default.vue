@@ -88,7 +88,13 @@ export default {
   mounted() {
     this.api('/contacts').then(({ data }) => {
       this.contacts = data;
-    }).catch(console.log);
+    }).catch((err) => {
+      this.$notify({
+        type: 'error',
+        text: err.message,
+      });
+      this.loading = false;
+    });
   },
   methods: {
     navigate(url) {

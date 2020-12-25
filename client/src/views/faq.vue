@@ -28,7 +28,13 @@ export default {
     this.api('/qna').then(({ data }) => {
       this.data = data;
       this.is_loading = false;
-    }).catch(console.log);
+    }).catch((err) => {
+      this.$notify({
+        type: 'error',
+        text: err.message,
+      });
+      this.loading = false;
+    });
   },
 };
 </script>

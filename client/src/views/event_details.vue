@@ -63,7 +63,13 @@ export default {
       this.title = title;
       this.venue = venue;
       this.is_loading = false;
-    }).catch(console.log);
+    }).catch((err) => {
+      this.$notify({
+        type: 'error',
+        text: err.message,
+      });
+      this.loading = false;
+    });
   },
   methods: {
     update_text(data) {

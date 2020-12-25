@@ -9,7 +9,7 @@
     </nav>
 
     <div class="main-card">
-      <img class="svg" src="../assets/svg/having_fun.svg" loading="lazy">
+      <img class="svg" src="@/assets/svg/having_fun.svg" loading="lazy">
       <div class="slogan-section">
         <div class="slogan-1">
           "Where no one
@@ -26,7 +26,7 @@
         <header>About Us</header>
         <p>{{ about }}</p>
       </div>
-      <img class="svg" src="../assets/svg/around_the_world.svg" loading="lazy">
+      <img class="svg" src="@/assets/svg/around_the_world.svg" loading="lazy">
     </div>
 
     <div class="explore">
@@ -74,7 +74,13 @@ export default {
       this.about = about;
       this.explore = explore;
       this.is_loading = false;
-    }).catch(console.log);
+    }).catch((err) => {
+      this.$notify({
+        type: 'error',
+        text: err.message,
+      });
+      this.loading = false;
+    });
   },
 };
 </script>
