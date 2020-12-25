@@ -1,3 +1,4 @@
+import Notifications from 'vue-notification';
 import Vue from 'vue';
 import VueMeta from 'vue-meta';
 import App from './App.vue';
@@ -8,6 +9,7 @@ import '@/assets/scss/index.scss'; // main scss file
 import './registerServiceWorker';
 
 Vue.use(VueMeta);
+Vue.use(Notifications);
 
 // Import API function globally as mixin
 Vue.mixin({

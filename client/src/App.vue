@@ -3,6 +3,7 @@
     <div class="progress-container" v-if="$route.name !== 'Home'">
       <div class="progress-bar" ref="scroll_progress"></div>
     </div>
+    <notifications />
     <router-view/>
   </div>
 </template>
@@ -15,6 +16,15 @@ export default {
     titleTemplate: null,
   },
   mounted() {
+    if (this.$workbox) {
+      this.$workbox.addEventListener('waiting', () => {
+        this.$notify({
+          type: 'success',
+          title: 'New content available',
+          text: 'Reload the page to load new contents',
+        });
+      });
+    }
     this.scroll_callback();
     window.onscroll = this.scroll_callback;
   },
