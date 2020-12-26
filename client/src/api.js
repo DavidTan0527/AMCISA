@@ -8,11 +8,8 @@ const instance = axios.create({
 //   return config;
 // }, (error) => Promise.reject(error));
 
-instance.interceptors.response.use((config) => {
-  console.log('config', config);
-  return config;
-}, (error) => {
-  console.log(JSON.parse(JSON.stringify(error)));
+instance.interceptors.response.use((config) => config, (error) => {
+  // console.log(JSON.parse(JSON.stringify(error)));
   if (error.message === 'Network Error') {
     return axios(error.config);
   }

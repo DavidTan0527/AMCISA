@@ -26,7 +26,16 @@ export default {
       });
     }
     this.scroll_callback();
-    window.onscroll = this.scroll_callback;
+    // window.onscroll = this.scroll_callback;
+    let event_timeout = null;
+    window.onscroll = () => {
+      if (!event_timeout) {
+        event_timeout = setTimeout(() => {
+          event_timeout = null;
+          this.scroll_callback();
+        }, 30);
+      }
+    };
   },
   methods: {
     scroll_callback() {
