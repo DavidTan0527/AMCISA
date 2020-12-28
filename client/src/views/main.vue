@@ -72,7 +72,7 @@ export default {
     is_loading: true,
   }),
   mounted() {
-    this.api('/nus-landing').then(({ data }) => {
+    this.api(`/${this.$route.params.uni}/landing`).then(({ data }) => {
       const { notify_foc, events, admission } = data;
       this.notify_foc = notify_foc;
       this.events = events;

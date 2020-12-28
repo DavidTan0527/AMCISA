@@ -94,7 +94,7 @@ export default {
     };
   },
   mounted() {
-    this.api('/foc').then(({ data }) => {
+    this.api(`/${this.$route.params.uni}/foc`).then(({ data }) => {
       const {
         picture, intro_video, content, activities, title, registration,
       } = data;
