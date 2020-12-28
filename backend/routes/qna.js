@@ -7,7 +7,7 @@ router.get('/:uni/qna', param_rules, function (req, res) {
       return fail(errors);
     }
     
-    getJson(addPrefix(req.params.uni, 'landing.json')).then(data => {
+    getJson(addPrefix(req.params.uni, 'qna.json')).then(data => {
         res.json(JSON.parse(data));
     });
 });
