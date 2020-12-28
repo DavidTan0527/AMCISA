@@ -68,7 +68,7 @@ export default {
     is_loading: true,
   }),
   mounted() {
-    this.api('/landing').then(({ data }) => {
+    this.api('/main').then(({ data }) => {
       const { quote, about, explore } = data;
       this.quote = quote;
       this.about = about;
