@@ -51,7 +51,7 @@ export default {
     is_loading: true,
   }),
   mounted() {
-    this.api(`/event/${this.$route.params.id}`).then(({ data }) => {
+    this.api(`/${this.$route.params.uni}/event/${this.$route.params.id}`).then(({ data }) => {
       const {
         author, content, created_date, event_date, picture, title, venue,
       } = data;

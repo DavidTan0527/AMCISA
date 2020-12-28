@@ -40,7 +40,7 @@ export default {
     };
   },
   mounted() {
-    this.api('/maincomm').then(({ data }) => {
+    this.api(`/${this.$route.params.uni}/maincomm`).then(({ data }) => {
       const {
         year, caption, president_name, president_picture, members,
       } = data;

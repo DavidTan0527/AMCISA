@@ -101,7 +101,7 @@ export default {
     resize_handler(e) {
       const width = e?.target.innerWidth || window.innerWidth;
       this.pagination_size = width > 425 ? 12 : 6;
-      this.api(`/events/${this.pagination_size}`).then(({ data }) => {
+      this.api(`/${this.$route.params.uni}/events/${this.pagination_size}`).then(({ data }) => {
         this.current_page = 1;
         this.max_page = data.length;
         this.original_events = data.flat();

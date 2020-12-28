@@ -25,7 +25,7 @@ export default {
     };
   },
   mounted() {
-    this.api('/qna').then(({ data }) => {
+    this.api(`/${this.$route.params.uni}/qna`).then(({ data }) => {
       this.data = data;
       this.is_loading = false;
     }).catch((err) => {
