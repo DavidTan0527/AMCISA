@@ -1,16 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const {router, getJson, addPrefix, param_rules, validationResult, fail} = require('./routes.js');
 
-const fs = require('fs');
-const util = require('util');
-const readFile = util.promisify(fs.readFile);
+router.get('/:uni/contacts', param_rules, function (req, res) {
+    // If validation fails
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return fail(errors);
+    }
 
-function getJson(filePath) {
-    return readFile('./data/' + filePath);
-}
-
-router.get('/contacts', function (req, res) {
-    getJson('contacts.json').then(data => {
+    getJson(addPrefix(req.params.uni, 'contacts.json')).then(data => {
         res.json(JSON.parse(data));
     });
 });

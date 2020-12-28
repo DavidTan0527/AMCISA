@@ -10,22 +10,18 @@ if (process.env.NODE_ENV === 'development') {
   console.log("CORS enabled");
   app.use(cors());
 }
-
-var landing = require('./routes/landing');
+/**
+ *  Routes
+ */
+var main = require('./routes/main');
 var event = require('./routes/events');
-var nus_landing = require('./routes/nus-landing');
+var landing = require('./routes/main');
 var maincomm = require('./routes/maincomm');
 var contacts = require('./routes/contacts');
 var foc = require('./routes/foc');
 var qna = require('./routes/qna');
 
-app.use('/',landing);
-app.use('/',event);
-app.use('/',nus_landing);
-app.use('/',maincomm);
-app.use('/', contacts);
-app.use('/',foc);
-app.use('/',qna);
+app.use('/',[main,event,landing,maincomm,contacts,foc,qna]);
 app.use('/data/images',express.static('data/images'));
 
 app.listen(port, () => {

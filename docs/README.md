@@ -31,12 +31,13 @@ Event api.
 
 Get the events grouped according to the parameters `count`.
 
-GET `/events/:count`
+GET `/:uni/events/:count`
 
 * **Parameters**
   
 ```{json}
 {
+    "uni" : {"nus","ntu"}
     "count" : int
 }
 ```
@@ -72,12 +73,13 @@ GET `/events/:count`
 
 Get a specific event according to `id`
 
-GET `/event/:id`
+GET `/:uni/event/:id`
 
 * **Parameters**
 
 ```{json}
 {
+    "uni" : {"nus","ntu"}
     "id" : int
 }
 ```
@@ -104,7 +106,15 @@ FOC(Freshman Orientation Camp) api
 
 Get FOC details.
 
-GET `/foc`
+GET `/:uni/foc`
+
+* **Parameters**
+
+```{json}
+{
+    "uni" : {"nus","ntu"}
+}
+```
 
 * **Result**
   
@@ -132,10 +142,10 @@ GET `/foc`
 }
 ```
 
-# Landing
-Landing api.
+# Main
+Main page api.
 
-GET `/landing`
+GET `/main`
 
 * **Result**
 
@@ -150,7 +160,15 @@ GET `/landing`
 # Maincomm
 Maincomm api.
 
-GET `/maincomm`
+GET `/:uni/maincomm`
+
+* **Parameters**
+
+```{json}
+{
+    "uni" : {"nus","ntu"}
+}
+```
 
 * **Result**
 
@@ -173,10 +191,18 @@ GET `/maincomm`
 }
 ```
 
-# Nus-Landing
-nus landing page api. Only 3 latest events are shown and they are arranged in descending order of dates.
+# Landing
+Landing page api. Only 3 latest events are shown and they are arranged in descending order of dates.
 
-GET `/nus-landing`
+GET `/:uni/landing`
+
+* **Parameters**
+
+```{json}
+{
+    "uni" : {"nus","ntu"}
+}
+```
 
 * **Result**
 
@@ -215,10 +241,18 @@ GET `/nus-landing`
 }
 ```
 
-# Nus-Landing
+# QNA
 qna api.
 
-GET `/qna`
+GET `/:uni/qna`
+
+* **Parameters**
+
+```{json}
+{
+    "uni" : {"nus","ntu"}
+}
+```
 
 * **Result**
 
