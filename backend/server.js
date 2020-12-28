@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'development') {
  */
 var main = require('./routes/main');
 var event = require('./routes/events');
-var landing = require('./routes/main');
+var landing = require('./routes/landing');
 var maincomm = require('./routes/maincomm');
 var contacts = require('./routes/contacts');
 var foc = require('./routes/foc');
