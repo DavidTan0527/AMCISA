@@ -2,7 +2,6 @@
   <div class="loader" v-if="is_loading"></div>
   <div id="_home" v-else>
     <nav class="navbar">
-      <!-- <section class="navbar-title">Amcisa</section> -->
       <section class="navbar-title">
         <img src="@/assets/logo.png" alt="">
       </section>
