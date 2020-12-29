@@ -64,14 +64,20 @@ module.exports = {
         '/ntu/foc',
       ],
       useRenderEvent: true,
-      headless: false,
+      headless: true,
       onlyProduction: true,
       postProcess: (route) => {
+        let html = route.html;
         // Defer scripts and tell Vue it's been server rendered to trigger hydration
-        // eslint-disable-next-line
-        route.html = route.html
+        html = html
           .replace(/<script (.*?)>/g, '<script $1 defer>')
           .replace('id="app"', 'id="app" data-server-rendered="true"');
+        // Double google analytics
+        html = html.replace(/<script [^>]*?http:\/\/www.googletagmanager.*?<\/script>/, '')
+        // Stripe tracking iframe
+        html = html.replace(/<iframe [^>]*Stripe[^>].*?><\/iframe>/, '')
+        // eslint-disable-next-line
+        route.html = html;
         return route;
       },
     },
