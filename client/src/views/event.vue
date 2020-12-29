@@ -65,15 +65,17 @@
 <script>
 const card = () => import('@/components/card.vue');
 export default {
-  metaInfo: {
-    title: this.$route.params.uni.toUpperCase().concat(' | Events'),
-    meta: [
-      {
-        vmid: 'description',
-        name: 'description',
-        content: 'Recent events held by AMCISA. Find out what fun we had recently!',
-      },
-    ],
+  metaInfo() {
+    return {
+      title: this.$route.params.uni.toUpperCase().concat(' | Events'),
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: 'Recent events held by AMCISA. Find out what fun we had recently!',
+        },
+      ],
+    };
   },
   components: {
     card,

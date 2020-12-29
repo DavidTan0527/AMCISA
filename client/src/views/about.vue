@@ -26,8 +26,10 @@
 import avatar from '@/assets/avatar.jpg';
 
 export default {
-  metaInfo: {
-    title: this.$route.params.uni.toUpperCase().concat(' | AMCISA'),
+  metaInfo() {
+    return {
+      title: this.$route.params.uni.toUpperCase().concat(' | AMCISA'),
+    };
   },
   data() {
     return {

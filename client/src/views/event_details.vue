@@ -33,8 +33,10 @@
 <script>
 const editor = () => import('@/components/editor/editor.vue');
 export default {
-  metaInfo: {
-    title: this.$route.params.uni.toUpperCase().concat(` | ${this.title}`),
+  metaInfo() {
+    return {
+      title: this.$route.params.uni.toUpperCase().concat(` | ${this.title}`),
+    };
   },
   components: {
     editor,

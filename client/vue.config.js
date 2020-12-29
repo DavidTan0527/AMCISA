@@ -47,7 +47,7 @@ module.exports = {
             },
           },
         }],
-      })
+      }),
     ],
   },
 
@@ -61,18 +61,19 @@ module.exports = {
         '/nus/foc',
         '/ntu/events',
         '/ntu/faq',
-        '/ntu/foc'
+        '/ntu/foc',
       ],
       useRenderEvent: true,
       headless: true,
       onlyProduction: true,
-      postProcess: route => {
+      postProcess: (route) => {
         // Defer scripts and tell Vue it's been server rendered to trigger hydration
+        // eslint-disable-next-line
         route.html = route.html
           .replace(/<script (.*?)>/g, '<script $1 defer>')
           .replace('id="app"', 'id="app" data-server-rendered="true"');
         return route;
-      }
-    }
-  }
+      },
+    },
+  },
 };
