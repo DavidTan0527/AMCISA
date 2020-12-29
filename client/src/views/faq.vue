@@ -16,7 +16,14 @@
 <script>
 export default {
   metaInfo: {
-    title: 'FAQ',
+    title: this.$route.params.uni.toUpperCase().concat(' | FAQ'),
+    meta: [
+      {
+        vmid: 'description',
+        name: 'description',
+        content: 'Frequently asked questions by students before departing for university in Singapore. Get your questions answered here.',
+      },
+    ],
   },
   data() {
     return {

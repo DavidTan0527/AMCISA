@@ -3,7 +3,7 @@
   <div id="_event_details" v-else>
     <div class="info">
       <div class="image">
-        <img :src="picture" alt="activity">
+        <img :src="picture" :alt="title">
         <img :src="picture" class="shadow">
       </div>
       <div class="date-section">
@@ -34,7 +34,7 @@
 const editor = () => import('@/components/editor/editor.vue');
 export default {
   metaInfo: {
-    title: 'Event',
+    title: this.$route.params.uni.toUpperCase().concat(` | ${this.title}`),
   },
   components: {
     editor,
