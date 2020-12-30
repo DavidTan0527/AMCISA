@@ -15,7 +15,9 @@
             :class="{'filled': password}" v-model="password">
           <label for="password" class="form-label">Password</label>
         </div>
-        <button class="form-button" type="submit">Login</button>
+        <button class="form-button" type="submit">
+          <i class="fe fe-terminal"></i> Login
+        </button>
       </form>
     </div>
   </div>
@@ -43,6 +45,7 @@ export default {
     position: relative;
     box-sizing: border-box;
     min-width: 280px;
+    max-width: 500px;
     width: 30%;
     border-radius: 1rem;
     border: solid 2px $primary-color-dark;
@@ -69,7 +72,7 @@ export default {
       }
       .form-group {
         position: relative;
-        margin: 1.5rem 0;
+        margin: 1.8rem 0;
         * { transition: 300ms; }
         .form-label {
           position: absolute;
