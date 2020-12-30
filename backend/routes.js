@@ -34,6 +34,8 @@ router.put('/:uni/event/:id'    , validator.event.update, event.update);
 router.delete('/:uni/event/:id' , validator.event.delete, event.delete);
 
 // users
+router.post('/login'      , validator.user.login , user.login);
+router.get('/user'        , validator.user.get, user.get);
 router.post('/user'       , validator.user.create, user.create);
 router.put('/user/:id'    , validator.user.update, user.update);
 router.delete('/user/:id' , validator.user.delete, user.delete);

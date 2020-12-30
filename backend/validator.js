@@ -1,4 +1,5 @@
 const {body, param} = require('express-validator');
+const jwt = require('jsonwebtoken');
 
 const authenticateJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -59,6 +60,10 @@ exports.event = {
 };
 
 exports.user = {
+    login : [
+        body('username').exists(),
+        body('password').exists()
+    ],
     get : [
         authenticateJWT
     ],
