@@ -9,11 +9,12 @@ exports.login = function(req, res) {
     const {username, password} = req.body;
 
     user.get().then(data => {
-        user = data.find(x => x.username == username);
-        if (user){
-            bcrypt.compare(password, user.password, function(err, res) {
-                if (res) {
-                    return generateAccessToken(username);
+        _user = data.find(x => x.username == username);
+        if (_user){
+            bcrypt.compare(password, _user.password, function(err, _res) {
+                if (_res) {
+                    const token = generateAccessToken(username);
+                    return res.json({token});
                 } else {
                     return res.status(401).send("username or password incorrect");
                 } 
@@ -28,7 +29,8 @@ exports.login = function(req, res) {
 exports.get = function(req, res) {
 	check(req,res);
 
-	user.get(req.params.uni).then(data => {
+	user.get().then(data => {
+        console.log("hi")
 		res.json(data);
 	})
 };

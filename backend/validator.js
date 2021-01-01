@@ -1,4 +1,5 @@
 const {body, param} = require('express-validator');
+const jwt = require('jsonwebtoken');
 
 const authenticateJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -6,7 +7,7 @@ const authenticateJWT = (req, res, next) => {
     if (authHeader) {
         const token = authHeader.split(' ')[1];
 
-        jwt.verify(token, accessTokenSecret, (err, user) => {
+        jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
             if (err) {
                 return res.sendStatus(403);
             }
@@ -59,6 +60,10 @@ exports.event = {
 };
 
 exports.user = {
+    login : [
+        body('username').exists(),
+        body('password').exists()
+    ],
     get : [
         authenticateJWT
     ],
