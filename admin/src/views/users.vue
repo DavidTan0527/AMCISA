@@ -65,6 +65,10 @@ export default {
 
 <style lang="scss">
 #_users {
+  padding: 2rem 4rem;
+  @media screen and (max-width: 425px) {
+    padding: 2rem 3rem;
+  }
   .title-container {
     display: flex;
     align-items: center;
@@ -95,8 +99,6 @@ export default {
   .users-container {
     .user {
       display: grid;
-      // grid-template-columns: 1fr 1fr minmax(min-content, 120px);
-      // max-width: 600px;
       grid-template-columns: 1fr minmax(min-content, 120px);
       max-width: 300px;
       align-items: center;

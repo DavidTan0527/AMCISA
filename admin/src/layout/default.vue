@@ -56,6 +56,7 @@ export default {
     padding: 2rem 3rem;
     background-color: $primary-color-dark;
     color: #fff;
+    z-index: 999;
     overflow-x: visible;
     transform: translateX(-100%);
     transition: 300ms;
@@ -98,11 +99,7 @@ export default {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    padding: 2rem 4rem;
     overflow: auto;
-    @media screen and (max-width: 425px) {
-      padding: 2rem 3rem;
-    }
   }
 }
 </style>
