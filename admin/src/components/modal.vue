@@ -2,7 +2,7 @@
   <div id="_modal" class="modal"
   :class="{ 'active': active }">
     <div class="modal-container">
-      <span class="close" @click="active = false;">&times;</span>
+      <span class="close" @click="active = false">&times;</span>
       <slot></slot>
     </div>
     <a class="modal-overlay" @click="active = false"></a>
@@ -28,11 +28,9 @@ export default {
   width: 100%;
   height: 100%;
   overflow: auto;
-  
   &.active {
     display: block;
   }
-  
   .modal-overlay {
     position: fixed;
     z-index: 0;
@@ -43,13 +41,13 @@ export default {
     overflow: auto;
     background-color: rgba(0,0,0,0.18);
   }
-
   .modal-container {
+    box-sizing: border-box;
     background-color: #fefefe;
     position: absolute;
     top: 50vh;
     left: 50vw;
-    padding: 3rem;
+    padding: 1rem 3rem;
     transform: translate(-50%, -50%);
     border: 1px solid #ccc;
     border-radius: .3rem;
@@ -60,7 +58,6 @@ export default {
     max-height: 80vh;
     z-index: 100;
     overflow: inherit;
-
     .close {
       color: #aaa;
       float: right;
@@ -73,7 +70,6 @@ export default {
         cursor: pointer;
       }
     }
-    
   }
 }
 </style>
