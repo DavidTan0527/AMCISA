@@ -99,6 +99,7 @@ exports.foc = {
 
 exports.landing = {
     get : uni_rules,
+    getWithEvent : uni_rules,
     create : [
         authenticateJWT
     ],

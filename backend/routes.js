@@ -19,7 +19,7 @@ router.get('/:uni/contacts'      , validator.contact.get         , contact.get);
 router.get('/:uni/events/:count' , validator.event.getPagination , event.getPagination);
 router.get('/:uni/event/:id'     , validator.event.getById       , event.getById);
 router.get('/:uni/foc'           , validator.foc.get             , foc.get);
-router.get('/:uni/landing'       , validator.landing.get         , landing.get);
+router.get('/:uni/landing'       , validator.landing.getWithEvent, landing.getWithEvent);
 router.get('/main'               , validator.main.get            , main.get);
 router.get('/:uni/maincomm'      , validator.maincomm.get        , maincomm.get);
 router.get('/:uni/qna'           , validator.qna.get             , qna.get);
