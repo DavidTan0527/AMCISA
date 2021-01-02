@@ -23,6 +23,7 @@ $primary-color-dark: #204278;
 
 $gray-color: #70727e;
 
+$success-color: #2af779;
 $error-color: #ff2957;
 
 .loader,
@@ -82,5 +83,32 @@ $error-color: #ff2957;
   40% {
     box-shadow: 0 -2em;
     height: 5em;
+  }
+}
+
+.toggle-container {
+  position: fixed;
+  z-index: 998;
+  bottom: 80px;
+  right: 80px;
+  @media screen and (max-width: 425px) {
+    bottom: 50px;
+    right: 50px;
+  }
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 60px;
+    font-size: 1.5rem;
+    color: #fff;
+    background-color: $success-color;
+    border: solid 2px darken($success-color, 8%);
+    border-radius: 50%;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
   }
 }

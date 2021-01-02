@@ -23,19 +23,20 @@
     <div class="about-card">
       <div class="info-section">
         <header>About Us</header>
-        <!-- <p>{{ about }}</p> -->
-        <textarea name="about" id="about" cols="20" rows="10" v-model="about"></textarea>
+        <textarea name="about" id="about" cols="20" rows="6"
+          class="body edit" v-if="is_editing" v-model="about"></textarea>
+        <p class="body" v-else>{{ about }}</p>
       </div>
       <img class="svg" src="@/assets/svg/around_the_world.svg" loading="lazy">
     </div>
 
     <div class="explore">
       <header>Explore</header>
-      <!-- <div class="body">
-        {{ explore }}
-      </div> -->
       <textarea name="explore" id="explore" cols="60" rows="3"
-        class="body" v-model="explore"></textarea>
+        class="body" v-if="is_editing" v-model="explore"></textarea>
+      <div class="body" v-else>
+        {{ explore }}
+      </div>
       <div class="btns">
         <div class="btn-nus" @click="$router.push('/nus')">
           <div class="img"></div>
@@ -50,6 +51,14 @@
       2020 © AMCISA
     </footer>
     <div class="background-rect"></div>
+    <div class="toggle-container">
+      <button class="view" v-if="is_editing" @click="save">
+        <i class="fe fe-save"></i>
+      </button>
+      <button class="edit" v-else @click="is_editing = true">
+        <i class="fe fe-edit"></i>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -59,6 +68,7 @@ export default {
     quote: '',
     about: '',
     explore: '',
+    is_editing: false,
     is_loading: true,
   }),
   mounted() {
@@ -75,6 +85,12 @@ export default {
       });
       this.loading = false;
     });
+  },
+  methods: {
+    save() {
+      // POST
+      this.is_editing = false;
+    },
   },
 };
 </script>
@@ -137,6 +153,7 @@ export default {
   }
   .about-card {
     display: flex;
+    justify-content: space-between;
     background-image: linear-gradient(#204278, #61c7d0);
     width: 50%;
     max-height: 300px;
@@ -146,17 +163,20 @@ export default {
     z-index: 2;
     .info-section {
       text-align: left;
-      color: #fff;
       margin-right: .8rem;
       min-width: 50%;
       header {
+        color: #fff;
         font-size: 3rem;
         font-weight: 300;
       }
-      textarea {
+      .body {
+        color: #fff;
         font-size: 1.2rem;
         background-color: inherit;
-        backdrop-filter: brightness(90%);
+        &.edit {
+          backdrop-filter: brightness(90%);
+        }
       }
     }
     .svg {
@@ -278,7 +298,7 @@ export default {
           font-size: 2.5rem;
           font-weight: 300;
         }
-        textarea {
+        .body {
           font-size: 1rem;
         }
       }
@@ -356,7 +376,7 @@ export default {
           font-size: 2rem;
           font-weight: 300;
         }
-        textarea {
+        .body {
           font-size: .9rem;
         }
       }

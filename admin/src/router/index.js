@@ -23,6 +23,10 @@ const routes = [
     name: 'Landing',
     component: () => import('@/views/landing.vue'),
   },
+  {
+    path: '/*',
+    redirect: { name: 'Login' },
+  },
 ];
 
 const router = new VueRouter({

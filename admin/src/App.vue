@@ -23,6 +23,10 @@ body {
   margin: 0;
 }
 
+textarea {
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
 #app {
   font-family: 'Noto Sans SC', sans-serif;
   -webkit-font-smoothing: antialiased;
