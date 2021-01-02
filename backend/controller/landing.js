@@ -6,7 +6,7 @@ const event = require('../model/event.js')
 exports.getWithEvent = function(req, res) {
 	check(req,res);
 
-    Promise.all([landing.get(),event.get()]).then(
+    Promise.all([landing.get(req.params.uni),event.get(req.params.uni)]).then(
         data => {
             event_sorted = data[1].sort((a,b)=> {
                 var a = new Date(a.event_date);
