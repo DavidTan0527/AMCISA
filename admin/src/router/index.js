@@ -24,6 +24,16 @@ const routes = [
     component: () => import('@/views/landing.vue'),
   },
   {
+    path: '/main',
+    name: 'Main',
+    component: () => import('@/views/main.vue'),
+  },
+  {
+    path: '/editor',
+    name: 'Editor',
+    component: () => import('@/views/generator.vue'),
+  },
+  {
     path: '/*',
     redirect: { name: 'Login' },
   },

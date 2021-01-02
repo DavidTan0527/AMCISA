@@ -38,10 +38,10 @@
         {{ explore }}
       </div>
       <div class="btns">
-        <div class="btn-nus" @click="$router.push('/nus')">
+        <div class="btn-nus" @click="$router.push('/main')">
           <div class="img"></div>
         </div>
-        <div class="btn-ntu" @click="$router.push('/ntu')">
+        <div class="btn-ntu" @click="$router.push('/main')">
           <div class="img"></div>
         </div>
       </div>

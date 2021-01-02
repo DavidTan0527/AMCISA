@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <notifications />
     <router-view v-if="$route.name === 'Login'"></router-view>
     <layout v-else>
       <router-view/>
