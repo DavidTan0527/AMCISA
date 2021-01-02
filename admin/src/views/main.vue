@@ -31,11 +31,13 @@
       <div class="body">
         <div class="step" v-for="(step, index) in admission" :key="index">
           <div class="title">{{ step.title }}</div>
-          <div class="content">{{ step.content }}</div>
-          <!-- <editor
-            class="article"
+          <!-- <div class="content">{{ step.content }}</div> -->
+          <editor
+            class="content"
             :key="`article-${index}`"
-            :content="step.content"></editor> -->
+            hidebutton
+            :editable="is_editing"
+            :content="step.content"></editor>
           <!-- <ul class="content">
             <li>Choose your course of study</li>
             <li>Complete online application form</li>
@@ -75,7 +77,7 @@
 </template>
 
 <script>
-// import editor from '@/components/editor/editor.vue';
+import editor from '@/components/editor/editor.vue';
 import timeline from '@/components/timeline.vue';
 
 export default {
@@ -86,7 +88,7 @@ export default {
   },
   components: {
     timeline,
-    // editor,
+    editor,
   },
   data: () => ({
     notify_foc: false,
@@ -129,7 +131,7 @@ export default {
     &:not(:first-of-type) {
       margin-top: 10rem;
     }
-    button {
+    .btn-round {
       font-size: 1.2rem;
     }
   }
@@ -188,13 +190,10 @@ export default {
         }
         ul {
           padding-inline-start: 20px;
-          // li {
-          //   margin-bottom: 1rem;
-          // }
         }
       }
     }
-    button {
+    .btn-round {
       margin-top: 5rem;
     }
   }
@@ -203,7 +202,7 @@ export default {
       &:not(:first-of-type) {
         margin-top: 7rem;
       }
-      button {
+      .btn-round {
         font-size: 1rem;
       }
     }
@@ -227,7 +226,7 @@ export default {
       &:not(:first-of-type) {
         margin-top: 5rem;
       }
-      button {
+      .btn-round {
         font-size: .8rem;
       }
     }
@@ -239,7 +238,7 @@ export default {
       .body {
         margin-top: 60px;
       }
-      button {
+      .btn-round {
         margin-top: 100px;
       }
     }
@@ -257,7 +256,7 @@ export default {
           }
         }
       }
-      button {
+      .btn-round {
         margin-top: 3rem;
       }
     }

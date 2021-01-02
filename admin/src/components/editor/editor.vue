@@ -140,7 +140,7 @@
 
     <editor-content class="editor__content" :editor="editor" />
 
-    <button class="btn-done" @click="save_changes" v-if="editable">Done</button>
+    <button class="btn-done" @click="save_changes" v-if="editable && !hidebutton">Done</button>
   </div>
 </template>
 
@@ -184,6 +184,10 @@ export default {
     content: {
       type: [String, Object],
       default: '',
+    },
+    hidebutton: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
