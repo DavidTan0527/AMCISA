@@ -68,12 +68,14 @@ exports.user = {
         authenticateJWT
     ],
     create : [
+        body('uni').exists(),
         body('username').exists(),
         body('password').exists()
     ],
     update : [
         authenticateJWT,
         body('id').exists().isInt(),
+        body('uni').exists(),
         body('username').exists(),
         body('password').exists()
     ],
