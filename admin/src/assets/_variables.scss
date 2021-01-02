@@ -1,4 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap');
+@import '/src/assets/fonts/Noteworthy/style.css';
+@font-face {
+  font-family: 'modulus';
+  src: url('/src/assets/fonts/Modulus/Modulus.ttf') format('truetype')
+}
+@font-face {
+  font-family: 'modulus';
+  font-weight: bold;
+  src: url('/src/assets/fonts/Modulus/Modulus-Bold.otf') format('opentype');
+}
+$text-gray: #58585f;
+$text-gray-light: #9B9BA7;
+$text-gray-dark-cool: #47474E;
+$text-gray-dark-warm: #423E3E;
+
+$primary-blue: #204278;
+$primary-orange: #FF7300;
+$primary-red: #EA0039;
+
 $primary-color: #61c7d0;
 $primary-color-dark: #204278;
 
 $gray-color: #70727e;
+
+$success-color: #2af779;
+$error-color: #ff2957;
+
+.loader,
+.loader:before,
+.loader:after {
+  background: #99d8ff;
+  -webkit-animation: load1 1s infinite ease-in-out;
+  animation: load1 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em;
+}
+.loader {
+  color: #99d8ff;
+  text-indent: -9999em;
+  margin: 88px auto;
+  position: relative;
+  font-size: 11px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.loader:before {
+  left: -1.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 1.5em;
+}
+@-webkit-keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+@keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+
+.toggle-container {
+  position: fixed;
+  z-index: 998;
+  bottom: 80px;
+  right: 80px;
+  @media screen and (max-width: 425px) {
+    bottom: 50px;
+    right: 50px;
+  }
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 60px;
+    font-size: 1.5rem;
+    color: #fff;
+    background-color: $success-color;
+    border: solid 2px darken($success-color, 8%);
+    border-radius: 50%;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+  }
+}

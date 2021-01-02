@@ -18,6 +18,15 @@ const routes = [
     name: 'Users',
     component: () => import('@/views/users.vue'),
   },
+  {
+    path: '/landing',
+    name: 'Landing',
+    component: () => import('@/views/landing.vue'),
+  },
+  {
+    path: '/*',
+    redirect: { name: 'Login' },
+  },
 ];
 
 const router = new VueRouter({
