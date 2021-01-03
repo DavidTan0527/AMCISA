@@ -17,7 +17,7 @@
         <i class="fe fe-menu"></i>
       </span>
     </div>
-    <div class="content">
+    <div class="content" @click="is_sidebar_open = false">
       <slot />
     </div>
   </div>

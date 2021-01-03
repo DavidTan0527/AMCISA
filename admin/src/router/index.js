@@ -29,6 +29,11 @@ const routes = [
     component: () => import('@/views/main.vue'),
   },
   {
+    path: '/foc',
+    name: 'Foc',
+    component: () => import('@/views/foc.vue'),
+  },
+  {
     path: '/editor',
     name: 'Editor',
     component: () => import('@/views/generator.vue'),

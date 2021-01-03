@@ -9,7 +9,7 @@
       <div class="body">
         Freshman Orientation Camp 21/22 is open for registration!!!
       </div>
-      <button class="btn-round" @click="goto('foc')">
+      <button class="btn-round" @click="$router.push('/foc')">
         Check It Out!!! <i class="fe fe-arrow-right"></i>
       </button>
       <span class="view-btn" v-if="is_editing">
@@ -44,22 +44,6 @@
             <li>Apply for tuition grant</li>
           </ul> -->
         </div>
-        <!-- <div class="step">
-          <div class="title">Step 2</div>
-          <ul class="content">
-            <li>Choose your course of study</li>
-            <li>Complete online application form</li>
-            <li>Apply for tuition grant</li>
-          </ul>
-        </div>
-        <div class="step">
-          <div class="title">Step 3</div>
-          <ul class="content">
-            <li>Choose your course of study</li>
-            <li>Complete online application form</li>
-            <li>Apply for tuition grant</li>
-          </ul>
-        </div> -->
       </div>
       <button class="btn-round" @click="goto('faq')">
         Details & FAQ
