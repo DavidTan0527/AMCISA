@@ -1,6 +1,7 @@
 {
     "picture": "/api/data/images/foc_banner.jpg",
     "title": "《重燃》\n AMCISA FOC 21/22",
+    "intro_video": "https://www.youtube.com/embed/S-UGdyBBPTs",
     "content": {
         "type": "doc",
         "content": [
