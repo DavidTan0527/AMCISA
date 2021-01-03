@@ -33,7 +33,28 @@ export default {
   },
   methods: {
     login() {
-      console.log({ username: this.username, password: this.password });
+      console.log();
+      this.api('/login', {
+        username: this.username,
+        password: this.password,
+      }).then(({ data }) => {
+        console.log(data);
+      }).catch((err) => {
+        if (err.response.status === 400
+        || err.response.status === 401) {
+          this.$notify({
+            type: 'error',
+            title: 'Login Error',
+            text: 'Username or Password invalid',
+          });
+        } else {
+          this.$notify({
+            type: 'error',
+            title: 'Login Error',
+            text: 'An error occurred, please try again later',
+          });
+        }
+      });
     },
   },
 };
