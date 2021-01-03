@@ -24,8 +24,8 @@ body {
   margin: 0;
 }
 
-textarea {
-  font-family: 'Noto Sans SC', sans-serif;
+input, textarea {
+  font-family: inherit;
 }
 
 #app {

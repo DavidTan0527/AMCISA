@@ -34,6 +34,16 @@ const routes = [
     component: () => import('@/views/foc.vue'),
   },
   {
+    path: '/event',
+    name: 'Event',
+    component: () => import('@/views/event.vue'),
+  },
+  {
+    path: '/event/:id',
+    name: 'EventDetails',
+    component: () => import('@/views/event_details.vue'),
+  },
+  {
     path: '/editor',
     name: 'Editor',
     component: () => import('@/views/generator.vue'),

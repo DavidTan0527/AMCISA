@@ -121,6 +121,7 @@ export default {
       }).finally(() => {
         this.is_editing = false;
         this.is_loading = false;
+        this.get();
       });
     },
     cancel() {

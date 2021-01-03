@@ -22,7 +22,7 @@
       <div class="body">
         <timeline :data="events" />
       </div>
-      <button class="btn-round" @click="goto('event')">
+      <button class="btn-round" @click="$router.push('/event')">
         View All Events
       </button>
     </div>
@@ -46,7 +46,7 @@
           </ul> -->
         </div>
       </div>
-      <button class="btn-round" @click="goto('faq')">
+      <button class="btn-round" @click="$router.push('/faq')">
         Details & FAQ
       </button>
     </div>
@@ -84,9 +84,6 @@ export default {
     this.get();
   },
   methods: {
-    goto(path) {
-      this.$router.push(`/nus/${path}`);
-    },
     get() {
       this.is_loading = true;
       this.api(`/${this.uni_type}/landing`).then(({ data }) => {
@@ -135,6 +132,7 @@ export default {
       }).finally(() => {
         this.is_editing = false;
         this.is_loading = false;
+        this.get();
       });
     },
     cancel() {

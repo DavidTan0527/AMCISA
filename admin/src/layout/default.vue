@@ -36,7 +36,7 @@ export default {
         { name: 'Landing', to: '/landing' },
         { name: 'Main', to: '/main' },
         { name: 'FOC', to: '/foc' },
-        { name: 'Events', to: '/faq' },
+        { name: 'Events', to: '/event' },
         { name: 'FAQ', to: '/faq' },
         { name: 'Committee', to: '/faq' },
       ],
