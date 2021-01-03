@@ -30,11 +30,12 @@
       <div class="main-title">ADMISSION</div>
       <div class="body">
         <div class="step" v-for="(step, index) in admission" :key="index">
-          <div class="title">{{ step.title }}</div>
+          <input type="text" class="title" v-if="is_editing" v-model="step.title">
+          <div class="title" v-else>{{ step.title }}</div>
           <!-- <div class="content">{{ step.content }}</div> -->
           <editor
             class="content"
-            :key="`article-${index}`"
+            ref="articles"
             hidebutton
             :editable="is_editing"
             :content="step.content"></editor>
@@ -53,6 +54,9 @@
       <button class="view" v-if="is_editing" @click="save">
         <i class="fe fe-save"></i>
       </button>
+      <button class="cancel" v-if="is_editing" @click="cancel">
+        <i class="fe fe-slash"></i>
+      </button>
       <button class="edit" v-else @click="is_editing = true">
         <i class="fe fe-edit"></i>
       </button>
@@ -65,11 +69,6 @@ import editor from '@/components/editor/editor.vue';
 import timeline from '@/components/timeline.vue';
 
 export default {
-  metaInfo() {
-    return {
-      title: this.$route.params.uni.toUpperCase().concat(' | AMCISA'),
-    };
-  },
   components: {
     timeline,
     editor,
@@ -82,26 +81,64 @@ export default {
     is_loading: true,
   }),
   mounted() {
-    this.api('/nus/landing').then(({ data }) => {
-      const { notify_foc, events, admission } = data;
-      this.notify_foc = notify_foc;
-      this.events = events;
-      this.admission = admission;
-      this.is_loading = false;
-    }).catch((err) => {
-      this.$notify({
-        type: 'error',
-        text: err.message,
-      });
-      this.loading = false;
-    });
+    this.get();
   },
   methods: {
     goto(path) {
       this.$router.push(`/nus/${path}`);
     },
+    get() {
+      this.is_loading = true;
+      this.api(`/${this.uni_type}/landing`).then(({ data }) => {
+        const { notify_foc, events, admission } = data;
+        this.notify_foc = notify_foc;
+        this.events = events;
+        this.admission = admission;
+        this.is_loading = false;
+      }).catch((err) => {
+        this.$notify({
+          type: 'error',
+          text: err.message,
+        });
+        this.loading = false;
+      });
+    },
     save() {
-      console.log('saved');
+      this.is_loading = true;
+      this.admission = this.admission.map((el, index) => ({
+        ...el,
+        content: this.$refs.articles[index].json,
+      }));
+      this.api(`/${this.uni_type}/landing`, {
+        notify_foc: this.notify_foc,
+        events: this.events,
+        admission: this.admission,
+      }).then(() => {
+        this.$notify({
+          type: 'success',
+          title: 'Updated',
+        });
+      }).catch((err) => {
+        if (err.response.status === 401) {
+          this.$notify({
+            type: 'error',
+            title: 'Unauthorized',
+            text: 'Please login and try again',
+          });
+        } else {
+          this.$notify({
+            type: 'error',
+            title: 'An Error Occurred',
+            text: 'Please try again later.',
+          });
+        }
+      }).finally(() => {
+        this.is_editing = false;
+        this.is_loading = false;
+      });
+    },
+    cancel() {
+      this.get();
       this.is_editing = false;
     },
   },
@@ -167,7 +204,16 @@ export default {
           font-family: 'Source Code Pro';
           font-size: 2rem;
           font-weight: 500;
+          color: #fff;
+          background: inherit;
           margin-bottom: .5rem;
+        }
+        input.title {
+          border: none;
+          border-bottom: solid 2px #eee;
+          &:focus {
+            outline: none;
+          }
         }
         .content {
           line-height: 2rem;

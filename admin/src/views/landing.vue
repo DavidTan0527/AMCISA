@@ -55,6 +55,9 @@
       <button class="view" v-if="is_editing" @click="save">
         <i class="fe fe-save"></i>
       </button>
+      <button class="cancel" v-if="is_editing" @click="cancel">
+        <i class="fe fe-slash"></i>
+      </button>
       <button class="edit" v-else @click="is_editing = true">
         <i class="fe fe-edit"></i>
       </button>
@@ -72,21 +75,24 @@ export default {
     is_loading: true,
   }),
   mounted() {
-    this.api('/main').then(({ data }) => {
-      const { quote, about, explore } = data;
-      this.quote = quote;
-      this.about = about;
-      this.explore = explore;
-      this.is_loading = false;
-    }).catch((err) => {
-      this.$notify({
-        type: 'error',
-        text: err.message,
-      });
-      this.loading = false;
-    });
+    this.get();
   },
   methods: {
+    get() {
+      this.api('/main').then(({ data }) => {
+        const { quote, about, explore } = data;
+        this.quote = quote;
+        this.about = about;
+        this.explore = explore;
+        this.is_loading = false;
+      }).catch((err) => {
+        this.$notify({
+          type: 'error',
+          text: err.message,
+        });
+        this.loading = false;
+      });
+    },
     save() {
       this.is_loading = true;
       this.api('/main', {
@@ -116,6 +122,10 @@ export default {
         this.is_editing = false;
         this.is_loading = false;
       });
+    },
+    cancel() {
+      this.get();
+      this.is_editing = false;
     },
   },
 };

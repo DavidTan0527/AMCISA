@@ -128,6 +128,7 @@ $error-color: #ff2957;
 }
 
 .toggle-container {
+  display: flex;
   position: fixed;
   z-index: 998;
   bottom: 80px;
@@ -150,6 +151,13 @@ $error-color: #ff2957;
     cursor: pointer;
     &:focus {
       outline: none;
+    }
+    &:not(:first-child) {
+      margin-left: 1.2rem;
+    }
+    &.cancel {
+      background-color: $error-color;
+      border: solid 2px darken($error-color, 8%);
     }
   }
 }

@@ -82,6 +82,9 @@
       <button class="view" v-if="is_editing" @click="save">
         <i class="fe fe-save"></i>
       </button>
+      <button class="cancel" v-if="is_editing" @click="cancel">
+        <i class="fe fe-slash"></i>
+      </button>
       <button class="edit" v-else @click="is_editing = true">
         <i class="fe fe-edit"></i>
       </button>
@@ -92,18 +95,6 @@
 <script>
 const editor = () => import('@/components/editor/editor.vue');
 export default {
-  metaInfo() {
-    return {
-      title: this.$route.params.uni.toUpperCase().concat(' | Freshman Orientation Camp'),
-      meta: [
-        {
-          vmid: 'description',
-          name: 'description',
-          content: 'FOC 是 Freshmen Orientation Camp 的简称，而 AMCISA FOC 是为来新加坡国立大学深造的大马独中生所办的新生营。',
-        },
-      ],
-    };
-  },
   components: {
     editor,
   },
@@ -132,27 +123,34 @@ export default {
     };
   },
   mounted() {
-    this.api('/nus/foc').then(({ data }) => {
-      const {
-        picture, intro_video, content, activities, title, registration,
-      } = data;
-      this.picture = picture;
-      this.title = title;
-      this.intro_video = intro_video;
-      this.content = content;
-      this.activities = activities;
-      this.registration = registration;
-      this.is_loading = false;
-    }).catch((err) => {
-      this.$notify({
-        type: 'error',
-        text: err.message,
-      });
-      this.loading = false;
-    });
+    this.get();
   },
   methods: {
+    get() {
+      this.api(`/${this.uni_type}/foc`).then(({ data }) => {
+        const {
+          picture, intro_video, content, activities, title, registration,
+        } = data;
+        this.picture = picture;
+        this.title = title;
+        this.intro_video = intro_video;
+        this.content = content;
+        this.activities = activities;
+        this.registration = registration;
+        this.is_loading = false;
+      }).catch((err) => {
+        this.$notify({
+          type: 'error',
+          text: err.message,
+        });
+        this.loading = false;
+      });
+    },
     save() {
+      this.is_editing = false;
+    },
+    cancel() {
+      this.get();
       this.is_editing = false;
     },
     navigate(url) {
