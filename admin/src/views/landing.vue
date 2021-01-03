@@ -88,8 +88,35 @@ export default {
   },
   methods: {
     save() {
-      // POST
-      this.is_editing = false;
+      this.is_loading = true;
+      this.api('/main', {
+        quote: this.quote,
+        about: this.about,
+        explore: this.explore,
+      }).then((data) => {
+        console.log(data);
+        this.$notify({
+          type: 'success',
+          title: 'Updated',
+        });
+      }).catch((err) => {
+        if (err.response.status === 401) {
+          this.$notify({
+            type: 'error',
+            title: 'Unauthorized',
+            text: 'Please login and try again',
+          });
+        } else {
+          this.$notify({
+            type: 'error',
+            title: 'An Error Occurred',
+            text: 'Please try again later.',
+          });
+        }
+      }).finally(() => {
+        this.is_editing = false;
+        this.is_loading = false;
+      });
     },
   },
 };
@@ -196,6 +223,7 @@ export default {
       font-weight: 300;
       max-width: 70%;
       margin: 0 auto;
+      text-align: center;
     }
     .btns {
       display: flex;

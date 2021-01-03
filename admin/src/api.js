@@ -2,6 +2,9 @@ const axios = require('axios');
 
 const instance = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3000/',
+  headers: {
+    'Content-Type': 'x-www-form-urlencoded',
+  },
 });
 
 // instance.interceptors.request.use((config) => {
@@ -16,11 +19,15 @@ instance.interceptors.response.use((config) => config, (error) => {
   return Promise.reject(error);
 });
 
-const api = (path, data = null) => {
-  if (data === null) {
+const api = (path, data = null, method = 'post') => {
+  if (data === null && method !== 'delete') {
     return instance.get(path);
+  } if (method === 'post') {
+    return instance.post(path, data);
+  } if (method === 'put') {
+    return instance.put(path, data);
   }
-  return instance.post(path, data);
+  return instance.delete(path);
 };
 
 export default api;
