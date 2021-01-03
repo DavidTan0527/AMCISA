@@ -138,7 +138,6 @@ export default {
         this.title = title;
         this.intro_video = intro_video;
         this.content = content;
-        console.log(this.content);
         this.activities = activities;
         this.registration = registration;
         this.is_loading = false;
