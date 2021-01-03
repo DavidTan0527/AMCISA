@@ -44,19 +44,31 @@
       <button class="cancel" v-if="is_editing" @click="cancel">
         <i class="fe fe-slash"></i>
       </button>
-      <button class="edit" v-else @click="is_editing = true">
+      <!-- <button class="edit" v-else @click="is_editing = true">
         <i class="fe fe-edit"></i>
-      </button>
+      </button> -->
+      <template v-else>
+        <button class="edit" @click="is_editing = true">
+          <i class="fe fe-edit"></i>
+        </button>
+        <button class="delete" @click="delete_event">
+          <i class="fe fe-trash-2"></i>
+        </button>
+      </template>
     </div>
+    <confirm-modal title="Confirm delete?" ref="delete_modal"
+      @confirm="confirm_delete"></confirm-modal>
   </div>
 </template>
 
 <script>
 import editor from '@/components/editor/editor.vue';
+import confirmModal from '@/components/confirm_modal.vue';
 
 export default {
   components: {
     editor,
+    confirmModal,
   },
   data: () => ({
     event_date: '',
@@ -96,6 +108,7 @@ export default {
       });
     },
     save() {
+      this.is_loading = true;
       this.api(`/${this.uni_type}/event/${this.$route.params.id}`, {
         author: this.author,
         content: this.$refs.article.json,
@@ -128,6 +141,37 @@ export default {
         this.is_loading = false;
         this.get();
       });
+    },
+    delete_event() {
+      this.$refs.delete_modal.active = true;
+    },
+    confirm_delete() {
+      this.is_loading = true;
+      this.api(`/${this.uni_type}/event/${this.$route.params.id}`, {}, 'delete')
+        .then(() => {
+          this.$notify({
+            type: 'success',
+            title: 'Deleted',
+          });
+          this.$router.push(`/${this.uni_type}/event`);
+        }).catch((err) => {
+          if (err.response.status === 401) {
+            this.$notify({
+              type: 'error',
+              title: 'Unauthorized',
+              text: 'Please login and try again',
+            });
+          } else {
+            this.$notify({
+              type: 'error',
+              title: 'An Error Occurred',
+              text: 'Please try again later.',
+            });
+          }
+          this.is_editing = false;
+          this.is_loading = false;
+          this.get();
+        });
     },
     cancel() {
       this.get();

@@ -130,7 +130,7 @@ $error-color: #ff2957;
 .toggle-container {
   display: flex;
   position: fixed;
-  z-index: 998;
+  z-index: 60;
   bottom: 80px;
   right: 80px;
   @media screen and (max-width: 425px) {
@@ -155,7 +155,7 @@ $error-color: #ff2957;
     &:not(:first-child) {
       margin-left: 1.2rem;
     }
-    &.cancel {
+    &.cancel, &.delete {
       background-color: $error-color;
       border: solid 2px darken($error-color, 8%);
     }
