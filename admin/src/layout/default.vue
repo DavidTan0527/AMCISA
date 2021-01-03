@@ -1,5 +1,5 @@
 <template>
-  <div id="_default_layout">
+  <div id="_default_layout" class="nus">
     <div class="sidebar" :class="{'open': is_sidebar_open}">
       <div class="title">Admin Panel</div>
       <nav class="navbar">
@@ -17,7 +17,7 @@
         <i class="fe fe-menu"></i>
       </span>
     </div>
-    <div class="content">
+    <div class="content" @click="is_sidebar_open = false">
       <slot />
     </div>
   </div>
@@ -29,13 +29,13 @@ export default {
     return {
       is_sidebar_open: false,
       nav_items: [
-        { name: 'Users', to: '/users', icon: 'user' },
-        { name: 'Landing', to: '/landing', icon: 'user' },
-        { name: 'Main', to: '/events', icon: 'user' },
-        { name: 'FOC', to: '/foc', icon: '' },
-        { name: 'Events', to: '/faq', icon: 'user' },
-        { name: 'FAQ', to: '/faq', icon: 'user' },
-        { name: 'Committee', to: '/faq', icon: 'user' },
+        { name: 'Users', to: '/users' },
+        { name: 'Landing', to: '/landing' },
+        { name: 'Main', to: '/main' },
+        { name: 'FOC', to: '/foc' },
+        { name: 'Events', to: '/faq' },
+        { name: 'FAQ', to: '/faq' },
+        { name: 'Committee', to: '/faq' },
       ],
     };
   },
