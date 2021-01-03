@@ -33,12 +33,16 @@ export default {
   },
   methods: {
     login() {
-      console.log();
       this.api('/login', {
         username: this.username,
         password: this.password,
       }).then(({ data }) => {
-        console.log(data);
+        window.localStorage.setItem('jwt-token', data.token);
+        this.$notify({
+          type: 'success',
+          title: 'Logged in',
+        });
+        this.$router.push('/landing');
       }).catch((err) => {
         if (err.response.status === 400
         || err.response.status === 401) {

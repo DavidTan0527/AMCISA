@@ -93,8 +93,7 @@ export default {
         quote: this.quote,
         about: this.about,
         explore: this.explore,
-      }).then((data) => {
-        console.log(data);
+      }).then(() => {
         this.$notify({
           type: 'success',
           title: 'Updated',

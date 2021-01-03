@@ -1,5 +1,5 @@
 <template>
-  <div id="_default_layout" class="nus">
+  <div id="_default_layout" :class="uni_type">
     <div class="sidebar" :class="{'open': is_sidebar_open}">
       <div class="title">Admin Panel</div>
       <nav class="navbar">
@@ -13,6 +13,9 @@
            {{ item.name }}
          </section>
       </nav>
+      <div class="logout" @click="logout">
+        <i class="fe fe-log-out"></i> Logout
+      </div>
       <span class="nav-button" @click="is_sidebar_open = !is_sidebar_open">
         <i class="fe fe-menu"></i>
       </span>
@@ -39,6 +42,16 @@ export default {
       ],
     };
   },
+  methods: {
+    logout() {
+      window.localStorage.removeItem('jwt-token');
+      this.$router.push('/login');
+      this.$notify({
+        type: 'success',
+        title: 'Logout successful',
+      });
+    },
+  },
 };
 </script>
 
@@ -50,9 +63,12 @@ export default {
   height: 100vh;
   .sidebar {
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 100vh;
     padding: 2rem 3rem;
     background-color: $primary-color-dark;
     color: #fff;
@@ -60,6 +76,7 @@ export default {
     overflow-x: visible;
     transform: translateX(-100%);
     transition: 300ms;
+    box-sizing: border-box;
     &.open {
       transform: translateX(0);
     }
@@ -77,6 +94,12 @@ export default {
         color: #f7fa5b;
         cursor: pointer;
       }
+    }
+    .logout {
+      position: absolute;
+      bottom: 50px;
+      color: #f7fa5b;
+      cursor: pointer;
     }
     .nav-button {
       position: absolute;

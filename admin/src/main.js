@@ -13,6 +13,14 @@ Vue.mixin({
   methods: {
     api,
   },
+  computed: {
+    uni_type() {
+      const token = window.localStorage.getItem('jwt-token');
+      const payload = token ? token.split('.')[1] : '';
+      const user = payload ? JSON.parse(atob(payload)) : null;
+      return user ? user.uni : null;
+    },
+  },
 });
 
 Vue.config.productionTip = false;
