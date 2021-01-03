@@ -4,8 +4,8 @@ var jwt = require('jsonwebtoken');
 
 const { validationResult } = require('express-validator');
 
-function generateAccessToken(username) {
-    return jwt.sign(username, process.env.TOKEN_SECRET);
+function generateAccessToken(username,uni) {
+    return jwt.sign({username,uni}, process.env.TOKEN_SECRET,{ expiresIn: '30d' });
 }
 
 function check(req, res){

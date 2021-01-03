@@ -13,7 +13,7 @@ exports.login = function(req, res) {
         if (_user){
             bcrypt.compare(password, _user.password, function(err, _res) {
                 if (_res) {
-                    const token = generateAccessToken(username);
+                    const token = generateAccessToken(_user.username,_user.uni);
                     return res.json({token});
                 } else {
                     return res.status(401).send("username or password incorrect");
