@@ -35,6 +35,7 @@
           </div>
           <editor
             class="body"
+            ref="content"
             hidebutton
             :editable="is_editing"
             :content="content"></editor>
@@ -74,6 +75,7 @@
       <div class="title">Camp Activites</div>
       <editor
         class="activities"
+        ref="activities"
         hidebutton
         :editable="is_editing"
         :content="activities"></editor>
@@ -127,6 +129,7 @@ export default {
   },
   methods: {
     get() {
+      this.is_loading = true;
       this.api(`/${this.uni_type}/foc`).then(({ data }) => {
         const {
           picture, intro_video, content, activities, title, registration,
@@ -135,6 +138,7 @@ export default {
         this.title = title;
         this.intro_video = intro_video;
         this.content = content;
+        console.log(this.content);
         this.activities = activities;
         this.registration = registration;
         this.is_loading = false;
@@ -147,7 +151,38 @@ export default {
       });
     },
     save() {
-      this.is_editing = false;
+      this.is_loading = true;
+      this.api(`/${this.uni_type}/foc`, {
+        picture: this.picture,
+        intro_video: this.intro_video,
+        content: this.$refs.content.json,
+        activities: this.$refs.activities.json,
+        registration: this.registration,
+        title: this.title,
+      }).then(() => {
+        this.$notify({
+          type: 'success',
+          title: 'Updated',
+        });
+      }).catch((err) => {
+        if (err.response.status === 401) {
+          this.$notify({
+            type: 'error',
+            title: 'Unauthorized',
+            text: 'Please login and try again',
+          });
+        } else {
+          this.$notify({
+            type: 'error',
+            title: 'An Error Occurred',
+            text: 'Please try again later.',
+          });
+        }
+      }).finally(() => {
+        this.is_editing = false;
+        this.is_loading = false;
+        this.get();
+      });
     },
     cancel() {
       this.get();
