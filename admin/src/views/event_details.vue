@@ -2,10 +2,11 @@
   <div class="loader" v-if="is_loading"></div>
   <div id="_event_details" v-else>
     <div class="info">
-      <div class="image">
+      <div class="image" v-if="picture">
         <img :src="picture" :alt="title">
         <img :src="picture" class="shadow">
       </div>
+      <div class="image-upload" v-else-if="is_editing"></div>
       <div class="date-section">
         <i class="fe fe-calendar"></i>
         <input type="text" class="date" placeholder="Date"
@@ -24,10 +25,9 @@
         <input type="text" class="title" placeholder="Title"
           v-if="is_editing" v-model="title">
         <template v-else>{{ title }}</template>
-        <!-- <i class="fe fe-edit" v-if="!is_editing" @click="is_editing = true"></i> -->
       </div>
       <small class="subtitle">
-        <input type="text" v-if="is_editing" v-model="author">
+        <input type="text" placeholder="Author" v-if="is_editing" v-model="author">
         <template v-else>{{ author }}</template>, {{ created_date }}
       </small>
       <editor
@@ -82,6 +82,9 @@ export default {
     is_loading: true,
   }),
   mounted() {
+    if (this.$route.hash) {
+      this.is_editing = true;
+    }
     this.get();
   },
   methods: {
@@ -154,7 +157,7 @@ export default {
             type: 'success',
             title: 'Deleted',
           });
-          this.$router.push(`/${this.uni_type}/event`);
+          this.$router.push('/event');
         }).catch((err) => {
           if (err.response.status === 401) {
             this.$notify({
@@ -209,6 +212,25 @@ export default {
           filter: blur(6px);
           z-index: -1;
         }
+      }
+    }
+    .image-upload {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #e0e0e0;
+      height: 200px;
+      cursor: pointer;
+      &::before {
+        content: 'Upload image';
+        padding: .2rem .5rem;
+        border-radius: .2rem;
+        background-color: #eee;
+        opacity: 0;
+        transition: 300ms;
+      }
+      &:hover::before {
+        opacity: 1;
       }
     }
     .date-section, .location-section {

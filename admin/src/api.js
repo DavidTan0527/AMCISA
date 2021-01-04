@@ -14,13 +14,13 @@ instance.interceptors.request.use((config) => {
   return config;
 }, (error) => Promise.reject(error));
 
-instance.interceptors.response.use((config) => config, (error) => {
-  // console.log(JSON.parse(JSON.stringify(error)));
-  if (error.message === 'Network Error') {
-    return axios(error.config);
-  }
-  return Promise.reject(error);
-});
+// instance.interceptors.response.use((config) => config, (error) => {
+//   // console.log(JSON.parse(JSON.stringify(error)));
+//   // if (error.message === 'Network Error') {
+//   //   return axios(error.config);
+//   // }
+//   return Promise.reject(error);
+// });
 
 const api = (path, data = null, method = 'post') => {
   if (data === null && method !== 'delete') {
@@ -30,7 +30,7 @@ const api = (path, data = null, method = 'post') => {
   } if (method === 'put') {
     return instance.put(path, data);
   }
-  return instance.delete(path);
+  return instance.delete(path, { data });
 };
 
 export default api;

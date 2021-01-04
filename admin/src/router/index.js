@@ -44,6 +44,11 @@ const routes = [
     component: () => import('@/views/event_details.vue'),
   },
   {
+    path: '/faq',
+    name: 'Faq',
+    component: () => import('@/views/faq.vue'),
+  },
+  {
     path: '/editor',
     name: 'Editor',
     component: () => import('@/views/generator.vue'),

@@ -80,18 +80,18 @@ export default {
     is_loading: true,
   }),
   created() {
-    window.addEventListener('resize', this.resize_handler);
+    window.addEventListener('resize', this.get);
   },
   mounted() {
-    this.resize_handler();
+    this.get();
   },
   destroyed() {
-    window.removeEventListener('resize', this.resize_handler);
+    window.removeEventListener('resize', this.get);
   },
   methods: {
     add_event() {
       this.is_loading = true;
-      this.api('/event', {
+      this.api(`/${this.uni_type}/event`, {
         title: '',
         picture: '',
         event_date: '',
@@ -100,11 +100,11 @@ export default {
         created_date: this.current_date,
         content: '',
       }).then(({ data }) => {
-        this.$router.push(`/event/${data.id}`);
         this.$notify({
           type: 'success',
           title: 'Created Event',
         });
+        this.$router.push(`/event/${data.id}#new`);
       }).catch((err) => {
         if (err.response.status === 401) {
           this.$notify({
@@ -130,7 +130,7 @@ export default {
       return this.current_page + index <= 0
           || this.current_page + index > this.max_page;
     },
-    resize_handler(e) {
+    get(e) {
       const width = e?.target.innerWidth || window.innerWidth;
       this.pagination_size = width > 425 ? 12 : 6;
       this.api(`/${this.uni_type}/events/${this.pagination_size}`).then(({ data }) => {
@@ -148,8 +148,8 @@ export default {
       });
     },
     filter_events() {
-      const filtered_data = this.original_events.filter((e) => (this.filter_name === '' || e.title.includes(this.filter_name))
-        && (this.filter_venue === '' || e.venue.includes(this.filter_venue)));
+      const filtered_data = this.original_events.filter((e) => e.title.includes(this.filter_name)
+        && e.venue.includes(this.filter_venue));
       this.events = this.group_by(filtered_data, this.pagination_size);
     },
     group_by(arr, size) {
