@@ -31,6 +31,7 @@ event.create = (uni, body) => {
         }
         data.push(body);
         writeJson(addPrefix(uni,'event.json'),data);
+        return body;
     });
 };
 

@@ -247,7 +247,16 @@ Bearer <token>
 * **Result**
 
 ```{json}
-Success
+{   
+    "id" : int,
+    "title" : string,
+    "picture" : filePath,
+    "event_date" : string,
+    "venue" : string,
+    "author" : string,
+    "created_date" : string,
+    "content" : string
+}
 ```
 
 ## Get Event
