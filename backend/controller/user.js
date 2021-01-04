@@ -38,23 +38,36 @@ exports.get = function(req, res) {
 exports.create = function(req, res) {
 	check(req,res);
 
-	user.create(req.body).then(() => {
-		res.send("Success")
+	user.create(req.body).then((err) => {
+		if (err){
+			res.status(400).json({ errors: err });
+		} else {
+			res.send("Success")
+		}
 	});
 };
 
 exports.update = function(req, res) {
 	check(req,res);
 
-	user.update(req.body).then(() => {
-		res.send("Success")
+	user.update(req.body).then((err) => {
+        if (err){
+			res.status(400).json({ errors: err });
+		} else {
+			const token = generateAccessToken(req.body.username,req.body.uni);
+            return res.json({token})
+		}
 	});
 };
 
 exports.delete = function(req, res) {
 	check(req,res);
 
-	user.delete(req.body).then(() => {
-		res.send("Success")
+	user.delete(req.body).then((err) => {
+		if (err){
+			res.status(400).json({ errors: err });
+		} else {
+			res.send("Success")
+		}
 	});
 };

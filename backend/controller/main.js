@@ -11,7 +11,11 @@ exports.get = function(req, res) {
 exports.create = function(req, res) {
 	check(req,res);
 
-	main.create(req.body).then(() => {
-		res.send("Success")
+	main.create(req.body).then((err) => {
+		if (err){
+			res.status(400).json({ errors: err });
+		} else {
+			res.send("Success")
+		}
 	});
 };

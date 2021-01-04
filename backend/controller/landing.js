@@ -34,7 +34,11 @@ exports.get = function(req, res) {
 exports.create = function(req, res) {
 	check(req,res);
 
-	landing.create(req.params.uni, req.body).then(() => {
-		res.send("Success")
+	landing.create(req.params.uni, req.body).then((err) => {
+		if (err){
+			res.status(400).json({ errors: err });
+		} else {
+			res.send("Success")
+		}
 	});
 };

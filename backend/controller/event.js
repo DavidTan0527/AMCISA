@@ -41,23 +41,35 @@ exports.get = function(req, res) {
 exports.create = function(req, res) {
 	check(req,res);
 
-	event.create(req.params.uni, req.body).then(() => {
-		res.send("Success")
+	event.create(req.params.uni, req.body).then((err) => {
+		if (err){
+			res.status(400).json({ errors: err });
+		} else {
+			res.send("Success")
+		}
 	});
 };
 
 exports.update = function(req, res) {
 	check(req,res);
 
-	event.update(req.params.uni, req.body).then(() => {
-		res.send("Success")
+	event.update(req.params.uni, req.body).then((err) => {
+		if (err){
+			res.status(400).json({ errors: err });
+		} else {
+			res.send("Success")
+		}
 	});
 };
 
 exports.delete = function(req, res) {
 	check(req,res);
 
-	event.delete(req.params.uni, req.body).then(() => {
-		res.send("Success")
+	event.delete(req.params.uni, req.body).then((err) => {
+		if (err){
+			res.status(400).json({ errors: err });
+		} else {
+			res.send("Success")
+		}
 	});
 };
