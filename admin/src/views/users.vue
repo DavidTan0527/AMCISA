@@ -4,12 +4,12 @@
       <h1 class="title">Users <i class="fe fe-plus-circle"></i></h1>
       <div class="filter-container">
         <input class="filter" type="text" placeholder="Search username"
-          v-model="filtered_name">
+          v-model="filtered_name" @keyup="filter_users">
       </div>
     </div>
     <div class="users-container">
-      <div class="user" v-for="user in 5" :key="user">
-        <div class="username">David</div>
+      <div class="user" v-for="user in display_users" :key="user.id">
+        <div class="username">{{ user.username }}</div>
         <!-- <div class="password">admin</div> -->
         <div class="actions">
           <i class="fe fe-edit-3 edit" @click="edit_user(user)"></i>
@@ -17,8 +17,10 @@
         </div>
       </div>
     </div>
-    <modal ref="modal">
-      Editing user {{ selected_user_id }}
+    <modal class="edit-modal" ref="modal">
+      <h2>Edit User</h2>
+      <input type="text" v-model="selected_user.username">
+      <button class="confirm" @click="update_user">Confirm</button>
     </modal>
     <confirm-modal title="Confirm delete?" ref="delete_modal"
       @confirm="confirm_delete_user"></confirm-modal>
@@ -39,25 +41,113 @@ export default {
       filtered_name: '',
       original_users: [],
       display_users: [],
-      selected_user_id: 0,
+      selected_user: {
+        username: '',
+      },
+      is_self_user: false,
+      is_loading: true,
     };
   },
+  mounted() {
+    this.get();
+  },
   methods: {
-    edit_user(id) {
-      this.selected_user_id = id;
-      this.$refs.modl.active = true;
+    get() {
+      this.is_loading = true;
+      this.api('/user').then(({ data }) => {
+        this.original_users = data;
+        this.display_users = data;
+      }).catch((err) => {
+        this.$notify({
+          type: 'error',
+          text: err.message,
+        });
+      }).finally(() => {
+        this.is_loading = false;
+      });
     },
-    delete_user(id) {
-      this.selected_user_id = id;
+    edit_user(user) {
+      if (user.username === this.current_username) {
+        this.is_self_user = true;
+      }
+      this.selected_user = user;
+      this.$refs.modal.active = true;
+    },
+    update_user() {
+      this.is_loading = true;
+      this.$refs.modal.active = false;
+      this.api('/user', this.selected_user, 'put')
+        .then(({ data }) => {
+          if (this.is_self_user) {
+            window.localStorage.setItem('jwt-token', data.token);
+            this.is_self_user = false;
+          }
+          this.$notify({
+            type: 'success',
+            title: 'Updated',
+          });
+        }).catch((err) => {
+          if (err.response.status === 401) {
+            this.$notify({
+              type: 'error',
+              title: 'Unauthorized',
+              text: 'Please login and try again',
+            });
+          } else {
+            this.$notify({
+              type: 'error',
+              title: 'An Error Occurred',
+              text: 'Please try again later.',
+            });
+          }
+        }).finally(() => {
+          this.is_loading = false;
+          this.get();
+        });
+    },
+    delete_user(user) {
+      // Cannot delete yourself
+      if (user.username === this.current_username) {
+        this.$notify({
+          type: 'warning',
+          title: 'Cannot delete yourself',
+        });
+        return;
+      }
+      this.selected_user = user;
       this.$refs.delete_modal.active = true;
     },
     confirm_delete_user() {
-      console.log(`Deleted user ${this.selected_user_id}`);
+      this.is_loading = true;
+      this.$refs.delete_modal.active = false;
+      this.api('/user', { id: this.selected_user.id }, 'delete')
+        .then(() => {
+          this.$notify({
+            type: 'success',
+            title: `Deleted User: ${this.selected_user.username}`,
+          });
+        }).catch((err) => {
+          if (err.response.status === 401) {
+            this.$notify({
+              type: 'error',
+              title: 'Unauthorized',
+              text: 'Please login and try again',
+            });
+          } else {
+            this.$notify({
+              type: 'error',
+              title: 'An Error Occurred',
+              text: 'Please try again later.',
+            });
+          }
+        }).finally(() => {
+          this.is_loading = false;
+          this.get();
+        });
     },
-  },
-  watch: {
-    filtered_name(value) {
-      this.display_users = this.original_users.filter((e) => e.name.includes(value));
+    filter_users() {
+      this.display_users = this.original_users
+        .filter((e) => e.username.includes(this.filtered_name));
     },
   },
 };
@@ -119,6 +209,37 @@ export default {
             color: $error-color;
           }
         }
+      }
+    }
+  }
+  .edit-modal {
+    input {
+      display: block;
+      font-size: 1rem;
+      padding: .3rem .6rem;
+      border: solid 1px $gray-color;
+      border-radius: .2rem;
+      &:focus {
+        outline: none;
+        border: solid 1px $primary-color;
+      }
+    }
+    button {
+      float: right;
+      border-radius: .2rem;
+      border: none;
+      margin: 1.5rem 0 0;
+      padding: .4rem .6rem;
+      color: #fff;
+      font-weight: 500;
+      font-size: 1rem;
+      background-color: $primary-color;
+      cursor: pointer;
+      &:hover {
+        background-color: darken($primary-color, 8%);
+      }
+      &:active, &:focus {
+        outline: none;
       }
     }
   }

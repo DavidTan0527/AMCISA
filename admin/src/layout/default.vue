@@ -38,7 +38,8 @@ export default {
         { name: 'FOC', to: '/foc' },
         { name: 'Events', to: '/event' },
         { name: 'FAQ', to: '/faq' },
-        { name: 'Committee', to: '/faq' },
+        { name: 'Committee', to: '/committee' },
+        { name: 'Contacts', to: '/contacts' },
       ],
     };
   },

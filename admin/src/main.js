@@ -14,6 +14,12 @@ Vue.mixin({
     api,
   },
   computed: {
+    current_username() {
+      const token = window.localStorage.getItem('jwt-token');
+      const payload = token ? token.split('.')[1] : '';
+      const user = payload ? JSON.parse(atob(payload)) : null;
+      return user ? user.username : null;
+    },
     uni_type() {
       const token = window.localStorage.getItem('jwt-token');
       const payload = token ? token.split('.')[1] : '';
