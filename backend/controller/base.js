@@ -8,11 +8,4 @@ function generateAccessToken(username,uni) {
     return jwt.sign({username,uni}, process.env.TOKEN_SECRET,{ expiresIn: '30d' });
 }
 
-function check(req, res){
-    const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).json({ errors: errors.array() });
-	}
-}
-
-module.exports = { check, generateAccessToken };
+module.exports = { generateAccessToken };

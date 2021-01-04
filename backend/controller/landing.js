@@ -1,10 +1,11 @@
-const {check} = require('./base.js');
-
 const landing = require('../model/landing.js')
 const event = require('../model/event.js')
 
 exports.getWithEvent = function(req, res) {
-	check(req,res);
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(400).json({ errors: errors.array() });
+	}
 
     Promise.all([landing.get(req.params.uni),event.get(req.params.uni)]).then(
         data => {
@@ -24,7 +25,10 @@ exports.getWithEvent = function(req, res) {
 };
 
 exports.get = function(req, res) {
-	check(req,res);
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(400).json({ errors: errors.array() });
+	}
 
 	landing.get(req.params.uni).then(data => {
 		res.json(data);
@@ -32,7 +36,10 @@ exports.get = function(req, res) {
 };
 
 exports.create = function(req, res) {
-	check(req,res);
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(400).json({ errors: errors.array() });
+	}
 
 	landing.create(req.params.uni, req.body).then((err) => {
 		if (err){

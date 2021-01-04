@@ -35,10 +35,10 @@ exports.event = {
         param('uni').exists().isIn(["nus","ntu"]),
         body('title').exists(),
         body('picture').exists(),
-        body('event_date').exists().isDate(),
+        body('event_date').exists(),
         body('venue').exists(),
         body('author').exists(),
-        body('created_date').exists().isDate(),
+        body('created_date').exists(),
         body('content').exists()
     ],
     update : [
@@ -47,10 +47,10 @@ exports.event = {
         body('id').exists().isInt(),
         body('title').exists(),
         body('picture').exists(),
-        body('event_date').exists().isDate(),
+        body('event_date').exists(),
         body('venue').exists(),
         body('author').exists(),
-        body('created_date').exists().isDate(),
+        body('created_date').exists(),
         body('content').exists()
     ],
     delete : [

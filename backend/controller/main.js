@@ -1,5 +1,3 @@
-const {check} = require('./base.js');
-
 const main = require('../model/main.js')
 
 exports.get = function(req, res) {
@@ -9,7 +7,10 @@ exports.get = function(req, res) {
 };
 
 exports.create = function(req, res) {
-	check(req,res);
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(400).json({ errors: errors.array() });
+	}
 
 	main.create(req.body).then((err) => {
 		if (err){
