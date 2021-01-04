@@ -55,8 +55,9 @@ export default {
     get() {
       this.is_loading = true;
       this.api('/user').then(({ data }) => {
-        this.original_users = data;
-        this.display_users = data;
+        const own_uni_data = data.filter((e) => e.uni === this.uni_type);
+        this.original_users = own_uni_data;
+        this.display_users = own_uni_data;
       }).catch((err) => {
         this.$notify({
           type: 'error',
@@ -97,7 +98,7 @@ export default {
             this.$notify({
               type: 'error',
               title: 'An Error Occurred',
-              text: 'Please try again later.',
+              text: err.message,
             });
           }
         }).finally(() => {

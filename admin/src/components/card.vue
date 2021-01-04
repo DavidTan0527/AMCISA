@@ -28,6 +28,7 @@ export default {
   flex-direction: column;
   min-height: 250px;
   border-radius: 1rem;
+  border: solid 1px #eee;
   box-shadow: 0 2px 8px rgba(#000, .18);
   background-color: #fff;
   overflow: hidden;

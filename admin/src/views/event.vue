@@ -47,6 +47,7 @@
               @click="current_page = max_page"></i>
           </section>
         </nav>
+        <button class="add-btn" @click="add_event"><i class="fe fe-plus"></i>Add Event</button>
         <div class="event-grid">
           <card
             v-for="event in events[current_page-1]"
@@ -88,6 +89,40 @@ export default {
     window.removeEventListener('resize', this.resize_handler);
   },
   methods: {
+    add_event() {
+      this.is_loading = true;
+      this.api('/event', {
+        title: '',
+        picture: '',
+        event_date: '',
+        venue: '',
+        author: '',
+        created_date: this.current_date,
+        content: '',
+      }).then(({ data }) => {
+        this.$router.push(`/event/${data.id}`);
+        this.$notify({
+          type: 'success',
+          title: 'Created Event',
+        });
+      }).catch((err) => {
+        if (err.response.status === 401) {
+          this.$notify({
+            type: 'error',
+            title: 'Unauthorized',
+            text: 'Please login and try again',
+          });
+        } else {
+          this.$notify({
+            type: 'error',
+            title: 'An Error Occurred',
+            text: err.message,
+          });
+        }
+        this.is_loading = false;
+        this.get();
+      });
+    },
     range(start, end) {
       return Array(end - start + 1).fill().map((_, idx) => start + idx);
     },
@@ -131,11 +166,18 @@ export default {
       return result;
     },
   },
+  computed: {
+    current_date() {
+      const today = new Date();
+      return `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
+    },
+  },
 };
 </script>
 
 <style lang="scss">
 #_event {
+  padding-top: 2rem;
   .body {
     display: flex;
     padding: 1rem 4rem 0;
@@ -219,6 +261,28 @@ export default {
           .current-page { color: #fff; }
         }
       }
+      .add-btn {
+        display: block;
+        width: 80%;
+        border-radius: .2rem;
+        border: none;
+        margin: 1.5rem auto;
+        padding: .6rem .2rem;
+        color: #fff;
+        font-weight: 500;
+        font-size: 1.2rem;
+        background-color: $primary-color;
+        cursor: pointer;
+        &:hover {
+          background-color: darken($primary-color, 8%);
+        }
+        &:active, &:focus {
+          outline: none;
+        }
+        i {
+          margin-right: .5rem;
+        }
+      }
       .event-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -227,7 +291,7 @@ export default {
         box-sizing: border-box;
         width: 100%;
         margin: 0 auto;
-        padding-top: 3rem;
+        padding-top: 1rem;
       }
     }
   }
@@ -292,6 +356,9 @@ export default {
         .pagination {
           .nav-btns i { margin: 0 .3rem; }
           .pages > div { margin: 0 .3rem; }
+        }
+        .add-btn {
+          font-size: .8rem;
         }
         .event-grid { grid-template-columns: 1fr; }
       }
