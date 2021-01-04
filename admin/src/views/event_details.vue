@@ -109,7 +109,8 @@ export default {
     },
     save() {
       this.is_loading = true;
-      this.api(`/${this.uni_type}/event/${this.$route.params.id}`, {
+      this.api(`/${this.uni_type}/event`, {
+        id: this.$route.params.id,
         author: this.author,
         content: this.$refs.article.json,
         created_date: this.created_date,
@@ -147,7 +148,7 @@ export default {
     },
     confirm_delete() {
       this.is_loading = true;
-      this.api(`/${this.uni_type}/event/${this.$route.params.id}`, {}, 'delete')
+      this.api(`/${this.uni_type}/event`, { id: this.$route.params.id }, 'delete')
         .then(() => {
           this.$notify({
             type: 'success',
