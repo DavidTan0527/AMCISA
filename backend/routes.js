@@ -30,15 +30,15 @@ router.get('/:uni/qna'           , validator.qna.get             , qna.get);
 
 // events
 router.post('/:uni/event'       , validator.event.create, event.create);
-router.put('/:uni/event/:id'    , validator.event.update, event.update);
-router.delete('/:uni/event/:id' , validator.event.delete, event.delete);
+router.put('/:uni/event'        , validator.event.update, event.update);
+router.delete('/:uni/event'     , validator.event.delete, event.delete);
 
 // users
 router.post('/login'      , validator.user.login , user.login);
 router.get('/user'        , validator.user.get, user.get);
 router.post('/user'       , validator.user.create, user.create);
-router.put('/user/:id'    , validator.user.update, user.update);
-router.delete('/user/:id' , validator.user.delete, user.delete);
+router.put('/user'        , validator.user.update, user.update);
+router.delete('/user'     , validator.user.delete, user.delete);
 
 router.post('/:uni/contacts' , validator.contact.create , contact.create);
 router.post('/:uni/foc'      , validator.foc.create     , foc.create);
