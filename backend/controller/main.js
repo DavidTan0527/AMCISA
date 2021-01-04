@@ -1,4 +1,5 @@
 const main = require('../model/main.js')
+const { validationResult } = require('express-validator');
 
 exports.get = function(req, res) {
 	main.get().then(data => {

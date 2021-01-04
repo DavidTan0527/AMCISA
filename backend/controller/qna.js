@@ -1,4 +1,5 @@
 const qna = require('../model/qna.js')
+const { validationResult } = require('express-validator');
 
 exports.get = function(req, res) {
 	const errors = validationResult(req);

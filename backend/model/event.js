@@ -11,7 +11,7 @@ event.get = (uni) => {
 event.update = (uni, body) => {
     return getJson(addPrefix(uni,'event.json')).then(data => {
         data = JSON.parse(data);
-        const index = items.findIndex(x => x.id == body.id);
+        const index = data.findIndex(x => x.id == body.id);
         if (index != -1){
             data[index] = body;
             writeJson(addPrefix(uni,'event.json'),data);
@@ -38,7 +38,7 @@ event.create = (uni, body) => {
 event.delete = (uni, body) => {
     return getJson(addPrefix(uni,'event.json')).then(data => {
         data = JSON.parse(data);
-        const index = items.findIndex(x => x.id == body.id);
+        const index = data.findIndex(x => x.id == body.id);
         if (index != -1){
             data.splice(index,1);
             writeJson(addPrefix(uni,'event.json'),data);

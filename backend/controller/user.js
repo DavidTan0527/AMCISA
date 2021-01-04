@@ -1,4 +1,5 @@
-const {generateAccessToken} = require('./base.js');
+const { generateAccessToken } = require('./base.js');
+const { validationResult } = require('express-validator');
 
 const user = require('../model/user.js')
 const bcrypt = require('bcrypt');

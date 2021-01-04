@@ -41,7 +41,7 @@ user.create = (body) => {
 user.delete = (body) => {
     return getJson('user.json').then(data => {
         data = JSON.parse(data);
-        const index = items.findIndex(x => x.id == body.id);
+        const index = data.findIndex(x => x.id == body.id);
         if (index != -1){
             data.splice(index,1);
             writeJson('user.json',data);

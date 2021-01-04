@@ -1,4 +1,5 @@
 const event = require('../model/event.js')
+const { validationResult } = require('express-validator');
 
 exports.getPagination = function(req, res) {
 	const errors = validationResult(req);

@@ -1,4 +1,5 @@
 const contact = require('../model/contact.js')
+const { validationResult } = require('express-validator');
 
 exports.get = function(req, res) {
 	const errors = validationResult(req);

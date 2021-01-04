@@ -1,4 +1,5 @@
 const foc = require('../model/foc.js')
+const { validationResult } = require('express-validator');
 
 exports.get = function(req, res) {
 	const errors = validationResult(req);

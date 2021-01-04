@@ -1,4 +1,5 @@
 const maincomm = require('../model/maincomm.js')
+const { validationResult } = require('express-validator');
 
 exports.get = function(req, res) {
 	const errors = validationResult(req);
