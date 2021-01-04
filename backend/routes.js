@@ -15,7 +15,7 @@ var validator = require('./validator');
 /**
  * User route
  */
-router.get('/:uni/contacts'      , validator.contact.get         , contact.get);
+router.get('/:uni/contact'       , validator.contact.get         , contact.get);
 router.get('/:uni/events/:count' , validator.event.getPagination , event.getPagination);
 router.get('/:uni/event/:id'     , validator.event.getById       , event.getById);
 router.get('/:uni/foc'           , validator.foc.get             , foc.get);
@@ -35,12 +35,12 @@ router.delete('/:uni/event'     , validator.event.delete, event.delete);
 
 // users
 router.post('/login'      , validator.user.login , user.login);
-router.get('/user'        , validator.user.get, user.get);
+router.get('/user'        , validator.user.get   , user.get);
 router.post('/user'       , validator.user.create, user.create);
 router.put('/user'        , validator.user.update, user.update);
 router.delete('/user'     , validator.user.delete, user.delete);
 
-router.post('/:uni/contacts' , validator.contact.create , contact.create);
+router.post('/:uni/contact'  , validator.contact.create , contact.create);
 router.post('/:uni/foc'      , validator.foc.create     , foc.create);
 router.post('/:uni/landing'  , validator.landing.create , landing.create);
 router.post('/main'          , validator.main.create    , main.create);
