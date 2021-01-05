@@ -49,6 +49,11 @@ const routes = [
     component: () => import('@/views/faq.vue'),
   },
   {
+    path: '/contacts',
+    name: 'Contacts',
+    component: () => import('@/views/contacts.vue'),
+  },
+  {
     path: '/editor',
     name: 'Editor',
     component: () => import('@/views/generator.vue'),

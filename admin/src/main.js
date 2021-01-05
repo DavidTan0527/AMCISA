@@ -12,14 +12,15 @@ Vue.use(Notifications);
 Vue.mixin({
   methods: {
     api,
-  },
-  computed: {
+    // Using methods and not computed due to reactivity issues (not updated when token changes)
     current_username() {
       const token = window.localStorage.getItem('jwt-token');
       const payload = token ? token.split('.')[1] : '';
       const user = payload ? JSON.parse(atob(payload)) : null;
       return user ? user.username : null;
     },
+  },
+  computed: {
     uni_type() {
       const token = window.localStorage.getItem('jwt-token');
       const payload = token ? token.split('.')[1] : '';
