@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const crypto = require('crypto');
+
 
 var contact  = require('./controller/contact');
 var event    = require('./controller/event');
@@ -49,5 +51,22 @@ router.post('/:uni/foc'      , validator.foc.create     , foc.create);
 router.post('/:uni/landing'  , validator.landing.create , landing.create);
 router.post('/main'          , validator.main.create    , main.create);
 router.post('/:uni/maincomm' , validator.maincomm.create, maincomm.create);
+
+router.post('/upload', (req, res) => {
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+    }
+  
+    let File = req.files.file;
+  
+    const name = crypto.randomBytes(20).toString('hex') + File.name;
+
+    File.mv('./data/images/' + name, (err) => {
+        if (err) {
+            return res.status(400).send(err);
+        }
+        res.json({path : '/api/data/images/' + name});
+    });
+});
 
 module.exports = router;

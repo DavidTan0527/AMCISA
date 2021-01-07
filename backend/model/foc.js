@@ -1,4 +1,4 @@
-const {isBase64, getJson, writeJson, addPrefix, upload} = require('./base')
+const {getJson, writeJson, addPrefix} = require('./base')
 
 
 const foc = {}
@@ -10,9 +10,6 @@ foc.get = (uni) => {
 };
 
 foc.create = (uni, body) => {
-    if (isBase64(body.picture)){
-        body.picture = upload(body.picture);
-    }
     return writeJson(addPrefix(uni,'foc.json'),body);
 };
 

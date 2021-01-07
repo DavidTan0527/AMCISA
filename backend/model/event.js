@@ -1,4 +1,4 @@
-const {isBase64, getJson, writeJson, addPrefix, upload} = require('./base')
+const {getJson, writeJson, addPrefix} = require('./base')
 
 const event = {}
 
@@ -13,9 +13,6 @@ event.update = (uni, body) => {
         data = JSON.parse(data);
         const index = data.findIndex(x => x.id == body.id);
         if (index != -1){
-            if (isBase64(body.picture)){
-                body.picture = upload(body.picture);
-            }
             data[index] = body;
             writeJson(addPrefix(uni,'event.json'),data);
         } else {
@@ -31,9 +28,6 @@ event.create = (uni, body) => {
             body.id = data[data.length - 1].id + 1;
         } else {
             body.id = 1;
-        }
-        if (isBase64(body.picture)){
-            body.picture = upload(body.picture);
         }
         data.push(body);
         writeJson(addPrefix(uni,'event.json'),data);

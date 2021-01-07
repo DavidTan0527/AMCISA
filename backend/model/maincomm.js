@@ -1,4 +1,4 @@
-const {isBase64, getJson, writeJson, addPrefix, upload} = require('./base')
+const {getJson, writeJson, addPrefix} = require('./base')
 
 const maincomm = {}
 
@@ -9,14 +9,6 @@ maincomm.get = (uni) => {
 };
 
 maincomm.create = (uni, body) => {
-    if (isBase64(body.pres_picture)){
-        body.pres_picture = upload(body.pres_picture);
-    }
-    for (member in body.member){
-        if (isBase64(member.picture)){
-            body.picture = upload(body.picture);
-        }
-    }
     return writeJson(addPrefix(uni,'maincomm.json'),body);
 };
 
