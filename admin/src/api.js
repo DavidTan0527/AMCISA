@@ -2,6 +2,8 @@ const axios = require('axios');
 
 const instance = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3000/',
+  maxContentLength: 8000000,
+  maxBodyLength: 8000000,
 });
 
 instance.interceptors.request.use((config) => {

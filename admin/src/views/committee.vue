@@ -16,12 +16,14 @@
           <template v-else>{{ president_name }}</template>
         </div>
       </div>
-      <img :src="president_picture" @error="set_alt_img" :class="{ is_editing }">
+      <img :src="president_picture" @error="set_alt_img" :class="{ is_editing }"
+        @click="image_upload($event, -1)">
     </div>
     <template v-if="is_editing">
       <draggable class="committee" v-model="members" group="committee">
         <div class="member is_editing" v-for="(member, index) in members" :key="member.id">
-          <img :src="member.picture" @error="set_alt_img" class="avatar">
+          <img :src="member.picture" @error="set_alt_img" class="avatar"
+            @click="image_upload($event, index)">
           <input type="text" class="pos" v-model="member.position">
           <input type="text" class="name" v-model="member.name">
           <input type="text" class="year" v-model="member.course_year">
@@ -55,16 +57,32 @@
       <span class="dismiss" @click="is_show_undo = false">Dismiss</span>
       <span class="undo" @click="undo_delete">Undo</span>
     </div>
+    <modal ref="image_upload">
+      <label class="file">
+        <input type="file" id="file"
+          aria-label="Upload Image"
+          accept="image/png, image/jpeg"
+          @change="file_upload_handler">
+        <span class="file-custom"></span>
+      </label>
+      <div class="filename" v-if="image_filename">{{ image_filename }}</div>
+      <br>
+      <img :src="image_data" alt="">
+      <div class="confirm" @click="confirm_image_upload">Confirm</div>
+    </modal>
   </div>
 </template>
 
 <script>
 import draggable from 'vuedraggable';
+import modal from '@/components/modal.vue';
 import avatar from '@/assets/avatar.jpg';
 
+const file_reader = new FileReader();
 export default {
   components: {
     draggable,
+    modal,
   },
   data() {
     return {
@@ -73,6 +91,10 @@ export default {
       president_name: '',
       members: [],
       selected_member_index: null,
+      // image upload
+      image_data: null,
+      image_filename: '',
+      // undo delete
       undo_timeout: null,
       show_undo_duration: 5000, // ms
       last_member: {
@@ -110,13 +132,20 @@ export default {
       });
     },
     save() {
+      const president_picture = this.president_picture.startsWith('data:image')
+        ? this.president_picture.split(',')[1]
+        : this.president_picture;
+      const members = this.members.map((e) => {
+        const picture = e.picture.startsWith('data:image') ? e.picture.split(',')[1] : e.picture;
+        return { ...e, picture };
+      });
       this.is_loading = true;
       this.api(`/${this.uni_type}/maincomm`, {
         title: this.title.toUpperCase(),
         caption: this.caption,
         president_name: this.president_name,
-        president_picture: this.president_picture,
-        members: this.members,
+        president_picture,
+        members,
       }).then(() => {
         this.$notify({
           type: 'success',
@@ -128,6 +157,12 @@ export default {
             type: 'error',
             title: 'Unauthorized',
             text: 'Please login and try again',
+          });
+        } else if (err.response.status === 413) {
+          this.$notify({
+            type: 'error',
+            title: 'File too large',
+            text: 'Choose a smaller sized image and try again',
           });
         } else {
           this.$notify({
@@ -164,6 +199,34 @@ export default {
         };
         this.undo_timeout = null;
       }, this.show_undo_duration);
+    },
+    image_upload(event, index) {
+      if (!this.is_editing) {
+        return;
+      }
+      this.selected_member_index = index;
+      this.$refs.image_upload.active = true;
+      this.image_data = event.target.src;
+      this.image_filename = '';
+    },
+    confirm_image_upload() {
+      if (this.selected_member_index === -1) {
+        // president
+        this.president_picture = this.image_data;
+      } else {
+        this.members[this.selected_member_index].picture = this.image_data;
+      }
+      console.log(typeof this.image_data);
+      this.$forceUpdate();
+      this.$refs.image_upload.active = false;
+    },
+    file_upload_handler(event) {
+      file_reader.addEventListener('load', () => {
+        this.image_data = file_reader.result;
+      });
+      const file = event.target.files[0];
+      this.image_filename = file.name;
+      file_reader.readAsDataURL(file);
     },
     undo_delete() {
       this.is_show_undo = false;
@@ -343,6 +406,80 @@ export default {
       cursor: pointer;
     }
   }
+  .modal {
+    .modal-container {
+      min-width: 280px;
+      box-sizing: border-box;
+      padding-bottom: 3rem;
+      .file {
+        position: relative;
+        height: 2rem;
+        width: 100%;
+        cursor: pointer;
+        input {
+          opacity: 0;
+          width: 100%;
+        }
+        .file-custom {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 2rem;
+          width: 90%;
+          margin-top: 2rem;
+          padding: .5rem 1rem;
+          line-height: 1.8;
+          border: solid 1px #ddd;
+          border-radius: .3rem;
+          z-index: 2;
+          &::before {
+            content: 'Browse';
+            position: absolute;
+            top: -1px;
+            bottom: -1px;
+            right: -1px;
+            height: calc(2rem + 2px);
+            line-height: 1.8;
+            padding: .5rem .8rem;
+            background-color: $primary-color-dark;
+            color: #fff;
+            border-top-right-radius: .3rem;
+            border-bottom-right-radius: .3rem;
+            z-index: 3;
+          }
+          &::after {
+            content: 'Choose image...';
+          }
+        }
+      }
+      .filename {
+        display: inline-block;
+        margin-top: 4rem;
+        background-color: $primary-color-dark;
+        color: #fff;
+        border-radius: .5rem;
+        padding: .5rem .8rem;
+      }
+      img {
+        max-width: 100%;
+        max-height: 400px;
+        margin-top: 5rem;
+      }
+      .confirm {
+        background-color: $primary-color;
+        color: #fff;
+        margin-top: 2rem;
+        padding: .5rem .8rem;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+        border: none;
+        border-radius: .2rem;
+        cursor: pointer;
+      }
+    }
+  }
   @media screen and (max-width: 1024px) {
     .president {
       .quote-section {
@@ -397,6 +534,16 @@ export default {
     .add-member {
       padding: .2rem;
       font-size: 1rem;
+    }
+    .modal {
+      .modal-container {
+        padding: 1rem 2rem;
+        .file {
+          .file-custom {
+            margin-top: 1rem;
+          }
+        }
+      }
     }
   }
   @media screen and (max-width: 425px) {
