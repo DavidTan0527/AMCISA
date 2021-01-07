@@ -549,6 +549,7 @@ GET `/:uni/qna`
 ```{json}
 [
     {   
+        "id" : int,
         "question" : richText,
         "answer" : richText
     }, ...
@@ -578,18 +579,9 @@ Bearer <token>
   
 ```{json}
 {
-    "picture": filePath,
-    "title": string,
-    "intro_video": url,
-    "content": richText,
-    "registration": {
-        "date": string,
-        "venue": string,
-        "fees": string,
-        "deadline": string,
-        "form_link": url
-    },
-    "activities": richText
+    "id" : int,
+    "question" : richText,
+    "answer" : richText
 }
 ```
 
@@ -625,7 +617,7 @@ GET `/:uni/maincomm`
     "caption": string,
     "member": [
         {
-            "id": int,
+            "name": string,
             "picture": filePath,
             "position": string,
             "course_year": string
@@ -664,7 +656,7 @@ Bearer <token>
     "caption": string,
     "member": [
         {
-            "id": int,
+            "name": string,
             "picture": filePath,
             "position": string,
             "course_year": string

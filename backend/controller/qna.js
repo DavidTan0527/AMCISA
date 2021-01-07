@@ -26,3 +26,33 @@ exports.create = function(req, res) {
 		}
 	});
 };
+
+exports.update = function(req, res) {
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(400).json({ errors: errors.array() });
+	}
+
+	qna.update(req.params.uni, req.body).then((err) => {
+		if (err){
+			res.status(400).json({ errors: err });
+		} else {
+			res.send("Success")
+		}
+	});
+};
+
+exports.delete = function(req, res) {
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(400).json({ errors: errors.array() });
+	}
+
+	qna.delete(req.params.uni, req.body).then((err) => {
+		if (err){
+			res.status(400).json({ errors: err });
+		} else {
+			res.send("Success")
+		}
+	});
+};

@@ -40,11 +40,14 @@ router.post('/user'       , validator.user.create, user.create);
 router.put('/user'        , validator.user.update, user.update);
 router.delete('/user'     , validator.user.delete, user.delete);
 
+router.post('/:uni/qna'       , validator.qna.create, qna.create);
+router.put('/:uni/qna'        , validator.qna.update, qna.update);
+router.delete('/:uni/qna'     , validator.qna.delete, qna.delete);
+
 router.post('/:uni/contact'  , validator.contact.create , contact.create);
 router.post('/:uni/foc'      , validator.foc.create     , foc.create);
 router.post('/:uni/landing'  , validator.landing.create , landing.create);
 router.post('/main'          , validator.main.create    , main.create);
 router.post('/:uni/maincomm' , validator.maincomm.create, maincomm.create);
-router.post('/:uni/qna'      , validator.qna.create     , qna.create);
 
 module.exports = router;

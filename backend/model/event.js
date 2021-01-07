@@ -43,7 +43,7 @@ event.delete = (uni, body) => {
             data.splice(index,1);
             writeJson(addPrefix(uni,'event.json'),data);
         } else {
-            return "vent doesn't exist";
+            return "event doesn't exist";
         }
     });
 };

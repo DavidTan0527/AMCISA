@@ -85,6 +85,19 @@ exports.user = {
     ],
 };
 
+exports.qna = {
+    get : uni_rules,
+    create : [
+        authenticateJWT
+    ],
+    update : [
+        authenticateJWT
+    ],
+    delete : [
+        authenticateJWT
+    ]
+};
+
 exports.contact = {
     get : uni_rules,
     create : [
@@ -115,13 +128,6 @@ exports.main = {
 };
 
 exports.maincomm = {
-    get : uni_rules,
-    create : [
-        authenticateJWT
-    ],
-};
-
-exports.qna = {
     get : uni_rules,
     create : [
         authenticateJWT
