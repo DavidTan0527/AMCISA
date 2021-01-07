@@ -18,15 +18,20 @@
       </div>
       <img :src="president_picture" @error="set_alt_img" :class="{ is_editing }">
     </div>
-    <draggable class="committee" v-if="is_editing" v-model="members" group="committee">
-      <div class="member is_editing" v-for="(member, index) in members" :key="member.id">
-        <img :src="member.picture" @error="set_alt_img" class="avatar">
-        <input type="text" class="pos" v-model="member.position">
-        <input type="text" class="name" v-model="member.name">
-        <input type="text" class="year" v-model="member.course_year">
-        <i class="fe fe-trash-2" @click="delete_member(index)"></i>
+    <template v-if="is_editing">
+      <draggable class="committee" v-model="members" group="committee">
+        <div class="member is_editing" v-for="(member, index) in members" :key="member.id">
+          <img :src="member.picture" @error="set_alt_img" class="avatar">
+          <input type="text" class="pos" v-model="member.position">
+          <input type="text" class="name" v-model="member.name">
+          <input type="text" class="year" v-model="member.course_year">
+          <i class="fe fe-trash-2" @click="delete_member(index)"></i>
+        </div>
+      </draggable>
+      <div class="add-member" @click="add_member">
+        <i class="fe fe-plus"></i> Add committee
       </div>
-    </draggable>
+    </template>
     <div class="committee" v-else>
       <div class="member" v-for="member in members" :key="member.id">
         <img :src="member.picture" @error="set_alt_img" class="avatar">
@@ -137,6 +142,13 @@ export default {
         this.get();
       });
     },
+    add_member() {
+      this.members.push({
+        position: '',
+        name: '',
+        course_year: '',
+      });
+    },
     delete_member(index) {
       if (this.undo_timeout) {
         clearTimeout(this.undo_timeout);
@@ -146,10 +158,15 @@ export default {
       [this.last_member.data] = this.members.splice(index, 1);
       this.undo_timeout = setTimeout(() => {
         this.is_show_undo = false;
+        this.last_member = {
+          index: null,
+          data: {},
+        };
         this.undo_timeout = null;
       }, this.show_undo_duration);
     },
     undo_delete() {
+      this.is_show_undo = false;
       this.members.splice(this.last_member.index, 0, this.last_member.data);
     },
     cancel() {
@@ -167,7 +184,7 @@ export default {
 <style lang="scss">
 #_about {
   padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 5rem;
   input, textarea {
     font-size: inherit;
     font-weight: inherit;
@@ -289,6 +306,21 @@ export default {
       }
     }
   }
+  .add-member {
+    background-color: $primary-color;
+    color: #fff;
+    margin: 2rem auto 0;
+    padding: .5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: .2rem;
+    width: 50%;
+    max-width: 600px;
+    cursor: pointer;
+    &:hover {
+      background-color: darken($primary-color, 8%);
+    }
+  }
   .undo-container {
     position: absolute;
     top: 0;
@@ -367,6 +399,10 @@ export default {
           overflow: hidden;
         }
       }
+    }
+    .add-member {
+      padding: .2rem;
+      font-size: 1rem;
     }
   }
   @media screen and (max-width: 425px) {
