@@ -2,8 +2,8 @@
   <div class="loader" v-if="is_loading"></div>
   <div id="_about" v-else>
     <div class="main-title">
-      <input type="text" v-if="is_editing" v-model="year">
-      <template v-else>{{ year }}</template> MAIN COMM
+      <input type="text" v-if="is_editing" v-model="title">
+      <template v-else>{{ title }}</template>
     </div>
     <div class="president">
       <div class="quote-section">
@@ -68,7 +68,7 @@ export default {
   },
   data() {
     return {
-      year: '',
+      title: '',
       caption: '',
       president_name: '',
       members: [],
@@ -93,9 +93,9 @@ export default {
       this.is_loading = true;
       this.api(`/${this.uni_type}/maincomm`).then(({ data }) => {
         const {
-          year, caption, president_name, president_picture, members,
+          title, caption, president_name, president_picture, members,
         } = data;
-        this.year = year;
+        this.title = title.toUpperCase();
         this.caption = caption;
         this.president_name = president_name;
         this.president_picture = president_picture;
@@ -112,7 +112,7 @@ export default {
     save() {
       this.is_loading = true;
       this.api(`/${this.uni_type}/maincomm`, {
-        year: this.year,
+        title: this.title.toUpperCase(),
         caption: this.caption,
         president_name: this.president_name,
         president_picture: this.president_picture,
@@ -192,7 +192,7 @@ export default {
   }
   .main-title {
     input {
-      max-width: 160px;
+      text-align: center;
       border: solid 1px $gray-color;
       border-radius: .2rem;
       &:focus {
@@ -352,9 +352,6 @@ export default {
         }
         .name {
           font-size: 1rem;
-          input {
-            max-width: 70px;
-          }
         }
       }
     }
@@ -377,9 +374,6 @@ export default {
         .name {
           font-size: .9rem;
           margin-top: 1.2rem;
-          input {
-            max-width: 60px;
-          }
         }
       }
     }
@@ -410,9 +404,6 @@ export default {
     .main-title {
       font-size: 1.6rem;
       letter-spacing: 1px;
-      input {
-        max-width: 80px;
-      }
     }
     .president, .committee {
       max-width: 90%;
