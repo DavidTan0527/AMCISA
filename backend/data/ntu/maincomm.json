@@ -5,21 +5,18 @@
     "president_name": "戴良根",
     "members": [
         {
-            "id": 1,
             "picture": "url",
             "position": "bla bla",
             "name": "陈慧琪",
             "course_year": "Y2 chem eng"
         },
         {
-            "id": 2,
             "picture": "url",
             "position": "bla bla",
             "name": "陈慧琪",
             "course_year": "Y2 chem eng"
         },
         {
-            "id": 3,
             "picture": "url",
             "position": "bla bla",
             "name": "陈慧琪",
