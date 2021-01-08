@@ -16,13 +16,17 @@
           <template v-else>{{ president_name }}</template>
         </div>
       </div>
-      <img :src="president_picture" @error="set_alt_img" :class="{ is_editing }"
+      <img :src="JSON.parse(JSON.stringify(president_picture))"
+        :class="{ is_editing }"
+        @error="set_alt_img"
         @click="image_upload($event, -1)">
     </div>
     <template v-if="is_editing">
       <draggable class="committee" v-model="members" group="committee">
         <div class="member is_editing" v-for="(member, index) in members" :key="member.id">
-          <img :src="member.picture" @error="set_alt_img" class="avatar"
+          <img :src="JSON.parse(JSON.stringify(member.picture))"
+            class="avatar"
+            @error="set_alt_img"
             @click="image_upload($event, index)">
           <input type="text" class="pos" v-model="member.position">
           <input type="text" class="name" v-model="member.name">
@@ -76,6 +80,7 @@
 <script>
 import draggable from 'vuedraggable';
 import modal from '@/components/modal.vue';
+import { file_upload } from '@/api';
 import avatar from '@/assets/avatar.jpg';
 
 const file_reader = new FileReader();
@@ -93,6 +98,7 @@ export default {
       selected_member_index: null,
       // image upload
       image_data: null,
+      image_file: null,
       image_filename: '',
       // undo delete
       undo_timeout: null,
@@ -210,21 +216,30 @@ export default {
       this.image_filename = '';
     },
     confirm_image_upload() {
-      if (this.selected_member_index === -1) {
-        // president
-        this.president_picture = this.image_data;
-      } else {
-        this.members[this.selected_member_index].picture = this.image_data;
-      }
-      console.log(typeof this.image_data);
-      this.$forceUpdate();
-      this.$refs.image_upload.active = false;
+      file_upload(this.image_file).then(({ data }) => {
+        if (this.selected_member_index === -1) {
+          // president
+          this.president_picture = data.path;
+        } else {
+          this.members[this.selected_member_index].picture = data.path;
+        }
+        this.$forceUpdate();
+      }).catch(() => {
+        this.$notify({
+          type: 'error',
+          title: 'File Upload Failed',
+          text: 'Try again',
+        });
+      }).finally(() => {
+        this.$refs.image_upload.active = false;
+      });
     },
     file_upload_handler(event) {
       file_reader.addEventListener('load', () => {
         this.image_data = file_reader.result;
       });
       const file = event.target.files[0];
+      this.image_file = file;
       this.image_filename = file.name;
       file_reader.readAsDataURL(file);
     },

@@ -2,8 +2,8 @@ const axios = require('axios');
 
 const instance = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3000/',
-  maxContentLength: 8000000,
-  maxBodyLength: 8000000,
+  // maxContentLength: 8000000,
+  // maxBodyLength: 8000000,
 });
 
 instance.interceptors.request.use((config) => {
@@ -24,7 +24,7 @@ instance.interceptors.request.use((config) => {
 //   return Promise.reject(error);
 // });
 
-const api = (path, data = null, method = 'post') => {
+export default (path, data = null, method = 'post') => {
   if (data === null && method !== 'delete') {
     return instance.get(path);
   } if (method === 'post') {
@@ -35,4 +35,10 @@ const api = (path, data = null, method = 'post') => {
   return instance.delete(path, { data });
 };
 
-export default api;
+export const file_upload = (data) => {
+  const form_data = new FormData();
+  form_data.append('file', data);
+  return instance.post('/upload', form_data, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+};
