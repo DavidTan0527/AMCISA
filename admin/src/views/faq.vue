@@ -3,8 +3,7 @@
   <div id="_faq" v-else>
     <div class="main-title">FAQ</div>
     <button class="add-btn" @click="add"><i class="fe fe-plus"></i>Add QNA</button>
-    <div class="speech-section" v-for="(qna, index) in data"
-      :key="qna.question + is_editing[index]">
+    <div class="speech-section" v-for="(qna, index) in data" :key="index">
       <div class="speechbubble">
         <p>
           <editor
@@ -33,7 +32,7 @@
           <i class="fe fe-trash-2" @click="delete_qna(index)"></i>
         </template>
         <template v-else>
-          <i class="fe fe-save" @click="confirm_edit"></i>
+          <i class="fe fe-save" @click.prevent="confirm_edit(index)"></i>
           <i class="fe fe-slash" @click="edit(index, false)"></i>
         </template>
       </div>
@@ -79,21 +78,102 @@ export default {
       });
     },
     add() {
-      // add
+      this.is_loading = true;
+      this.api(`/${this.uni_type}/qna`, {
+        question: 'Question',
+        answer: 'Answer',
+      }).then(() => {
+        this.$notify({
+          type: 'success',
+          title: 'FAQ Created',
+        });
+      }).catch((err) => {
+        if (err.response.status === 401) {
+          this.$notify({
+            type: 'error',
+            title: 'Unauthorized',
+            text: 'Please login and try again',
+          });
+        } else {
+          this.$notify({
+            type: 'error',
+            title: 'An Error Occurred',
+            text: err.message,
+          });
+        }
+      }).finally(() => {
+        this.is_loading = false;
+        setTimeout(this.get, 500);
+      });
     },
     edit(index, state) {
       this.is_editing[index] = state;
       this.$forceUpdate();
     },
-    confirm_edit() {
-      console.log('edit');
+    confirm_edit(index) {
+      const data = {
+        ...this.data[index],
+        question: JSON.parse(JSON.stringify(this.$refs.questions[index].json)),
+        answer: JSON.parse(JSON.stringify(this.$refs.answers[index].json)),
+      };
+      this.is_loading = true;
+      this.api(`/${this.uni_type}/qna`, data, 'put').then(() => {
+        this.$notify({
+          type: 'success',
+          title: 'Updated',
+        });
+      }).catch((err) => {
+        if (err.response.status === 401) {
+          this.$notify({
+            type: 'error',
+            title: 'Unauthorized',
+            text: 'Please login and try again',
+          });
+        } else {
+          this.$notify({
+            type: 'error',
+            title: 'An Error Occurred',
+            text: 'Please try again later.',
+          });
+          this.get();
+        }
+      }).finally(() => {
+        this.is_loading = false;
+        this.is_editing[index] = false;
+        this.data[index] = { ...data };
+        this.$forceUpdate();
+      });
     },
     delete_qna(index) {
       this.selected_qna_index = index;
       this.$refs.delete_modal.active = true;
     },
     confirm_delete_qna() {
-      // post
+      this.is_loading = true;
+      this.api(`/${this.uni_type}/qna`, { id: this.data[this.selected_qna_index].id }, 'delete')
+        .then(() => {
+          this.$notify({
+            type: 'success',
+            title: 'Deleted',
+          });
+        }).catch((err) => {
+          if (err.response.status === 401) {
+            this.$notify({
+              type: 'error',
+              title: 'Unauthorized',
+              text: 'Please login and try again',
+            });
+          } else {
+            this.$notify({
+              type: 'error',
+              title: 'An Error Occurred',
+              text: 'Please try again later.',
+            });
+          }
+        }).finally(() => {
+          this.is_loading = false;
+          this.get();
+        });
     },
   },
 };

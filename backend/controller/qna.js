@@ -19,6 +19,7 @@ exports.create = function(req, res) {
 	}
 
 	qna.create(req.params.uni, req.body).then((err) => {
+		console.log(err);
 		if (err){
 			res.status(400).json({ errors: err });
 		} else {
