@@ -86,7 +86,7 @@ export default {
     contacts: {},
   }),
   mounted() {
-    this.api(`/${this.$route.params.uni}/contacts`).then(({ data }) => {
+    this.api(`/${this.$route.params.uni}/contact`).then(({ data }) => {
       this.contacts = data;
     }).catch((err) => {
       this.$notify({

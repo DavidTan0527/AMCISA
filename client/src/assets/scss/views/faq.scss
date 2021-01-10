@@ -48,7 +48,7 @@
         display: block;
         width: 0;
       }
-      p {
+      & > p {
         &:before {
           content: '“';
           font-family: 'Georgia';
