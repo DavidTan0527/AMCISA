@@ -91,13 +91,13 @@ export default {
     is_loading: true,
   }),
   created() {
-    window.addEventListener('resize', this.resize_handler);
+    window.addEventListener('resize', this.get);
   },
   mounted() {
-    this.resize_handler();
+    this.get();
   },
   destroyed() {
-    window.removeEventListener('resize', this.resize_handler);
+    window.removeEventListener('resize', this.get);
   },
   methods: {
     range(start, end) {
@@ -107,7 +107,7 @@ export default {
       return this.current_page + index <= 0
           || this.current_page + index > this.max_page;
     },
-    resize_handler(e) {
+    get(e) {
       const width = e?.target.innerWidth || window.innerWidth;
       this.pagination_size = width > 425 ? 12 : 6;
       this.api(`/${this.$route.params.uni}/events/${this.pagination_size}`).then(({ data }) => {

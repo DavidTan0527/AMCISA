@@ -18,14 +18,11 @@
     <div class="main">
       <div class="title">
         {{ title }}
-        <!-- <i class="fe fe-edit" v-if="!editable" @click="editable = true"></i> -->
       </div>
       <small class="subtitle">{{ author }}, {{ created_date }}</small>
       <editor
         class="article"
-        :editable="editable"
-        :content="content"
-        @update="update_text"></editor>
+        :content="content"></editor>
     </div>
   </div>
 </template>
@@ -49,7 +46,6 @@ export default {
     created_date: '',
     content: '',
     picture: null,
-    editable: false,
     is_loading: true,
   }),
   mounted() {
@@ -72,12 +68,6 @@ export default {
       });
       this.loading = false;
     });
-  },
-  methods: {
-    update_text(data) {
-      this.editable = false;
-      this.content = data;
-    },
   },
 };
 </script>

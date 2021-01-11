@@ -24,8 +24,6 @@ export default {
   components: {
     editor,
   },
-  metaInfo: {
-    title: 'FAQ',
   metaInfo() {
     return {
       title: this.$route.params.uni.toUpperCase().concat(' | FAQ'),

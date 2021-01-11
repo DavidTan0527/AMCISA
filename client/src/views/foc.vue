@@ -6,8 +6,6 @@
         'background-image': `url(${picture})`,
       }">
       <div class="title">
-        <!-- <div class="name">《贰迁〇亿》</div>
-        <div class="event">AMCISA FOC 20/21</div> -->
         <div v-for="(str, index) in display_title" :key="index">{{ str }}</div>
       </div>
     </div>
@@ -26,9 +24,7 @@
             allowfullscreen></iframe>
           <editor
             class="body"
-            :editable="editable"
-            :content="content"
-            @update="update_text"></editor>
+            :content="content"></editor>
       </div>
       <div class="ticket" @click="navigate(registration.form_link)">
         <div class="details">
@@ -53,18 +49,14 @@
       <div class="title">Camp Activites</div>
       <editor
         class="activities"
-        :editable="editable"
-        :content="activities"
-        @update="update_text"></editor>
+        :content="activities"></editor>
     </div>
   </div>
 </template>
 
 <script>
-// import content from '@/mock/foc_intro.json';
-// import activities from '@/mock/foc_activities.json';
+import editor from '@/components/editor/editor.vue';
 
-const editor = () => import('@/components/editor/editor.vue');
 export default {
   metaInfo() {
     return {
@@ -101,7 +93,6 @@ export default {
         deadline: '',
         form_link: '',
       },
-      editable: false,
       is_loading: true,
     };
   },
@@ -126,10 +117,6 @@ export default {
     });
   },
   methods: {
-    update_text(data) {
-      console.log(data);
-      this.editable = false;
-    },
     navigate(url) {
       window.open(`${url.startsWith('http') ? '' : 'http://'}${url}`);
     },
