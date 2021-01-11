@@ -23,4 +23,4 @@ pnpm-debug.log*
 *.sw?
 
 # Data
-backend/data
+backend/data/
