@@ -3,9 +3,12 @@
   <div id="_main" v-else>
     <div class="foc" v-if="notify_foc">
       <div class="main-title">FOC</div>
-      <div class="body">
+      <editor
+        class="body"
+        :content="foc_announcement"></editor>
+      <!-- <div class="body">
         Freshman Orientation Camp 21/22 is open for registration!!!
-      </div>
+      </div> -->
       <button class="btn-round" @click="goto('foc')">
         Check It Out!!! <i class="fe fe-arrow-right"></i>
       </button>
@@ -52,14 +55,18 @@ export default {
   },
   data: () => ({
     notify_foc: false,
+    foc_annnouncement: '',
     events: [],
     admission: [],
     is_loading: true,
   }),
   mounted() {
     this.api(`/${this.$route.params.uni}/landing`).then(({ data }) => {
-      const { notify_foc, events, admission } = data;
+      const {
+        notify_foc, foc_announcement, events, admission,
+      } = data;
       this.notify_foc = notify_foc;
+      this.foc_announcement = foc_announcement;
       this.events = events;
       this.admission = admission;
       this.is_loading = false;

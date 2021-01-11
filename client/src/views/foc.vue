@@ -8,7 +8,7 @@
       <div class="title">
         <!-- <div class="name">《贰迁〇亿》</div>
         <div class="event">AMCISA FOC 20/21</div> -->
-        <div v-for="(str, index) in title" :key="index">{{ str }}</div>
+        <div v-for="(str, index) in display_title" :key="index">{{ str }}</div>
       </div>
     </div>
     <div class="content">
@@ -111,7 +111,7 @@ export default {
         picture, intro_video, content, activities, title, registration,
       } = data;
       this.picture = picture;
-      this.title = title.split('\n');
+      this.title = title;
       this.intro_video = intro_video;
       this.content = content;
       this.activities = activities;
@@ -132,6 +132,11 @@ export default {
     },
     navigate(url) {
       window.open(`${url.startsWith('http') ? '' : 'http://'}${url}`);
+    },
+  },
+  computed: {
+    display_title() {
+      return this.title.split('\n');
     },
   },
 };

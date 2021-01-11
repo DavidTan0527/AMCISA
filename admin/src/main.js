@@ -4,7 +4,8 @@ import App from './App.vue';
 import router from './router';
 
 import api from './api';
-import './assets/icons/feather/feather.css';
+import '@/assets/index.scss';
+import '@/assets/icons/feather/feather.css';
 
 Vue.use(Notifications);
 

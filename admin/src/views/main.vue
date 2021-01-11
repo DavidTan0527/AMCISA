@@ -6,9 +6,15 @@
       'hidden' : !notify_foc,
       }" v-if="notify_foc || is_editing">
       <div class="main-title">FOC</div>
-      <div class="body">
-        Freshman Orientation Camp 21/22 is open for registration!!!
-      </div>
+      <editor
+        class="body"
+        ref="announcement"
+        hidebutton
+        :editable="is_editing"
+        :content="foc_announcement"></editor>
+      <!-- <div class="body">
+        {{ foc_announcement }}
+      </div> -->
       <button class="btn-round" @click="$router.push('/foc')">
         Check It Out!!! <i class="fe fe-arrow-right"></i>
       </button>
@@ -28,22 +34,32 @@
     </div>
     <div class="admission" id="admission">
       <div class="main-title">ADMISSION</div>
-      <div class="body">
+      <button class="add-btn" @click="add_admission" v-if="is_editing">
+        <i class="fe fe-plus"></i>Add Step
+      </button>
+      <template v-if="is_editing">
+        <draggable class="body" v-model="admission" group="admission">
+          <div class="step is_editing" v-for="(step, index) in admission" :key="index">
+            <div class="delete">
+              <i class="fe fe-trash-2" @click="delete_admission(index)"></i>
+            </div>
+            <input type="text" class="title" v-model="step.title">
+            <editor
+              class="content"
+              ref="articles"
+              :key="JSON.stringify(step.content)"
+              hidebutton
+              editable
+              :content="step.content"></editor>
+          </div>
+        </draggable>
+      </template>
+      <div class="body" v-else>
         <div class="step" v-for="(step, index) in admission" :key="index">
-          <input type="text" class="title" v-if="is_editing" v-model="step.title">
-          <div class="title" v-else>{{ step.title }}</div>
-          <!-- <div class="content">{{ step.content }}</div> -->
+          <div class="title">{{ step.title }}</div>
           <editor
             class="content"
-            ref="articles"
-            hidebutton
-            :editable="is_editing"
             :content="step.content"></editor>
-          <!-- <ul class="content">
-            <li>Choose your course of study</li>
-            <li>Complete online application form</li>
-            <li>Apply for tuition grant</li>
-          </ul> -->
         </div>
       </div>
       <button class="btn-round" @click="$router.push('/faq')">
@@ -65,15 +81,18 @@
 </template>
 
 <script>
-import editor from '@/components/editor/editor.vue';
 import timeline from '@/components/timeline.vue';
+import editor from '@/components/editor/editor.vue';
+import draggable from 'vuedraggable';
 
 export default {
   components: {
     timeline,
     editor,
+    draggable,
   },
   data: () => ({
+    foc_announcement: '',
     notify_foc: false,
     events: [],
     admission: [],
@@ -87,7 +106,10 @@ export default {
     get() {
       this.is_loading = true;
       this.api(`/${this.uni_type}/landing`).then(({ data }) => {
-        const { notify_foc, events, admission } = data;
+        const {
+          foc_announcement, notify_foc, events, admission,
+        } = data;
+        this.foc_announcement = foc_announcement;
         this.notify_foc = notify_foc;
         this.events = events;
         this.admission = admission;
@@ -100,6 +122,12 @@ export default {
         this.loading = false;
       });
     },
+    add_admission() {
+      this.admission.push({ title: '', content: '' });
+    },
+    delete_admission(index) {
+      this.admission.splice(index, 1);
+    },
     save() {
       this.is_loading = true;
       this.admission = this.admission.map((el, index) => ({
@@ -107,6 +135,7 @@ export default {
         content: this.$refs.articles[index].json,
       }));
       this.api(`/${this.uni_type}/landing`, {
+        foc_announcement: this.$refs.announcement.json,
         notify_foc: this.notify_foc,
         events: this.events,
         admission: this.admission,
@@ -169,6 +198,9 @@ export default {
       font-size: 2.3rem;
       font-weight: 300;
       margin: 0 auto 2rem;
+      * {
+        text-align: center;
+      }
     }
     .view-btn {
       position: absolute;
@@ -187,16 +219,50 @@ export default {
     }
   }
   .admission {
+    .add-btn {
+      display: block;
+      width: 80%;
+      border-radius: .2rem;
+      border: none;
+      margin: 1.5rem auto;
+      padding: .6rem .2rem;
+      color: #fff;
+      font-weight: 500;
+      font-size: 1.2rem;
+      background-color: $primary-color;
+      cursor: pointer;
+      &:hover {
+        background-color: darken($primary-color, 8%);
+      }
+      &:active, &:focus {
+        outline: none;
+      }
+      i {
+        margin-right: .5rem;
+      }
+    }
     .body {
       display: flex;
+      flex-wrap: wrap;
       .step {
-        flex-grow: 1;
+        box-sizing: border-box;
         color: #fff;
-        min-height: 200px;
+        min-height: calc(200px + 6rem);
+        width: 33.333333%;
         padding: 3rem 2rem;
         text-align: left;
         &:nth-child(even) {
           background-color: $primary-blue;
+        }
+        &.is_editing {
+          cursor: move;
+        }
+        .delete {
+          float: right;
+          color: $error-color;
+          font-size: 2rem;
+          margin-top: -1rem;
+          cursor: pointer;
         }
         .title {
           font-family: 'Source Code Pro';
@@ -207,6 +273,7 @@ export default {
           margin-bottom: .5rem;
         }
         input.title {
+          width: 100%;
           border: none;
           border-bottom: solid 2px #eee;
           &:focus {
@@ -215,6 +282,7 @@ export default {
         }
         .content {
           line-height: 2rem;
+          cursor: auto;
         }
         ul {
           padding-inline-start: 20px;

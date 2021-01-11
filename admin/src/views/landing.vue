@@ -23,20 +23,33 @@
     <div class="about-card">
       <div class="info-section">
         <header>About Us</header>
-        <textarea name="about" id="about" cols="20" rows="6"
+        <editor
+          class="body"
+          :class="{ is_editing }"
+          ref="about"
+          hidebutton
+          :editable="is_editing"
+          :content="about"></editor>
+        <!-- <textarea name="about" id="about" cols="20" rows="6"
           class="body edit" v-if="is_editing" v-model="about"></textarea>
-        <p class="body" v-else>{{ about }}</p>
+        <p class="body" v-else>{{ about }}</p> -->
       </div>
       <img class="svg" src="@/assets/svg/around_the_world.svg" loading="lazy">
     </div>
 
     <div class="explore">
       <header>Explore</header>
-      <textarea name="explore" id="explore" cols="60" rows="3"
+      <editor
+        class="body"
+        ref="explore"
+        hidebutton
+        :editable="is_editing"
+        :content="explore"></editor>
+      <!-- <textarea name="explore" id="explore" cols="60" rows="3"
         class="body" v-if="is_editing" v-model="explore"></textarea>
       <div class="body" v-else>
         {{ explore }}
-      </div>
+      </div> -->
       <div class="btns">
         <div class="btn-nus" @click="$router.push('/main')">
           <div class="img"></div>
@@ -66,7 +79,12 @@
 </template>
 
 <script>
+import editor from '@/components/editor/editor.vue';
+
 export default {
+  components: {
+    editor,
+  },
   data: () => ({
     quote: '',
     about: '',
@@ -79,6 +97,7 @@ export default {
   },
   methods: {
     get() {
+      this.is_loading = true;
       this.api('/main').then(({ data }) => {
         const { quote, about, explore } = data;
         this.quote = quote;
@@ -97,8 +116,8 @@ export default {
       this.is_loading = true;
       this.api('/main', {
         quote: this.quote,
-        about: this.about,
-        explore: this.explore,
+        about: this.$refs.about.json,
+        explore: this.$refs.explore.json,
       }).then(() => {
         this.$notify({
           type: 'success',
@@ -135,7 +154,7 @@ export default {
 <style lang="scss">
 #_home {
   position: relative;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   .navbar {
     display: flex;
@@ -193,11 +212,12 @@ export default {
     justify-content: space-between;
     background-image: linear-gradient(#204278, #61c7d0);
     width: 50%;
-    max-height: 300px;
+    max-height: 500px;
     margin-left: 40%;
     margin-top: -100px;
     padding: 1rem 2rem 1.2rem;
     z-index: 2;
+    overflow: auto;
     .info-section {
       text-align: left;
       margin-right: .8rem;
@@ -211,8 +231,8 @@ export default {
         color: #fff;
         font-size: 1.2rem;
         background-color: inherit;
-        &.edit {
-          backdrop-filter: brightness(90%);
+        &.is_editing {
+          border: solid 1px rgba(#fff, .5);
         }
       }
     }
@@ -233,7 +253,9 @@ export default {
       font-weight: 300;
       max-width: 70%;
       margin: 0 auto;
-      text-align: center;
+      * {
+        text-align: center;
+      }
     }
     .btns {
       display: flex;

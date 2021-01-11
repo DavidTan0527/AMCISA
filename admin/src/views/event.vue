@@ -131,6 +131,7 @@ export default {
           || this.current_page + index > this.max_page;
     },
     get(e) {
+      this.is_loading = true;
       const width = e?.target.innerWidth || window.innerWidth;
       this.pagination_size = width > 425 ? 12 : 6;
       this.api(`/${this.uni_type}/events/${this.pagination_size}`).then(({ data }) => {

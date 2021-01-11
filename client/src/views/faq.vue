@@ -4,17 +4,28 @@
     <div class="main-title">FAQ</div>
     <div class="speech-section" v-for="(qna, index) in data" :key="index">
       <div class="speechbubble">
-        <p>{{ qna.question }}</p>
+        <p>
+          <editor :content="qna.question"></editor>
+        </p>
       </div>
       <div class="speechbubble">
-        <p>{{ qna.answer }}</p>
+        <p>
+          <editor :content="qna.answer"></editor>
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import editor from '@/components/editor/editor.vue';
+
 export default {
+  components: {
+    editor,
+  },
+  metaInfo: {
+    title: 'FAQ',
   metaInfo() {
     return {
       title: this.$route.params.uni.toUpperCase().concat(' | FAQ'),
