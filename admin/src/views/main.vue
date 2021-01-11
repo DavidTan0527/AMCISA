@@ -6,9 +6,15 @@
       'hidden' : !notify_foc,
       }" v-if="notify_foc || is_editing">
       <div class="main-title">FOC</div>
-      <div class="body">
-        Freshman Orientation Camp 21/22 is open for registration!!!
-      </div>
+      <editor
+        class="body"
+        ref="announcement"
+        hidebutton
+        :editable="is_editing"
+        :content="foc_announcement"></editor>
+      <!-- <div class="body">
+        {{ foc_announcement }}
+      </div> -->
       <button class="btn-round" @click="$router.push('/foc')">
         Check It Out!!! <i class="fe fe-arrow-right"></i>
       </button>
@@ -32,18 +38,12 @@
         <div class="step" v-for="(step, index) in admission" :key="index">
           <input type="text" class="title" v-if="is_editing" v-model="step.title">
           <div class="title" v-else>{{ step.title }}</div>
-          <!-- <div class="content">{{ step.content }}</div> -->
           <editor
             class="content"
             ref="articles"
             hidebutton
             :editable="is_editing"
             :content="step.content"></editor>
-          <!-- <ul class="content">
-            <li>Choose your course of study</li>
-            <li>Complete online application form</li>
-            <li>Apply for tuition grant</li>
-          </ul> -->
         </div>
       </div>
       <button class="btn-round" @click="$router.push('/faq')">
@@ -74,6 +74,7 @@ export default {
     editor,
   },
   data: () => ({
+    foc_announcement: '',
     notify_foc: false,
     events: [],
     admission: [],
@@ -87,7 +88,10 @@ export default {
     get() {
       this.is_loading = true;
       this.api(`/${this.uni_type}/landing`).then(({ data }) => {
-        const { notify_foc, events, admission } = data;
+        const {
+          foc_announcement, notify_foc, events, admission,
+        } = data;
+        this.foc_announcement = foc_announcement;
         this.notify_foc = notify_foc;
         this.events = events;
         this.admission = admission;
@@ -107,6 +111,7 @@ export default {
         content: this.$refs.articles[index].json,
       }));
       this.api(`/${this.uni_type}/landing`, {
+        foc_announcement: this.$refs.announcement.json,
         notify_foc: this.notify_foc,
         events: this.events,
         admission: this.admission,
@@ -169,6 +174,9 @@ export default {
       font-size: 2.3rem;
       font-weight: 300;
       margin: 0 auto 2rem;
+      * {
+        text-align: center;
+      }
     }
     .view-btn {
       position: absolute;
