@@ -97,6 +97,7 @@ export default {
   },
   methods: {
     get() {
+      this.is_loading = true;
       this.api('/main').then(({ data }) => {
         const { quote, about, explore } = data;
         this.quote = quote;
@@ -211,11 +212,12 @@ export default {
     justify-content: space-between;
     background-image: linear-gradient(#204278, #61c7d0);
     width: 50%;
-    max-height: 300px;
+    max-height: 500px;
     margin-left: 40%;
     margin-top: -100px;
     padding: 1rem 2rem 1.2rem;
     z-index: 2;
+    overflow: auto;
     .info-section {
       text-align: left;
       margin-right: .8rem;
