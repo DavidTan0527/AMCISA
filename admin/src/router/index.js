@@ -13,6 +13,65 @@ const routes = [
     name: 'Login',
     component: () => import('@/views/login.vue'),
   },
+  {
+    path: '/users',
+    name: 'Users',
+    component: () => import('@/views/users.vue'),
+  },
+  {
+    path: '/landing',
+    name: 'Landing',
+    component: () => import('@/views/landing.vue'),
+  },
+  {
+    path: '/main',
+    name: 'Main',
+    component: () => import('@/views/main.vue'),
+  },
+  {
+    path: '/foc',
+    name: 'Foc',
+    component: () => import('@/views/foc.vue'),
+  },
+  {
+    path: '/event',
+    name: 'Event',
+    component: () => import('@/views/event.vue'),
+  },
+  {
+    path: '/event/:id',
+    name: 'EventDetails',
+    component: () => import('@/views/event_details.vue'),
+  },
+  {
+    path: '/faq',
+    name: 'Faq',
+    component: () => import('@/views/faq.vue'),
+  },
+  {
+    path: '/committee',
+    name: 'committee',
+    component: () => import('@/views/committee.vue'),
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('@/views/about.vue'),
+  },
+  {
+    path: '/contacts',
+    name: 'Contacts',
+    component: () => import('@/views/contacts.vue'),
+  },
+  {
+    path: '/editor',
+    name: 'Editor',
+    component: () => import('@/views/generator.vue'),
+  },
+  {
+    path: '/*',
+    redirect: { name: 'Login' },
+  },
 ];
 
 const router = new VueRouter({

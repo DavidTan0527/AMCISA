@@ -33,6 +33,9 @@
 
     <div class="explore">
       <header>Explore</header>
+      <editor
+        class="body"
+        :content="explore"></editor>
       <!-- <div class="body">
         {{ explore }}
       </div> -->

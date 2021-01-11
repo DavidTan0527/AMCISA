@@ -213,6 +213,7 @@ export default {
       this.selected_member_index = index;
       this.$refs.image_upload.active = true;
       this.image_data = event.target.src;
+      this.image_file = null;
       this.image_filename = '';
     },
     confirm_image_upload() {
@@ -441,7 +442,7 @@ export default {
           left: 0;
           right: 0;
           height: 2rem;
-          width: 90%;
+          width: calc(100% - 1px - 2rem);
           margin-top: 2rem;
           padding: .5rem 1rem;
           line-height: 1.8;
