@@ -24,7 +24,10 @@
     <div class="about-card">
       <div class="info-section">
         <header>About Us</header>
-        <p>{{ about }}</p>
+        <!-- <p>{{ about }}</p> -->
+        <editor
+          class="body"
+          :content="about"></editor>
       </div>
       <img class="svg" src="@/assets/svg/around_the_world.svg" loading="lazy">
     </div>
@@ -60,7 +63,12 @@
 </template>
 
 <script>
+import editor from '@/components/editor/editor.vue';
+
 export default {
+  components: {
+    editor,
+  },
   data: () => ({
     quote: '',
     about: '',

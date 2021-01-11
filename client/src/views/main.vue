@@ -3,9 +3,12 @@
   <div id="_main" v-else>
     <div class="foc" v-if="notify_foc">
       <div class="main-title">FOC</div>
-      <div class="body">
+      <editor
+        class="body"
+        :content="foc_announcement"></editor>
+      <!-- <div class="body">
         Freshman Orientation Camp 21/22 is open for registration!!!
-      </div>
+      </div> -->
       <button class="btn-round" @click="goto('foc')">
         Check It Out!!! <i class="fe fe-arrow-right"></i>
       </button>
@@ -22,29 +25,11 @@
     <div class="admission" id="admission">
       <div class="main-title">ADMISSION</div>
       <div class="body">
-        <div class="step">
-          <div class="title">Step 1</div>
-          <ul>
-            <li>Choose your course of study</li>
-            <li>Complete online application form</li>
-            <li>Apply for tuition grant</li>
-          </ul>
-        </div>
-        <div class="step">
-          <div class="title">Step 2</div>
-          <ul>
-            <li>Choose your course of study</li>
-            <li>Complete online application form</li>
-            <li>Apply for tuition grant</li>
-          </ul>
-        </div>
-        <div class="step">
-          <div class="title">Step 3</div>
-          <ul>
-            <li>Choose your course of study</li>
-            <li>Complete online application form</li>
-            <li>Apply for tuition grant</li>
-          </ul>
+        <div class="step" v-for="(step, index) in admission" :key="index">
+          <div class="title">{{ step.title }}</div>
+          <editor
+            class="content"
+            :content="step.content"></editor>
         </div>
       </div>
       <button class="btn-round" @click="goto('faq')">
@@ -55,7 +40,9 @@
 </template>
 
 <script>
-const timeline = () => import('@/components/timeline.vue');
+import editor from '@/components/editor/editor.vue';
+import timeline from '@/components/timeline.vue';
+
 export default {
   metaInfo() {
     return {
@@ -64,17 +51,22 @@ export default {
   },
   components: {
     timeline,
+    editor,
   },
   data: () => ({
     notify_foc: false,
+    foc_annnouncement: '',
     events: [],
     admission: [],
     is_loading: true,
   }),
   mounted() {
     this.api(`/${this.$route.params.uni}/landing`).then(({ data }) => {
-      const { notify_foc, events, admission } = data;
+      const {
+        notify_foc, foc_announcement, events, admission,
+      } = data;
       this.notify_foc = notify_foc;
+      this.foc_announcement = foc_announcement;
       this.events = events;
       this.admission = admission;
       this.is_loading = false;
