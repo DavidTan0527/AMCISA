@@ -2,9 +2,8 @@
   <div class="loader" v-if="is_loading"></div>
   <div id="_home" v-else>
     <nav class="navbar">
-      <!-- <section class="navbar-title">Amcisa</section> -->
       <section class="navbar-title">
-        <img src="@/assets/logo.png" alt="">
+        <img src="@/assets/logo.png" alt="AMCISA">
       </section>
     </nav>
 
@@ -40,6 +39,9 @@
       <!-- <div class="body">
         {{ explore }}
       </div> -->
+      <editor
+        class="body"
+        :content="explore"></editor>
       <div class="btns">
         <div class="btn-nus" @click="$router.push('/nus')">
           <div class="img"></div>
@@ -69,6 +71,16 @@
 import editor from '@/components/editor/editor.vue';
 
 export default {
+  metaInfo: {
+    title: 'AMCISA',
+    meta: [
+      {
+        vmid: 'description',
+        name: 'description',
+        content: 'AMCISA 是 Association of Malaysian Chinese Independent School Alumni 的简称，中文名为留新大马独中生联谊会。Find out more about us today!',
+      },
+    ],
+  },
   components: {
     editor,
   },

@@ -5,6 +5,7 @@ module.exports = {
   chainWebpack(config) {
     config.plugins.delete('prefetch');
   },
+
   pwa: {
     name: 'AMCISA',
     themeColor: '#204278',
@@ -21,6 +22,7 @@ module.exports = {
       maximumFileSizeToCacheInBytes: 5000000,
     },
   },
+
   configureWebpack: {
     plugins: [
       new WorkboxPlugin.GenerateSW({
@@ -45,7 +47,39 @@ module.exports = {
             },
           },
         }],
-      })
+      }),
     ],
   },
+
+  // pluginOptions: {
+  //   prerenderSpa: {
+  //     registry: undefined,
+  //     renderRoutes: [
+  //       '/',
+  //       '/nus/events',
+  //       '/nus/faq',
+  //       '/nus/foc',
+  //       '/ntu/events',
+  //       '/ntu/faq',
+  //       '/ntu/foc',
+  //     ],
+  //     useRenderEvent: true,
+  //     headless: true,
+  //     onlyProduction: true,
+  //     postProcess: (route) => {
+  //       let html = route.html;
+  //       // Defer scripts and tell Vue it's been server rendered to trigger hydration
+  //       html = html
+  //         .replace(/<script (.*?)>/g, '<script $1 defer>')
+  //         .replace('id="app"', 'id="app" data-server-rendered="true"');
+  //       // Double google analytics
+  //       html = html.replace(/<script [^>]*?http:\/\/www.googletagmanager.*?<\/script>/, '')
+  //       // Stripe tracking iframe
+  //       html = html.replace(/<iframe [^>]*Stripe[^>].*?><\/iframe>/, '')
+  //       // eslint-disable-next-line
+  //       route.html = html;
+  //       return route;
+  //     },
+  //   },
+  // },
 };
