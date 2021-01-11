@@ -2,6 +2,7 @@
   <div class="loader" v-if="is_loading"></div>
   <div id="_foc" v-else :class="{ is_editing }">
     <div class="banner"
+      :class="{ is_editing }"
       :style="{
         'background-image': `url(${picture})`,
       }">
@@ -13,6 +14,19 @@
       </div>
     </div>
     <div class="content">
+      <div class="banner-upload" v-if="is_editing">
+        <i class="fe fe-arrow-up"></i>
+        <label class="file">
+          <input type="file" id="file"
+            aria-label="Upload Image"
+            accept="image/png, image/jpeg"
+            @change="file_upload_handler">
+          <span class="file-custom"></span>
+        </label>
+        <div class="filename" v-if="image_filename">{{ image_filename }}</div>
+        <br>
+        <div class="cancel" @click="cancel_image_upload">Cancel</div>
+      </div>
       <div class="title">What is FOC?</div>
       <div class="intro">
           <div v-if="is_editing || intro_video">
@@ -96,7 +110,9 @@
 
 <script>
 import editor from '@/components/editor/editor.vue';
+import { file_upload } from '@/api';
 
+const file_reader = new FileReader();
 export default {
   components: {
     editor,
@@ -123,10 +139,16 @@ export default {
       },
       is_editing: false,
       is_loading: true,
+      // image upload
+      original_picture: null,
+      image_data: null,
+      image_filename: '',
     };
   },
   mounted() {
     this.get();
+    this.image_data = null;
+    this.image_filename = '';
   },
   methods: {
     get() {
@@ -136,6 +158,7 @@ export default {
           picture, intro_video, content, activities, title, registration,
         } = data;
         this.picture = picture;
+        this.original_picture = picture;
         this.title = title;
         this.intro_video = intro_video;
         this.content = content;
@@ -183,6 +206,32 @@ export default {
         this.is_loading = false;
         this.get();
       });
+    },
+    file_upload_handler(event) {
+      file_reader.addEventListener('load', () => {
+        this.image_data = file_reader.result;
+      });
+      const file = event.target.files[0];
+      this.image_filename = file.name;
+      file_reader.readAsDataURL(file);
+      console.log(this.image_filename);
+      file_upload(file).then(({ data }) => {
+        this.picture = data.path;
+        this.$forceUpdate();
+      }).catch(() => {
+        this.$notify({
+          type: 'error',
+          title: 'File Upload Failed',
+          text: 'Try again',
+        });
+        this.image_data = null;
+        this.image_filename = '';
+      });
+    },
+    cancel_image_upload() {
+      this.picture = this.original_picture;
+      this.image_data = null;
+      this.image_filename = '';
     },
     cancel() {
       this.get();
@@ -269,18 +318,26 @@ export default {
       height: 100%;
       background-color: rgba(#000, .38);
     }
-    img {
+    &::after {
+      content: 'Upload image';
+      color: #fff;
       position: absolute;
-      height: 60vh;
-      max-height: 90vw;
-      width: 100vw;
+      top: 50%;
+      left: 50%;
+      font-size: 3rem;
+      font-weight: 500;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: 100ms;
     }
     .title {
       position: absolute;
       top: 50%;
       left: 50%;
       max-width: 100vw;
+      opacity: 1;
       transform: translate(-50%, -50%);
+      transition: 100ms;
       div, textarea {
         font-size: 3rem;
         line-height: 3.5rem;
@@ -294,6 +351,83 @@ export default {
   }
   .content {
     padding: 1rem 10rem 0;
+    .banner-upload {
+      margin: 0 auto;
+      padding: 2rem;
+      padding-top: .5rem;
+      min-width: 300px;
+      max-width: 600px;
+      border: solid 1px #eee;
+      border-radius: .2rem;
+      box-shadow: 0 2px 6px rgba(#000, .16);
+      background-color: #fff;
+      i {
+        font-size: 3rem;
+        font-weight: 700;
+      }
+      .file {
+        position: relative;
+        height: 3rem;
+        width: 100%;
+        cursor: pointer;
+        input {
+          opacity: 0;
+          width: 100%;
+        }
+        .file-custom {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 2rem;
+          width: calc(100% - 1px - 3rem);
+          padding: .5rem 1.5rem;
+          line-height: 1.8;
+          border: solid 1px #ddd;
+          border-radius: .3rem;
+          text-align: left;
+          z-index: 2;
+          &::before {
+            content: 'Browse';
+            position: absolute;
+            top: -1px;
+            bottom: -1px;
+            right: -1px;
+            height: calc(2rem + 2px);
+            line-height: 1.8;
+            padding: .5rem .8rem;
+            background-color: $primary-color-dark;
+            color: #fff;
+            border-top-right-radius: .3rem;
+            border-bottom-right-radius: .3rem;
+            z-index: 3;
+          }
+          &::after {
+            content: 'Choose image...';
+          }
+        }
+      }
+      .filename {
+        display: inline-block;
+        margin-top: 4rem;
+        background-color: $primary-color-dark;
+        color: #fff;
+        border-radius: .5rem;
+        padding: .5rem .8rem;
+      }
+      .cancel {
+        background-color: $error-color;
+        color: #fff;
+        margin-top: 3rem;
+        padding: .5rem .8rem;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+        border: none;
+        border-radius: .2rem;
+        cursor: pointer;
+      }
+    }
     .title {
       font-size: 2.5rem;
       letter-spacing: 1px;
