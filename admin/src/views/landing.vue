@@ -231,7 +231,6 @@ export default {
         background-color: inherit;
         &.is_editing {
           border: solid 1px rgba(#fff, .5);
-          // backdrop-filter: brightness(90%);
         }
       }
     }
