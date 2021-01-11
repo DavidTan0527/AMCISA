@@ -23,7 +23,6 @@
     <div class="about-card">
       <div class="info-section">
         <header>About Us</header>
-        <!-- <p>{{ about }}</p> -->
         <editor
           class="body"
           :content="about"></editor>
@@ -33,12 +32,6 @@
 
     <div class="explore">
       <header>Explore</header>
-      <editor
-        class="body"
-        :content="explore"></editor>
-      <!-- <div class="body">
-        {{ explore }}
-      </div> -->
       <editor
         class="body"
         :content="explore"></editor>
