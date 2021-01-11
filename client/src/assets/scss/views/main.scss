@@ -32,9 +32,11 @@
         color: #fff;
         min-height: 200px;
         padding: 3rem 2rem;
-        text-align: left;
         &:nth-child(even) {
           background-color: $primary-blue;
+        }
+        &, * {
+          text-align: left;
         }
         .title {
           font-family: 'Source Code Pro';

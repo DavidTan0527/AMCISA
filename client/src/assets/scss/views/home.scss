@@ -76,7 +76,7 @@
         font-size: 3rem;
         font-weight: 300;
       }
-      p {
+      .body {
         font-size: 1.2rem;
       }
     }
@@ -98,6 +98,9 @@
       font-weight: 300;
       max-width: 70%;
       margin: 0 auto;
+      * {
+        text-align: center;
+      }
     }
     .btns {
       display: flex;

@@ -42,7 +42,7 @@
       }
     }
   }
-  .content {
+  & > .content {
     padding-bottom: 400px;
     margin: 0 auto;
     max-width: 1500px;
@@ -76,7 +76,7 @@
       justify-content: space-between;
       & > div {
         div {
-          color: $text-gray-light;
+          color: $text-gray;
           font-weight: 700;
         }
         ul {
@@ -105,7 +105,7 @@
       }
     }
     small {
-      color: $text-gray-light;
+      color: $text-gray;
       font-size: .6rem;
     }
   }

@@ -23,16 +23,22 @@
     <div class="about-card">
       <div class="info-section">
         <header>About Us</header>
-        <p>{{ about }}</p>
+        <!-- <p>{{ about }}</p> -->
+        <editor
+          class="body"
+          :content="about"></editor>
       </div>
       <img class="svg" src="@/assets/svg/around_the_world.svg" loading="lazy">
     </div>
 
     <div class="explore">
       <header>Explore</header>
-      <div class="body">
+      <!-- <div class="body">
         {{ explore }}
-      </div>
+      </div> -->
+      <editor
+        class="body"
+        :content="explore"></editor>
       <div class="btns">
         <div class="btn-nus" @click="$router.push('/nus')">
           <div class="img"></div>
@@ -59,6 +65,8 @@
 </template>
 
 <script>
+import editor from '@/components/editor/editor.vue';
+
 export default {
   metaInfo: {
     title: 'AMCISA',
@@ -69,6 +77,9 @@ export default {
         content: 'AMCISA 是 Association of Malaysian Chinese Independent School Alumni 的简称，中文名为留新大马独中生联谊会。Find out more about us today!',
       },
     ],
+  },
+  components: {
+    editor,
   },
   data: () => ({
     quote: '',
