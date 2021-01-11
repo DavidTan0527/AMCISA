@@ -18,7 +18,6 @@ qna.create = (uni, body) => {
         }
         data.push(body);
         writeJson(addPrefix(uni,'qna.json'),data);
-        return body;
     });
 };
 
