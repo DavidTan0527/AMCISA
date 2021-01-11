@@ -2,9 +2,8 @@
   <div class="loader" v-if="is_loading"></div>
   <div id="_home" v-else>
     <nav class="navbar">
-      <!-- <section class="navbar-title">Amcisa</section> -->
       <section class="navbar-title">
-        <img src="@/assets/logo.png" alt="">
+        <img src="@/assets/logo.png" alt="AMCISA">
       </section>
     </nav>
 
@@ -61,6 +60,16 @@
 
 <script>
 export default {
+  metaInfo: {
+    title: 'AMCISA',
+    meta: [
+      {
+        vmid: 'description',
+        name: 'description',
+        content: 'AMCISA 是 Association of Malaysian Chinese Independent School Alumni 的简称，中文名为留新大马独中生联谊会。Find out more about us today!',
+      },
+    ],
+  },
   data: () => ({
     quote: '',
     about: '',

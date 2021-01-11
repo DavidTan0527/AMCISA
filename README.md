@@ -3,7 +3,7 @@ The official webpage for AMCISA.
 
 ## Tech stack
 1. Backend: Express.js (node.js web server)
-2. Client frontend: VueJS w/ scss, PWA
+2. Client frontend: VueJS w/ scss, PWA, Pre-Render
 3. Admin frontend: VueJS w/ scss
 
 ## Components and Resources

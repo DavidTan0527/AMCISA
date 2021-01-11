@@ -66,6 +66,18 @@
 
 const editor = () => import('@/components/editor/editor.vue');
 export default {
+  metaInfo() {
+    return {
+      title: this.$route.params.uni.toUpperCase().concat(' | Freshman Orientation Camp'),
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: 'FOC 是 Freshmen Orientation Camp 的简称，而 AMCISA FOC 是为来新加坡国立大学深造的大马独中生所办的新生营。',
+        },
+      ],
+    };
+  },
   components: {
     editor,
   },
