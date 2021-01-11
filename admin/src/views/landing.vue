@@ -153,7 +153,7 @@ export default {
 <style lang="scss">
 #_home {
   position: relative;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   .navbar {
     display: flex;
