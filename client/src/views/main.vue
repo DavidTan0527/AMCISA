@@ -22,29 +22,11 @@
     <div class="admission" id="admission">
       <div class="main-title">ADMISSION</div>
       <div class="body">
-        <div class="step">
-          <div class="title">Step 1</div>
-          <ul>
-            <li>Choose your course of study</li>
-            <li>Complete online application form</li>
-            <li>Apply for tuition grant</li>
-          </ul>
-        </div>
-        <div class="step">
-          <div class="title">Step 2</div>
-          <ul>
-            <li>Choose your course of study</li>
-            <li>Complete online application form</li>
-            <li>Apply for tuition grant</li>
-          </ul>
-        </div>
-        <div class="step">
-          <div class="title">Step 3</div>
-          <ul>
-            <li>Choose your course of study</li>
-            <li>Complete online application form</li>
-            <li>Apply for tuition grant</li>
-          </ul>
+        <div class="step" v-for="(step, index) in admission" :key="index">
+          <div class="title">{{ step.title }}</div>
+          <editor
+            class="content"
+            :content="step.content"></editor>
         </div>
       </div>
       <button class="btn-round" @click="goto('faq')">
@@ -55,7 +37,9 @@
 </template>
 
 <script>
-const timeline = () => import('@/components/timeline.vue');
+import editor from '@/components/editor/editor.vue';
+import timeline from '@/components/timeline.vue';
+
 export default {
   metaInfo() {
     return {
@@ -64,6 +48,7 @@ export default {
   },
   components: {
     timeline,
+    editor,
   },
   data: () => ({
     notify_foc: false,
