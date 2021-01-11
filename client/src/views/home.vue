@@ -34,9 +34,12 @@
 
     <div class="explore">
       <header>Explore</header>
-      <div class="body">
+      <editor
+        class="body"
+        :content="explore"></editor>
+      <!-- <div class="body">
         {{ explore }}
-      </div>
+      </div> -->
       <div class="btns">
         <div class="btn-nus" @click="$router.push('/nus')">
           <div class="img"></div>
