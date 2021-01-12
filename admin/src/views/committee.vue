@@ -22,7 +22,6 @@
         @click="image_upload($event, -1)">
     </div>
     <template v-if="is_editing">
-      {{ members }}
       <draggable class="committee" v-model="members" group="committee">
         <div class="member is_editing"
           v-for="(member, index) in members" :key="member.id || -index">
