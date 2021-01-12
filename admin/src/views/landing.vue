@@ -186,7 +186,7 @@ export default {
       display: flex;
       flex-direction: column;
       width: 60%;
-      margin-bottom: 300px;
+      margin-bottom: 100px;
       .slogan-1, .slogan-2 {
         align-self: flex-start;
         font-size: 3.5rem;
@@ -217,7 +217,6 @@ export default {
     margin-top: -100px;
     padding: 1rem 2rem 1.2rem;
     z-index: 2;
-    overflow: auto;
     .info-section {
       text-align: left;
       margin-right: .8rem;
