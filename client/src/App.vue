@@ -26,7 +26,6 @@ export default {
       });
     }
     this.scroll_callback();
-    // window.onscroll = this.scroll_callback;
     let event_timeout = null;
     window.onscroll = () => {
       if (!event_timeout) {
@@ -39,11 +38,14 @@ export default {
   },
   methods: {
     scroll_callback() {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      if (this.$refs.scroll_progress !== undefined) {
-        this.$refs.scroll_progress.style.width = `${scrolled}%`;
+      if (!this.is_phone) {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight
+          - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        if (this.$refs.scroll_progress !== undefined) {
+          this.$refs.scroll_progress.style.width = `${scrolled}%`;
+        }
       }
     },
   },

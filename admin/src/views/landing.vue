@@ -177,7 +177,7 @@ export default {
   .main-card {
     background-color: #fff;
     width: 70%;
-    max-height: 300px;
+    max-height: 250px;
     overflow: visible;
     margin-left: 10%;
     padding: 3rem 2rem;
