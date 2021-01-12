@@ -12,9 +12,6 @@
         hidebutton
         :editable="is_editing"
         :content="foc_announcement"></editor>
-      <!-- <div class="body">
-        {{ foc_announcement }}
-      </div> -->
       <button class="btn-round" @click="$router.push('/foc')">
         Check It Out!!! <i class="fe fe-arrow-right"></i>
       </button>
@@ -38,7 +35,7 @@
         <i class="fe fe-plus"></i>Add Step
       </button>
       <template v-if="is_editing">
-        <draggable class="body" v-model="admission" group="admission">
+        <draggable class="body" v-model="admission" group="admission" @change="force_update">
           <div class="step is_editing" v-for="(step, index) in admission" :key="index">
             <div class="delete">
               <i class="fe fe-trash-2" @click="delete_admission(index)"></i>
@@ -47,9 +44,10 @@
             <editor
               class="content"
               ref="articles"
-              :key="JSON.stringify(step.content)"
+              :key="step.title"
               hidebutton
               editable
+              @change_content="update_content(index)"
               :content="step.content"></editor>
           </div>
         </draggable>
@@ -163,6 +161,12 @@ export default {
         this.is_loading = false;
         this.get();
       });
+    },
+    update_content(index) {
+      this.admission[index].content = { ...this.$refs.articles[index].json };
+    },
+    force_update() {
+      this.$forceUpdate();
     },
     cancel() {
       this.get();

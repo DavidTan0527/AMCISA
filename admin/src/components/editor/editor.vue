@@ -255,6 +255,9 @@ export default {
         editable: this.editable,
       });
     },
+    json(val) {
+      this.$emit('change_content', val);
+    },
   },
   beforeDestroy() {
     this.editor.destroy();
