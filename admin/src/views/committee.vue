@@ -22,8 +22,10 @@
         @click="image_upload($event, -1)">
     </div>
     <template v-if="is_editing">
+      {{ members }}
       <draggable class="committee" v-model="members" group="committee">
-        <div class="member is_editing" v-for="(member, index) in members" :key="member.id">
+        <div class="member is_editing"
+          v-for="(member, index) in members" :key="member.id || -index">
           <img :src="JSON.parse(JSON.stringify(member.picture))"
             class="avatar"
             @error="set_alt_img"
@@ -185,6 +187,7 @@ export default {
     },
     add_member() {
       this.members.push({
+        picture: '',
         position: '',
         name: '',
         course_year: '',
