@@ -1,6 +1,6 @@
 <template>
   <div id="app" :class="$route.params.uni">
-    <div class="progress-container" v-if="$route.name !== 'Home'">
+    <div class="progress-container" v-if="$route.name !== 'Home' && !is_phone">
       <div class="progress-bar" ref="scroll_progress"></div>
     </div>
     <notifications />
@@ -50,6 +50,11 @@ export default {
   watch: {
     $route() {
       this.$nextTick(this.scroll_callback);
+    },
+  },
+  computed: {
+    is_phone() {
+      return window.innerWidth < 425;
     },
   },
 };

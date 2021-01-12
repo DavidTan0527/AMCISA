@@ -236,7 +236,7 @@ export default {
       }
     }
     .svg {
-      align-self: flex-start;
+      align-self: center;
     }
   }
   .explore {
