@@ -243,7 +243,7 @@ export default {
     },
     showImagePrompt(command) {
       // eslint-disable-next-line
-      const src = prompt('Enter the url of your image here');
+      const src = prompt('Enter the url to your image (drag and drop if you are using images on your computer)');
       if (src !== null) {
         command({ src });
       }
