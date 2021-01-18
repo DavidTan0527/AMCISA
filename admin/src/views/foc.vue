@@ -86,7 +86,7 @@
           :class="{'filled': registration.form_link}" v-model="registration.form_link">
         <label for="form_link" class="form-label">Form Link</label>
       </div>
-      <div class="title">Camp Activites</div>
+      <div class="title">Camp Activities</div>
       <editor
         class="activities"
         ref="activities"

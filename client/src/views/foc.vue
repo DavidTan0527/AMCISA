@@ -46,7 +46,7 @@
           <i class="fe fe-arrow-right-circle"></i>
         </div>
       </div>
-      <div class="title">Camp Activites</div>
+      <div class="title">Camp Activities</div>
       <editor
         class="activities"
         :content="activities"></editor>
