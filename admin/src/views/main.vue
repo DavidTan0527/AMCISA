@@ -5,14 +5,14 @@
       'editing': is_editing,
       'hidden' : !notify_foc,
       }" v-if="notify_foc || is_editing">
-      <div class="main-title">FRESHMAN ORIENTATION</div>
+      <div class="main-title">ORIENTATION</div>
       <editor
         class="body"
         ref="announcement"
         hidebutton
         :editable="is_editing"
         :content="foc_announcement"></editor>
-      <button class="btn-round" @click="$router.push('/foc')">
+      <button class="btn-round" @click="$router.push('/freshman-orientation')">
         Check It Out!!! <i class="fe fe-arrow-right"></i>
       </button>
       <span class="view-btn" v-if="is_editing">

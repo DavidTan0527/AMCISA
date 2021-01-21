@@ -6,7 +6,7 @@
       <editor
         class="body"
         :content="foc_announcement"></editor>
-      <button class="btn-round" @click="goto('foc')">
+      <button class="btn-round" @click="goto('freshman-orientation')">
         Check It Out!!! <i class="fe fe-arrow-right"></i>
       </button>
     </div>
