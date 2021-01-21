@@ -27,7 +27,7 @@
         <br>
         <div class="cancel" @click="cancel_image_upload">Cancel</div>
       </div>
-      <div class="title">What is FOC?</div>
+      <div class="title">What is Freshman Orientation?</div>
       <div class="intro">
           <div v-if="is_editing || intro_video">
             <iframe

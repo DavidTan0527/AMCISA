@@ -2,7 +2,7 @@
   <div class="loader" v-if="is_loading"></div>
   <div id="_main" v-else>
     <div class="foc" v-if="notify_foc">
-      <div class="main-title">FOC</div>
+      <div class="main-title">ORIENTATION</div>
       <editor
         class="body"
         :content="foc_announcement"></editor>

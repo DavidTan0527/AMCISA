@@ -5,7 +5,7 @@
       'editing': is_editing,
       'hidden' : !notify_foc,
       }" v-if="notify_foc || is_editing">
-      <div class="main-title">FOC</div>
+      <div class="main-title">FRESHMAN ORIENTATION</div>
       <editor
         class="body"
         ref="announcement"

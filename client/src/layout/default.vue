@@ -60,7 +60,7 @@ export default {
   data: () => ({
     // header links
     links: [
-      { name: 'FOC', to: 'foc' },
+      { name: 'Orientation', to: 'freshman-orientation' },
       { name: 'Events', to: 'event' },
       { name: 'Admission', to: '#admission' },
       { name: 'About', to: 'about' },
@@ -71,14 +71,14 @@ export default {
         name: 'info',
         links: [
           { name: 'Board of Committee', to: 'about' },
-          { name: 'Our Mission', to: '' },
+          // { name: 'Our Mission', to: '' },
           { name: 'FAQ', to: 'faq' },
         ],
       },
       {
         name: 'activities',
         links: [
-          { name: 'Freshman Orientation Camp', to: 'foc' },
+          { name: 'Freshman Orientation', to: 'freshman-orientation' },
           { name: 'Events', to: 'event' },
         ],
       },
