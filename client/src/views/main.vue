@@ -50,7 +50,7 @@ export default {
           name: 'description',
           content: `${this.$route.params.uni.toUpperCase()} Freshman Orientation • Events • Admission Details & FAQ`,
         },
-      ]
+      ],
     };
   },
   components: {
