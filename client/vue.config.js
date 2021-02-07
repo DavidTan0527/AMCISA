@@ -54,32 +54,32 @@ module.exports = {
         paths: [
           {
             path: '/',
-            priority: 0.4,
-            lastmod: '2021-01-12',
+            priority: 0.8,
+            lastmod: '2021-02-07',
           },
           {
             path: '/nus/',
-            priority: 0.8,
-            lastmod: '2021-01-12',
+            priority: 0.7,
+            lastmod: '2021-02-07',
           },
           {
             path: '/ntu/',
-            priority: 0.8,
-            lastmod: '2021-01-12',
+            priority: 0.7,
+            lastmod: '2021-02-07',
           },
           {
             path: '/nus/faq/',
-            priority: 0.7,
-            lastmod: '2021-01-12',
+            priority: 0.6,
+            lastmod: '2021-02-07',
           },
           {
             path: '/ntu/faq/',
-            priority: 0.7,
-            lastmod: '2021-01-12',
+            priority: 0.6,
+            lastmod: '2021-02-07',
           },
         ],
         options: {
-          changefreq: 'monthly',
+          changefreq: 'weekly',
         },
       }),
     ],
