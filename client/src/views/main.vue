@@ -44,6 +44,13 @@ export default {
   metaInfo() {
     return {
       title: this.$route.params.uni.toUpperCase().concat(' | AMCISA'),
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: `${this.$route.params.uni.toUpperCase()} Freshman Orientation • Events • Admission Details & FAQ`,
+        },
+      ]
     };
   },
   components: {
