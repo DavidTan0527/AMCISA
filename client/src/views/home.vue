@@ -65,16 +65,17 @@
 import editor from '@/components/editor/editor.vue';
 
 export default {
-  metaInfo: {
-    title: 'AMCISA',
-    meta: [
-      {
-        vmid: 'description',
-        name: 'description',
-        // content: 'AMCISA 是 Association of Malaysian Chinese Independent School Alumni 的简称，中文名为留新大马独中生联谊会。Find out more about us today!',
-        content: about,
-      },
-    ],
+  metaInfo() {
+    return {
+      title: 'AMCISA',
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.about,
+        },
+      ],
+    };
   },
   components: {
     editor,
