@@ -60,7 +60,7 @@ import editor from '@/components/editor/editor.vue';
 export default {
   metaInfo() {
     return {
-      title: this.$route.params.uni.toUpperCase().concat(' | Freshman Orientation'),
+      title: this.$route.params.uni.toUpperCase().concat(' AMCISA | Freshman Orientation'),
       meta: [
         {
           vmid: 'description',

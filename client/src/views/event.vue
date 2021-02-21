@@ -67,7 +67,7 @@ const card = () => import('@/components/card.vue');
 export default {
   metaInfo() {
     return {
-      title: this.$route.params.uni.toUpperCase().concat(' | Events'),
+      title: this.$route.params.uni.toUpperCase().concat(' AMCISA | Events'),
       meta: [
         {
           vmid: 'description',

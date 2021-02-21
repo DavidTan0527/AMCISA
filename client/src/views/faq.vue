@@ -26,7 +26,7 @@ export default {
   },
   metaInfo() {
     return {
-      title: this.$route.params.uni.toUpperCase().concat(' | FAQ'),
+      title: this.$route.params.uni.toUpperCase().concat(' AMCISA | FAQ'),
       meta: [
         {
           vmid: 'description',
