@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'App',
+  name: 'AMCISA',
   metaInfo: {
     title: 'AMCISA',
     titleTemplate: null,
