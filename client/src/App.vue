@@ -1,8 +1,10 @@
 <template>
   <div id="app" :class="$route.params.uni">
+    <!--
     <div class="progress-container" v-if="$route.name !== 'Home' && !is_phone">
       <div class="progress-bar" ref="scroll_progress"></div>
     </div>
+    -->
     <notifications />
     <router-view/>
   </div>
@@ -25,6 +27,7 @@ export default {
         });
       });
     }
+    /*
     this.scroll_callback();
     let event_timeout = null;
     window.onscroll = () => {
@@ -35,6 +38,7 @@ export default {
         }, 30);
       }
     };
+    */
   },
   methods: {
     scroll_callback() {
