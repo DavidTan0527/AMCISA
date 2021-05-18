@@ -42,7 +42,7 @@ export default {
         {
           vmid: 'og:image',
           name: 'og:image',
-          content: this.picture,
+          content: this.picture || 'img/logo.jpg',
         },
       ],
     };
