@@ -67,6 +67,16 @@ export default {
           name: 'description',
           content: 'Freshmen Orientation 是 AMCISA 为来新加坡大学深造的大马独中生所办的新生营。',
         },
+        {
+          vmid: 'og:title',
+          name: 'og:title',
+          content: this.$route.params.uni.toUpperCase().concat(' AMCISA | Freshman Orientation'),
+        },
+        {
+          vmid: 'og:description',
+          name: 'og:description',
+          content: 'Freshmen Orientation 是 AMCISA 为来新加坡大学深造的大马独中生所办的新生营。',
+        },
       ],
     };
   },

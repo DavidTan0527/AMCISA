@@ -72,7 +72,17 @@ export default {
         {
           vmid: 'description',
           name: 'description',
-          content: 'Recent events held by AMCISA. Find out what fun we had recently!',
+          content: `Recent events held by ${this.$route.params.uni.toUpperCase()} AMCISA. Find out what fun we had recently!`,
+        },
+        {
+          vmid: 'og:title',
+          name: 'og:title',
+          content: this.$route.params.uni.toUpperCase().concat(' AMCISA | Events'),
+        },
+        {
+          vmid: 'og:description',
+          name: 'og:description',
+          content: `Recent events held by ${this.$route.params.uni.toUpperCase()} AMCISA. Find out what fun we had recently!`,
         },
       ],
     };

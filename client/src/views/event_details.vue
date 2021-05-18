@@ -33,6 +33,18 @@ export default {
   metaInfo() {
     return {
       title: this.$route.params.uni.toUpperCase().concat(` AMCISA | ${this.title}`),
+      meta: [
+        {
+          vmid: 'og:title',
+          name: 'og:title',
+          content: this.$route.params.uni.toUpperCase().concat(` AMCISA | ${this.title}`),
+        },
+        {
+          vmid: 'og:image',
+          name: 'og:image',
+          content: this.picture,
+        },
+      ],
     };
   },
   components: {

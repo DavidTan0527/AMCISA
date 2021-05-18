@@ -33,6 +33,16 @@ export default {
           name: 'description',
           content: 'Frequently asked questions by students before departing for university in Singapore. Get your questions answered here.',
         },
+        {
+          vmid: 'og:title',
+          name: 'og:title',
+          content: this.$route.params.uni.toUpperCase().concat(' AMCISA | FAQ'),
+        },
+        {
+          vmid: 'og:description',
+          name: 'og:description',
+          content: 'Frequently asked questions by students before departing for university in Singapore. Get your questions answered here.',
+        },
       ],
     };
   },

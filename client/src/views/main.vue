@@ -50,6 +50,16 @@ export default {
           name: 'description',
           content: `${this.$route.params.uni.toUpperCase()} Freshman Orientation • Events • Admission Details & FAQ`,
         },
+        {
+          vmid: 'og:title',
+          name: 'og:title',
+          content: `${this.$route.params.uni.toUpperCase()} | AMCISA`,
+        },
+        {
+          vmid: 'og:description',
+          name: 'og:description',
+          content: `${this.$route.params.uni.toUpperCase()} Freshman Orientation • Events • Admission Details & FAQ`,
+        },
       ],
     };
   },

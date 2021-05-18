@@ -74,6 +74,16 @@ export default {
           name: 'description',
           content: this.about,
         },
+        {
+          vmid: 'og:title',
+          name: 'og:title',
+          content: 'AMCISA',
+        },
+        {
+          vmid: 'og:description',
+          name: 'og:description',
+          content: this.about,
+        },
       ],
     };
   },
