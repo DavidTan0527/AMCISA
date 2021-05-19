@@ -70,7 +70,9 @@ export default {
         {
           vmid: 'og:title',
           name: 'og:title',
-          content: this.$route.params.uni.toUpperCase().concat(' AMCISA | Freshman Orientation'),
+          content: this.title.replace('\n', ' '),
+          template: '%s Freshman Orientation',
+          // content: this.$route.params.uni.toUpperCase().concat(' AMCISA | Freshman Orientation'),
         },
         {
           vmid: 'og:description',
