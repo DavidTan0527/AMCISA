@@ -287,6 +287,7 @@ export default {
         }
         .editor {
           display: inline-block;
+          min-width: 100%;
         }
       }
     }
