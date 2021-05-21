@@ -238,9 +238,11 @@ export default {
       font-size: 1rem;
       line-height: 1.75;
       border-radius: 5px;
+      max-height: 1000px;
       padding: 15px 25px;
       margin-bottom: 50px;
       text-align: left;
+      overflow-y: scroll;
       cursor: default;
       //  Border and arrow left
       &:nth-child(2n+1) {
