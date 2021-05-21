@@ -135,6 +135,63 @@
           <icon name="redo" />
         </button>
 
+        <button
+          class="menubar__button"
+          @click="commands.createTable({rowsCount: 3, colsCount: 3, withHeaderRow: false })"
+        >
+          <icon name="table" />
+        </button>
+
+        <span v-if="isActive.table()">
+          <button
+            class="menubar__button"
+            @click="commands.deleteTable"
+          >
+            <icon name="delete_table" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.addColumnBefore"
+          >
+            <icon name="add_col_before" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.addColumnAfter"
+          >
+            <icon name="add_col_after" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.deleteColumn"
+          >
+            <icon name="delete_col" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.addRowBefore"
+          >
+            <icon name="add_row_before" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.addRowAfter"
+          >
+            <icon name="add_row_after" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.deleteRow"
+          >
+            <icon name="delete_row" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.toggleCellMerge"
+          >
+            <icon name="combine_cells" />
+          </button>
+        </span>
       </div>
     </editor-menu-bar>
 
@@ -162,6 +219,10 @@ import {
   Code,
   Italic,
   Link,
+  Table,
+  TableHeader,
+  TableCell,
+  TableRow,
   Strike,
   Underline,
   History,
@@ -219,6 +280,12 @@ export default {
             node: 'paragraph',
             notAfter: ['paragraph'],
           }),
+          new Table({
+            resizable: true,
+          }),
+          new TableHeader(),
+          new TableCell(),
+          new TableRow(),
         ],
         content: '',
         onUpdate: ({ getJSON }) => { this.json = getJSON(); },
