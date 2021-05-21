@@ -10,12 +10,11 @@
       font-size: 1rem;
       line-height: 1.75;
       border-radius: 5px;
-      max-height: 1000px;
+      //max-height: 1000px;
       padding: 15px 25px;
       margin-bottom: 50px;
       text-align: left;
       cursor: default;
-      overflow-y: scroll;
       //  Border and arrow left
       &:nth-child(2n+1) {
         border-left: 5px solid #db3939;
@@ -61,6 +60,10 @@
         }
         #_editor {
           width: 100%;
+          .editor__content {
+            max-height: 800px;
+            overflow-y: scroll;
+          }
         }
       }
     }
