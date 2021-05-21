@@ -195,6 +195,34 @@
       </div>
     </editor-menu-bar>
 
+    <editor-menu-bubble class="menububble" :editor="editor" @hide="hideLinkMenu" v-slot="{ commands, isActive, getMarkAttrs, menu }">
+      <div
+        class="menububble"
+        :class="{ 'is-active': menu.isActive }"
+        :style="`left: ${menu.left}px; bottom: ${menu.bottom}px;`"
+      >
+
+        <form class="menububble__form" v-if="linkMenuIsActive" @submit.prevent="setLinkUrl(commands.link, linkUrl)">
+          <input class="menububble__input" type="text" v-model="linkUrl" placeholder="https://" ref="linkInput" @keydown.esc="hideLinkMenu"/>
+          <button class="menububble__button" @click="setLinkUrl(commands.link, null)" type="button">
+            <icon name="remove" />
+          </button>
+        </form>
+
+        <template v-else>
+          <button
+            class="menububble__button"
+            @click="showLinkMenu(getMarkAttrs('link'))"
+            :class="{ 'is-active': isActive.link() }"
+          >
+            <span>{{ isActive.link() ? 'Update Link' : 'Add Link'}}</span>
+            <icon name="link" />
+          </button>
+        </template>
+
+      </div>
+    </editor-menu-bubble>
+
     <editor-content class="editor__content" :editor="editor" />
 
     <button class="btn-done" @click="save_changes" v-if="editable && !hidebutton">Done</button>
@@ -295,6 +323,8 @@ export default {
         onUpdate: ({ getJSON }) => { this.json = getJSON(); },
       }),
       json: '',
+      linkUrl: null,
+      linkMenuIsActive: false,
     };
   },
   mounted() {
@@ -314,6 +344,21 @@ export default {
       if (src !== null) {
         command({ src });
       }
+    },
+    showLinkMenu(attrs) {
+      this.linkUrl = attrs.href
+      this.linkMenuIsActive = true
+      this.$nextTick(() => {
+        this.$refs.linkInput.focus()
+      })
+    },
+    hideLinkMenu() {
+      this.linkUrl = null
+      this.linkMenuIsActive = false
+    },
+    setLinkUrl(command, url) {
+      command({ href: url })
+      this.hideLinkMenu()
     },
   },
   watch: {
