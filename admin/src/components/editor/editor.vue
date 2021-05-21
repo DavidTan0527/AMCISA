@@ -195,16 +195,33 @@
       </div>
     </editor-menu-bar>
 
-    <editor-menu-bubble class="menububble" :editor="editor" @hide="hideLinkMenu" v-slot="{ commands, isActive, getMarkAttrs, menu }">
+    <editor-menu-bubble
+      class="menububble"
+      :editor="editor"
+      @hide="hideLinkMenu"
+      v-slot="{ commands, isActive, getMarkAttrs, menu }"
+    >
       <div
         class="menububble"
         :class="{ 'is-active': menu.isActive }"
         :style="`left: ${menu.left}px; bottom: ${menu.bottom}px;`"
       >
-
-        <form class="menububble__form" v-if="linkMenuIsActive" @submit.prevent="setLinkUrl(commands.link, linkUrl)">
-          <input class="menububble__input" type="text" v-model="linkUrl" placeholder="https://" ref="linkInput" @keydown.esc="hideLinkMenu"/>
-          <button class="menububble__button" @click="setLinkUrl(commands.link, null)" type="button">
+        <form class="menububble__form"
+          v-if="linkMenuIsActive"
+          @submit.prevent="setLinkUrl(commands.link, linkUrl)"
+        >
+          <input
+            class="menububble__input"
+            type="text"
+            v-model="linkUrl"
+            placeholder="https://"
+            ref="linkInput"
+            @keydown.esc="hideLinkMenu"/>
+          <button
+            class="menububble__button"
+            @click="setLinkUrl(commands.link, null)"
+            type="button"
+          >
             <icon name="remove" />
           </button>
         </form>
@@ -230,7 +247,12 @@
 </template>
 
 <script>
-import { Editor, EditorContent, EditorMenuBar } from 'tiptap';
+import {
+  Editor,
+  EditorContent,
+  EditorMenuBar,
+  EditorMenuBubble,
+} from 'tiptap';
 import {
   Blockquote,
   CodeBlock,
@@ -262,6 +284,7 @@ import Icon from './icon.vue';
 export default {
   components: {
     EditorMenuBar,
+    EditorMenuBubble,
     EditorContent,
     Icon,
   },
@@ -346,19 +369,19 @@ export default {
       }
     },
     showLinkMenu(attrs) {
-      this.linkUrl = attrs.href
-      this.linkMenuIsActive = true
+      this.linkUrl = attrs.href;
+      this.linkMenuIsActive = true;
       this.$nextTick(() => {
-        this.$refs.linkInput.focus()
-      })
+        this.$refs.linkInput.focus();
+      });
     },
     hideLinkMenu() {
-      this.linkUrl = null
-      this.linkMenuIsActive = false
+      this.linkUrl = null;
+      this.linkMenuIsActive = false;
     },
     setLinkUrl(command, url) {
-      command({ href: url })
-      this.hideLinkMenu()
+      command({ href: url });
+      this.hideLinkMenu();
     },
   },
   watch: {

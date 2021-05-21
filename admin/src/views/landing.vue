@@ -214,7 +214,7 @@ export default {
     width: 50%;
     max-height: 500px;
     margin-left: 40%;
-    margin-top: -100px;
+    margin-top: -80px;
     padding: 1rem 2rem 1.2rem;
     z-index: 2;
     .info-section {

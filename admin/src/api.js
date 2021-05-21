@@ -8,12 +8,12 @@ const instance = axios.create({
 
 instance.interceptors.request.use((config) => {
   const token = window.localStorage.getItem('jwt-token');
+  const new_config = { ...config };
   if (token) {
-    const new_config = { ...config };
+    // Add token to header for authorization
     new_config.headers.common.Authorization = `Bearer ${token}`;
-    return new_config;
   }
-  return config;
+  return new_config;
 }, (error) => Promise.reject(error));
 
 // instance.interceptors.response.use((config) => config, (error) => {
