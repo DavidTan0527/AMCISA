@@ -291,7 +291,7 @@ export default {
           min-width: 100%;
           .editor__content {
             max-height: 800px;
-            overflow-y: scroll;
+            overflow-y: auto;
           }
         }
       }
