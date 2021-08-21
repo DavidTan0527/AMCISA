@@ -19,10 +19,17 @@ const routes = [
         component: () => import('@/views/main'),
       },
       {
-        path: 'foc',
-        name: 'Foc',
+        path: 'freshman-orientation',
+        name: 'freshman-orientation',
+        // allowUni: 'nus',
         component: () => import('@/views/foc'),
       },
+      // {
+      //   path: 'foa',
+      //   name: 'Foa',
+      //   allowUni: 'ntu',
+      //   component: () => import('@/views/foc'),
+      // },
       {
         path: 'event',
         name: 'Event',
@@ -67,6 +74,8 @@ router.beforeEach((to, from, next) => {
   window.localStorage.setItem('uni', to.params.uni);
   if (to.path !== '/' && !['nus', 'ntu'].includes(to.params.uni)) {
     next('/');
+  // } else if (to.uni && to.uni !== to.params.uni) {
+  //   next('/');
   } else {
     next();
   }

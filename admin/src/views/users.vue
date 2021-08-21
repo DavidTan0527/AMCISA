@@ -10,7 +10,6 @@
     <div class="users-container">
       <div class="user" v-for="user in display_users" :key="user.id">
         <div class="username">{{ user.username }}</div>
-        <!-- <div class="password">admin</div> -->
         <div class="actions">
           <i class="fe fe-edit-3 edit" @click="edit_user(user)"></i>
           <i class="fe fe-trash-2 delete" @click="delete_user(user)"></i>

@@ -2,11 +2,11 @@
   <div class="loader" v-if="is_loading"></div>
   <div id="_main" v-else>
     <div class="foc" v-if="notify_foc">
-      <div class="main-title">FOC</div>
+      <div class="main-title">ORIENTATION</div>
       <editor
         class="body"
         :content="foc_announcement"></editor>
-      <button class="btn-round" @click="goto('foc')">
+      <button class="btn-round" @click="goto('freshman-orientation')">
         Check It Out!!! <i class="fe fe-arrow-right"></i>
       </button>
     </div>
@@ -44,6 +44,23 @@ export default {
   metaInfo() {
     return {
       title: this.$route.params.uni.toUpperCase().concat(' | AMCISA'),
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: `${this.$route.params.uni.toUpperCase()} Freshman Orientation • Events • Admission Details & FAQ`,
+        },
+        {
+          vmid: 'og:title',
+          name: 'og:title',
+          content: `${this.$route.params.uni.toUpperCase()} | AMCISA`,
+        },
+        {
+          vmid: 'og:description',
+          name: 'og:description',
+          content: `${this.$route.params.uni.toUpperCase()} Freshman Orientation • Events • Admission Details & FAQ`,
+        },
+      ],
     };
   },
   components: {

@@ -27,7 +27,7 @@
         <br>
         <div class="cancel" @click="cancel_image_upload">Cancel</div>
       </div>
-      <div class="title">What is FOC?</div>
+      <div class="title">What is Freshman Orientation?</div>
       <div class="intro">
           <div v-if="is_editing || intro_video">
             <iframe
@@ -86,7 +86,7 @@
           :class="{'filled': registration.form_link}" v-model="registration.form_link">
         <label for="form_link" class="form-label">Form Link</label>
       </div>
-      <div class="title">Camp Activites</div>
+      <div class="title">Camp Activities</div>
       <editor
         class="activities"
         ref="activities"

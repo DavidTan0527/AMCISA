@@ -177,7 +177,7 @@ export default {
   .main-card {
     background-color: #fff;
     width: 70%;
-    max-height: 300px;
+    max-height: 250px;
     overflow: visible;
     margin-left: 10%;
     padding: 3rem 2rem;
@@ -186,7 +186,7 @@ export default {
       display: flex;
       flex-direction: column;
       width: 60%;
-      margin-bottom: 300px;
+      margin-bottom: 100px;
       .slogan-1, .slogan-2 {
         align-self: flex-start;
         font-size: 3.5rem;
@@ -214,10 +214,9 @@ export default {
     width: 50%;
     max-height: 500px;
     margin-left: 40%;
-    margin-top: -100px;
+    margin-top: -80px;
     padding: 1rem 2rem 1.2rem;
     z-index: 2;
-    overflow: auto;
     .info-section {
       text-align: left;
       margin-right: .8rem;
@@ -237,7 +236,7 @@ export default {
       }
     }
     .svg {
-      align-self: flex-start;
+      align-self: center;
     }
   }
   .explore {

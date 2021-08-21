@@ -238,6 +238,7 @@ export default {
       font-size: 1rem;
       line-height: 1.75;
       border-radius: 5px;
+      //max-height: 1000px;
       padding: 15px 25px;
       margin-bottom: 50px;
       text-align: left;
@@ -285,8 +286,13 @@ export default {
           display: inline-block;
           display: -webkit-inline-box;
         }
-        .editor {
+        #_editor {
           display: inline-block;
+          min-width: 100%;
+          .editor__content {
+            max-height: 800px;
+            overflow-y: auto;
+          }
         }
       }
     }

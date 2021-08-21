@@ -32,7 +32,19 @@ const editor = () => import('@/components/editor/editor.vue');
 export default {
   metaInfo() {
     return {
-      title: this.$route.params.uni.toUpperCase().concat(` | ${this.title}`),
+      title: this.$route.params.uni.toUpperCase().concat(` AMCISA | ${this.title}`),
+      meta: [
+        {
+          vmid: 'og:title',
+          name: 'og:title',
+          content: this.$route.params.uni.toUpperCase().concat(` AMCISA | ${this.title}`),
+        },
+        {
+          vmid: 'og:image',
+          name: 'og:image',
+          content: this.picture || 'img/logo.jpg',
+        },
+      ],
     };
   },
   components: {

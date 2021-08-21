@@ -1,11 +1,12 @@
 <template>
   <div class="loader" v-if="is_loading"></div>
   <div id="_home" v-else>
-    <nav class="navbar">
+    <header class="navbar">
+      <h1 style="display:none;">AMCISA</h1>
       <section class="navbar-title">
         <img src="@/assets/logo.png" alt="AMCISA">
       </section>
-    </nav>
+    </header>
 
     <div class="main-card">
       <img class="svg" src="@/assets/svg/having_fun.svg" loading="lazy">
@@ -21,16 +22,16 @@
     </div>
 
     <div class="about-card">
-      <div class="info-section">
+      <article class="info-section">
         <header>About Us</header>
         <editor
           class="body"
           :content="about"></editor>
-      </div>
+      </article>
       <img class="svg" src="@/assets/svg/around_the_world.svg" loading="lazy">
     </div>
 
-    <div class="explore">
+    <article class="explore">
       <header>Explore</header>
       <editor
         class="body"
@@ -43,7 +44,7 @@
           <div class="img"></div>
         </div>
       </div>
-    </div>
+    </article>
 
     <footer>
       <!-- <div class="icons">
@@ -64,15 +65,27 @@
 import editor from '@/components/editor/editor.vue';
 
 export default {
-  metaInfo: {
-    title: 'AMCISA',
-    meta: [
-      {
-        vmid: 'description',
-        name: 'description',
-        content: 'AMCISA 是 Association of Malaysian Chinese Independent School Alumni 的简称，中文名为留新大马独中生联谊会。Find out more about us today!',
-      },
-    ],
+  metaInfo() {
+    return {
+      title: 'AMCISA',
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.about,
+        },
+        {
+          vmid: 'og:title',
+          name: 'og:title',
+          content: 'AMCISA',
+        },
+        {
+          vmid: 'og:description',
+          name: 'og:description',
+          content: this.about,
+        },
+      ],
+    };
   },
   components: {
     editor,

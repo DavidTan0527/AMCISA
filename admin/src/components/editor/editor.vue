@@ -135,8 +135,110 @@
           <icon name="redo" />
         </button>
 
+        <button
+          class="menubar__button"
+          @click="commands.createTable({rowsCount: 3, colsCount: 3, withHeaderRow: false })"
+        >
+          <icon name="table" />
+        </button>
+
+        <span v-if="isActive.table()">
+          <button
+            class="menubar__button"
+            @click="commands.deleteTable"
+          >
+            <icon name="delete_table" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.addColumnBefore"
+          >
+            <icon name="add_col_before" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.addColumnAfter"
+          >
+            <icon name="add_col_after" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.deleteColumn"
+          >
+            <icon name="delete_col" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.addRowBefore"
+          >
+            <icon name="add_row_before" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.addRowAfter"
+          >
+            <icon name="add_row_after" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.deleteRow"
+          >
+            <icon name="delete_row" />
+          </button>
+          <button
+            class="menubar__button"
+            @click="commands.toggleCellMerge"
+          >
+            <icon name="combine_cells" />
+          </button>
+        </span>
       </div>
     </editor-menu-bar>
+
+    <editor-menu-bubble
+      class="menububble"
+      :editor="editor"
+      @hide="hideLinkMenu"
+      v-slot="{ commands, isActive, getMarkAttrs, menu }"
+    >
+      <div
+        class="menububble"
+        :class="{ 'is-active': menu.isActive }"
+        :style="`left: ${menu.left}px; bottom: ${menu.bottom}px;`"
+      >
+        <form class="menububble__form"
+          v-if="linkMenuIsActive"
+          @submit.prevent="setLinkUrl(commands.link, linkUrl)"
+        >
+          <input
+            class="menububble__input"
+            type="text"
+            v-model="linkUrl"
+            placeholder="https://"
+            ref="linkInput"
+            @keydown.esc="hideLinkMenu"/>
+          <button
+            class="menububble__button"
+            @click="setLinkUrl(commands.link, null)"
+            type="button"
+          >
+            <icon name="remove" />
+          </button>
+        </form>
+
+        <template v-else>
+          <button
+            class="menububble__button"
+            @click="showLinkMenu(getMarkAttrs('link'))"
+            :class="{ 'is-active': isActive.link() }"
+          >
+            <span>{{ isActive.link() ? 'Update Link' : 'Add Link'}}</span>
+            <icon name="link" />
+          </button>
+        </template>
+
+      </div>
+    </editor-menu-bubble>
 
     <editor-content class="editor__content" :editor="editor" />
 
@@ -145,7 +247,12 @@
 </template>
 
 <script>
-import { Editor, EditorContent, EditorMenuBar } from 'tiptap';
+import {
+  Editor,
+  EditorContent,
+  EditorMenuBar,
+  EditorMenuBubble,
+} from 'tiptap';
 import {
   Blockquote,
   CodeBlock,
@@ -162,6 +269,10 @@ import {
   Code,
   Italic,
   Link,
+  Table,
+  TableHeader,
+  TableCell,
+  TableRow,
   Strike,
   Underline,
   History,
@@ -173,6 +284,7 @@ import Icon from './icon.vue';
 export default {
   components: {
     EditorMenuBar,
+    EditorMenuBubble,
     EditorContent,
     Icon,
   },
@@ -223,11 +335,19 @@ export default {
             node: 'paragraph',
             notAfter: ['paragraph'],
           }),
+          new Table({
+            resizable: true,
+          }),
+          new TableHeader(),
+          new TableCell(),
+          new TableRow(),
         ],
         content: '',
         onUpdate: ({ getJSON }) => { this.json = getJSON(); },
       }),
       json: '',
+      linkUrl: null,
+      linkMenuIsActive: false,
     };
   },
   mounted() {
@@ -243,10 +363,25 @@ export default {
     },
     showImagePrompt(command) {
       // eslint-disable-next-line
-      const src = prompt('Enter the url of your image here');
+      const src = prompt('Enter the url to your image (drag and drop into the editor if you are using images on your computer)');
       if (src !== null) {
         command({ src });
       }
+    },
+    showLinkMenu(attrs) {
+      this.linkUrl = attrs.href;
+      this.linkMenuIsActive = true;
+      this.$nextTick(() => {
+        this.$refs.linkInput.focus();
+      });
+    },
+    hideLinkMenu() {
+      this.linkUrl = null;
+      this.linkMenuIsActive = false;
+    },
+    setLinkUrl(command, url) {
+      command({ href: url });
+      this.hideLinkMenu();
     },
   },
   watch: {
@@ -254,6 +389,9 @@ export default {
       this.editor.setOptions({
         editable: this.editable,
       });
+    },
+    json(val) {
+      this.$emit('change_content', val);
     },
   },
   beforeDestroy() {
