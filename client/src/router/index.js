@@ -7,22 +7,22 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/home'),
+    component: () => import('@/views/home.vue'),
   },
   {
     path: '/:uni',
-    component: () => import('@/layout/default'),
+    component: () => import('@/layout/default.vue'),
     children: [
       {
         path: '',
         name: 'Main',
-        component: () => import('@/views/main'),
+        component: () => import('@/views/main.vue'),
       },
       {
         path: 'freshman-orientation',
         name: 'freshman-orientation',
         // allowUni: 'nus',
-        component: () => import('@/views/foc'),
+        component: () => import('@/views/foc.vue'),
       },
       // {
       //   path: 'foa',
@@ -33,22 +33,22 @@ const routes = [
       {
         path: 'event',
         name: 'Event',
-        component: () => import('@/views/event'),
+        component: () => import('@/views/event.vue'),
       },
       {
         path: 'event/:id',
         name: 'EventDetails',
-        component: () => import('@/views/event_details'),
+        component: () => import('@/views/event_details.vue'),
       },
       {
         path: 'about',
         name: 'About',
-        component: () => import('@/views/about'),
+        component: () => import('@/views/about.vue'),
       },
       {
         path: 'faq',
         name: 'Faq',
-        component: () => import('@/views/faq'),
+        component: () => import('@/views/faq.vue'),
       },
     ],
   },
