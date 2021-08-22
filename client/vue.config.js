@@ -1,4 +1,4 @@
-const WorkboxPlugin = require('workbox-webpack-plugin');
+// const WorkboxPlugin = require('workbox-webpack-plugin');
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
 
 module.exports = {
@@ -14,41 +14,41 @@ module.exports = {
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'white',
 
-    workboxPluginMode: 'InjectManifest',
-    workboxOptions: {
-      // swSrc is required in InjectManifest mode.
-      swSrc: 'public/service-worker.js',
-      // skipWaiting: true,
-      // clientsClaim: true,
-      maximumFileSizeToCacheInBytes: 5000000,
-    },
+    // workboxPluginMode: 'InjectManifest',
+    // workboxOptions: {
+    //   // swSrc is required in InjectManifest mode.
+    //   swSrc: 'public/service-worker.js',
+    //   // skipWaiting: true,
+    //   // clientsClaim: true,
+    //   maximumFileSizeToCacheInBytes: 5000000,
+    // },
   },
 
   configureWebpack: {
     plugins: [
-      new WorkboxPlugin.GenerateSW({
-        exclude: [/\.(?:png|jpg|jpeg|svg|ttf|otf)$/],
-        runtimeCaching: [{
-          urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'images',
-            expiration: {
-              maxEntries: 10,
-            },
-          },
-        },
-        {
-          urlPattern: /\.(?:ttf|otf)$/,
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'fonts',
-            expiration: {
-              maxEntries: 100,
-            },
-          },
-        }],
-      }),
+      // new WorkboxPlugin.GenerateSW({
+      //   exclude: [/\.(?:png|jpg|jpeg|svg|ttf|otf)$/],
+      //   runtimeCaching: [{
+      //     urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+      //     handler: 'CacheFirst',
+      //     options: {
+      //       cacheName: 'images',
+      //       expiration: {
+      //         maxEntries: 10,
+      //       },
+      //     },
+      //   },
+      //   {
+      //     urlPattern: /\.(?:ttf|otf)$/,
+      //     handler: 'CacheFirst',
+      //     options: {
+      //       cacheName: 'fonts',
+      //       expiration: {
+      //         maxEntries: 100,
+      //       },
+      //     },
+      //   }],
+      // }),
       new SitemapPlugin({
         base: 'https://amcisa.net',
         paths: [
