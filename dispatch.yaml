@@ -1,0 +1,5 @@
+dispatch:
+  - url: 'api.amcisa.net/*'
+    service: backend
+  - url: 'admin.amcisa.net/*'
+    service: admin
