@@ -4,7 +4,21 @@ const event = {}
 
 event.get = (uni) => {
     return getJson(addPrefix(uni,'event.json')).then(data => {
-        return JSON.parse(data);
+        const parsedData = JSON.parse(data);
+
+        parsedData.sort((a, b) => {
+          const regex = /([1-3]?[0-9])\/(0?[0-9]|1[12])\/(\d{4})/;
+          const [_A, dayA, monthA, yearA] = regex.exec(a.event_date);
+          const [_B, dayB, monthB, yearB] = regex.exec(b.event_date);
+
+          const dateA = new Date(`${yearA}-${monthA}-${dayA}`);
+          const dateB = new Date(`${yearB}-${monthB}-${dayB}`);
+
+          // Sort in descending order (latest date first)
+          return dateB - dateA;
+        })
+
+        return parsedData;
     });
 };
 
